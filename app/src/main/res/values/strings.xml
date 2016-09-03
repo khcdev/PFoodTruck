@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">FoodTruck</string>
+    <!--activity_main res-->
+    <string name="str_imgbtn_Userpart">USER</string>
+    <string name="str_imgbtn_Sellerpart">SELLER</string>
+    <!--===================================================-->
+    <!--user_main res-->
+    <string name="app_title">HungryDuck</string>
+    <string name="str_imgbtn_NonAccLogin">손님으로 입장하기</string>
+    <string name="str_imgbtn_kkoLogin">카카오톡 아이디로 로그인하기</string>
+    <string name="str_imgbtn_fbLogin">페이스북 아이디로 로그인하기</string>
+    <!--===================================================-->
+    <!--seller_main res-->
+    <string name="str_imgbtn_login">Login</string>
+    <!--===================================================-->
+
+</resources>
