@@ -16,7 +16,7 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="50dp">
         <Button
-                android:id="@+id/mainlayout_btn_NonAccLogin"
+                android:id="@+id/usermain_btn_NonAccLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_imgbtn_NonAccLogin"
@@ -30,7 +30,7 @@
             android:paddingTop="30dp"
             android:layout_centerHorizontal="true">
         <Button
-                android:id="@+id/mainlayout_btn_kkoLogin"
+                android:id="@+id/usermain_btn_kkoLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_imgbtn_kkoLogin"
@@ -43,7 +43,7 @@
             android:layout_centerHorizontal="true"
             android:paddingTop="30dp">
         <Button
-                android:id="@+id/mainlayout_btn_fbLogin"
+                android:id="@+id/usermain_btn_fbLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_imgbtn_fbLogin"
