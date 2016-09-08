@@ -1,7 +1,6 @@
 package com.example.ckh.foodtruck;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +18,7 @@ public class MainActivity extends Activity {
         Button imgbtn_seller = (Button) findViewById(R.id.titlelayout_start_seller);
         Button imgbtn_user = (Button)findViewById(R.id.titlelayout_start_user);
         imgbtn_seller.setOnClickListener(titlelayout_listener);
+        //Test
 
     }
 
