@@ -15,11 +15,12 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginTop="50dp">
-        <Button
+        <ImageView
                 android:id="@+id/usermain_btn_NonAccLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_imgbtn_NonAccLogin"
+                android:src="@drawable/login_google_bg_red"
+                android:clickable="true"
         />
     </RelativeLayout>
     <RelativeLayout
@@ -29,11 +30,12 @@
             android:layout_below="@id/Relative_container1"
             android:paddingTop="30dp"
             android:layout_centerHorizontal="true">
-        <Button
+        <ImageView
                 android:id="@+id/usermain_btn_kkoLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_imgbtn_kkoLogin"
+                android:src="@drawable/login_kakao_bg"
+                android:clickable="true"
         />
     </RelativeLayout>
     <RelativeLayout
@@ -42,11 +44,12 @@
             android:layout_below="@id/Relative_container2"
             android:layout_centerHorizontal="true"
             android:paddingTop="30dp">
-        <Button
+        <ImageView
                 android:id="@+id/usermain_btn_fbLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_imgbtn_fbLogin"
+                android:src="@drawable/login_facebook_bg"
+                android:clickable="true"
         />
     </RelativeLayout>
 </RelativeLayout>

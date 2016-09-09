@@ -18,6 +18,7 @@ public class MainActivity extends Activity {
         Button imgbtn_seller = (Button) findViewById(R.id.titlelayout_start_seller);
         Button imgbtn_user = (Button)findViewById(R.id.titlelayout_start_user);
         imgbtn_seller.setOnClickListener(titlelayout_listener);
+        imgbtn_user.setOnClickListener(titlelayout_listener);
         //Test
 
     }
@@ -27,10 +28,12 @@ public class MainActivity extends Activity {
         public void onClick(View v){
             switch(v.getId()){
                 case R.id.titlelayout_start_seller:
-                    Intent i = new Intent();
-                    //startActivity();
+                    Intent actSeller_Login = new Intent(MainActivity.this,Seller_Login.class);
+                    startActivity(actSeller_Login);
                     break;
                 case R.id.titlelayout_start_user:
+                    Intent actUser_Login = new Intent(MainActivity.this,User_Login.class);
+                    startActivity(actUser_Login);
                     break;
             }
         }
