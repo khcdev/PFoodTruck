@@ -48,8 +48,8 @@
                 android:id="@+id/usermain_btn_fbLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/login_facebook_bg"
-                android:clickable="true"
-        />
+                android:layout_gravity="center_horizontal"
+        android:src="@drawable/login_facebook_bg"/>
+
     </RelativeLayout>
 </RelativeLayout>

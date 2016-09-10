@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">FoodTruck</string>
+
+    <!--App key-->
+    <string name="facebook_app_id">1813108498900576</string>
+    <string name="kakao_app_id">eb92054a910826db3b2d5d54403b1c95</string>
+    <!--===============================================================-->
+
     <!--activity_main res-->
     <string name="str_imgbtn_Userpart">USER</string>
     <string name="str_imgbtn_Sellerpart">SELLER</string>
@@ -13,5 +19,6 @@
     <!--seller_main res-->
     <string name="str_imgbtn_login">Login</string>
     <!--===================================================-->
+
 
 </resources>

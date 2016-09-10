@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
         Button imgbtn_user = (Button)findViewById(R.id.titlelayout_start_user);
         imgbtn_seller.setOnClickListener(titlelayout_listener);
         imgbtn_user.setOnClickListener(titlelayout_listener);
-        //Test
+
 
     }
 
