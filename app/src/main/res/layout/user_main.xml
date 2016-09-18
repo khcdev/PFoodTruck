@@ -30,13 +30,19 @@
             android:layout_below="@id/Relative_container1"
             android:paddingTop="30dp"
             android:layout_centerHorizontal="true">
-        <ImageView
+        <!--<ImageView
                 android:id="@+id/usermain_btn_kkoLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/login_kakao_bg"
                 android:clickable="true"
-        />
+        />-->
+        <com.kakao.usermgmt.LoginButton
+                android:id="@+id/com_kakao_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
     </RelativeLayout>
     <RelativeLayout
             android:layout_width="wrap_content"
@@ -48,8 +54,8 @@
                 android:id="@+id/usermain_btn_fbLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-        android:src="@drawable/login_facebook_bg"/>
-
+                android:src="@drawable/login_facebook_bg"
+                android:clickable="true"
+        />
     </RelativeLayout>
 </RelativeLayout>

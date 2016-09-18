@@ -3,24 +3,16 @@ package com.example.ckh.foodtruck;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
-
 import android.widget.ImageView;
-
-import android.widget.Toast;
 import com.facebook.*;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.kakao.auth.AuthType;
 import com.kakao.auth.ISessionCallback;
+import com.kakao.auth.KakaoSDK;
 import com.kakao.auth.Session;
-import com.kakao.network.ErrorResult;
-import com.kakao.usermgmt.UserManagement;
-import com.kakao.usermgmt.callback.MeResponseCallback;
-import com.kakao.usermgmt.response.model.UserProfile;
+import com.kakao.usermgmt.LoginButton;
 import com.kakao.util.exception.KakaoException;
 import com.kakao.util.helper.log.Logger;
 import org.json.JSONObject;
@@ -36,79 +28,74 @@ import java.util.Arrays;
  * Tech
  * ->kakao,facebook API이용
  */
-public class User_Login extends Activity{
-    //private SessionCallback mKakaocallback;
-    private CallbackManager callbackManager;
-    UserData UserData;
+
+public class User_Login extends Activity {
+    private SessionCallback callback;       //kko
+    private CallbackManager callbackManager; //fb
 
     @Override
-    public void onCreate(Bundle b ){
+    public void onCreate(Bundle b) {
         super.onCreate(b);
         setContentView(R.layout.user_main);
 
-        ImageView imgbtn_NonAcc=(ImageView) findViewById(R.id.usermain_btn_NonAccLogin);
-        ImageView imgbtn_kkoLogin=(ImageView) findViewById(R.id.usermain_btn_kkoLogin);
-        ImageView imgbtn_fbLogin=(ImageView) findViewById(R.id.usermain_btn_fbLogin);
+        ImageView imgbtn_NonAcc = (ImageView) findViewById(R.id.usermain_btn_NonAccLogin);
+        ImageView imgbtn_fblogin = (ImageView) findViewById(R.id.usermain_btn_fbLogin);
+
+        callback = new SessionCallback();
+        Session.getCurrentSession().addCallback(callback);
 
         class btnClickListener implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 switch(v.getId()){
                     case R.id.usermain_btn_NonAccLogin :
-
+                        Intent intent = new Intent(User_Login.this,User_tmploginaccess.class);
+                        startActivity(intent);
                         break;
-                    case R.id.usermain_btn_kkoLogin :
-                        UserData = new UserData();
-                        //isKakaoLogin();
-                        Toast.makeText(User_Login.this,UserData.getuser_id(),Toast.LENGTH_LONG).show();
-                        break;
-                    case R.id.usermain_btn_fbLogin :
-                        UserData = new UserData();
-                        isLoginFacebook();
+                    case R.id.usermain_btn_fbLogin:
+                        isLoginfacebook();
                         break;
                 }
             }
         }
 
         View.OnClickListener listener=new btnClickListener();
+
         imgbtn_NonAcc.setOnClickListener(listener);
-        imgbtn_kkoLogin.setOnClickListener(listener);
-        imgbtn_fbLogin.setOnClickListener(listener);
-
-
+        imgbtn_fblogin.setOnClickListener(listener);
     }
 
-//fragment layout의 도입
-    /*private void setLayoutText(){
-        tv_user_id.setText(userId);
-        tv_user_name.setText(userName);
 
-        Picasso.with(this)
-                .load(profileUrl)
-                .fit()
-                .into(iv_user_profile);
-    }*/
-    private void isLoginFacebook(){
+    private void isLoginfacebook(){
         FacebookSdk.sdkInitialize(getApplicationContext());
-        AppEventsLogger.activateApp(this);
-        CallbackManager callbackManager = CallbackManager.Factory.create();
-
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile","email"));
-        Toast.makeText(this, "access!", Toast.LENGTH_LONG).show();
+        callbackManager = CallbackManager.Factory.create();
+        LoginManager.getInstance().logInWithReadPermissions(User_Login.this,
+                Arrays.asList("public_profile", "email"));
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+
             @Override
-            public void onSuccess(final LoginResult loginResult) {
+            public void onSuccess(final LoginResult result) {
+
                 GraphRequest request;
-                request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                request = GraphRequest.newMeRequest(result.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
 
                     @Override
                     public void onCompleted(JSONObject user, GraphResponse response) {
-                        Log.d("TAG","페이스북 로그인 결과"+response.toString());
-                        try{
-                            UserData.setuser_id(user.getString("email"));
-                            UserData.setUser_name(user.getString("name"));
-                        }catch (Exception e){
-                            e.printStackTrace();
+                        if (response.getError() != null) {
+
+                        } else {
+                            Log.i("TAG", "user: " + user.toString());
+
+                            Log.i("TAG", "AccessToken: " + result.getAccessToken().getToken());
+                            try{
+                                GlobalApplication.User_info_name=user.getString("name");
+                            }catch(Exception e){
+                                e.printStackTrace();
+                            }
+                            setResult(RESULT_OK);
+                            Intent intent = new Intent(User_Login.this,User_tmploginaccess.class);
+                            startActivity(intent);
+                            finish();
                         }
                     }
                 });
@@ -116,24 +103,56 @@ public class User_Login extends Activity{
                 parameters.putString("fields", "id,name,email,gender,birthday");
                 request.setParameters(parameters);
                 request.executeAsync();
-                Log.d("TAG","페이스북 토큰->"+loginResult.getAccessToken().getToken());
-                Log.d("TAG","페이스북 UserID->"+loginResult.getAccessToken().getUserId());
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d("TAG","취소됨");
             }
 
             @Override
             public void onError(FacebookException error) {
+                Log.e("test", "Error: " + error);
                 error.printStackTrace();
+                finish();
+            }
+
+            @Override
+            public void onCancel() {
+                finish();
             }
         });
     }
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
+            return;
+        }
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Session.getCurrentSession().removeCallback(callback);
+    }
+
+    private class SessionCallback implements ISessionCallback {
+
+        @Override
+        public void onSessionOpened() {
+            redirectSignupActivity();
+        }
+
+        @Override
+        public void onSessionOpenFailed(KakaoException exception) {
+            if(exception != null) {
+                Logger.e(exception);
+            }
+            setContentView(R.layout.user_main);
+        }
+    }
+
+    protected void redirectSignupActivity() {
+        final Intent intent = new Intent(this, SampleSignupActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+        finish();
+    }
+
 }

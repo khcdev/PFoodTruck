@@ -2,12 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.ckh.foodtruck">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:name=".GlobalApplication">
+
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -29,11 +33,20 @@
                           "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
                   android:theme="@android:style/Theme.Translucent.NoTitleBar"
                   android:label="@string/app_name" />
+        <activity android:name=".SampleSignupActivity">
+
+        </activity>
+        <activity android:name=".User_tmploginaccess">
+
+        </activity>
+        <activity android:name=".Seller_TabFragment">
+
+        </activity>
         <!--Permission-->
-        <uses-permission android:name="android.permission.INTERNET"/>
+
         <!--Appkey-->
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <meta-data android:name="com.kakao.sdk.AppKey" android:value="@string/kakao_app_id" />
+        <meta-data android:name="com.kakao.sdk.AppKey" android:value="@string/kakao_app_key" />
     </application>
 
 </manifest>

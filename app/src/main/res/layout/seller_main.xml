@@ -45,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/for_setlayout_seller_temp2">
             <Button
+                    android:id="@+id/sellermain_imgbtn_Login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/str_imgbtn_login"/>

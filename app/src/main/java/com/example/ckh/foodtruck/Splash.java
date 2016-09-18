@@ -9,6 +9,7 @@ import android.os.Handler;
  * Created by Ckh on 2016-09-10.
  * 어플리케이션의 로딩 화면 Splash
  */
+
 public class Splash extends Activity {
 
     //로딩 화면이 떠있는 시간(밀리초단위)

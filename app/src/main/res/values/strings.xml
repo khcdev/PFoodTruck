@@ -3,7 +3,7 @@
 
     <!--App key-->
     <string name="facebook_app_id">1813108498900576</string>
-    <string name="kakao_app_id">eb92054a910826db3b2d5d54403b1c95</string>
+    <string name="kakao_app_key">eb92054a910826db3b2d5d54403b1c95</string>
     <!--===============================================================-->
 
     <!--activity_main res-->
@@ -19,6 +19,12 @@
     <!--seller_main res-->
     <string name="str_imgbtn_login">Login</string>
     <!--===================================================-->
+
+    <!--seller_fragment-->
+    <string name="str_seller_sales">영업</string>
+    <string name="str_seller_storemng">매장</string>
+    <string name="str_seller_news">소식</string>
+    <string name="str_seller_settings">설정</string>
 
 
 </resources>
