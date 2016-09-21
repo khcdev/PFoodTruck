@@ -6,6 +6,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * Created by Ckh on 2016-09-18.
@@ -38,5 +41,9 @@ public class Seller_TabFragment extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+
     }
+
 }
+

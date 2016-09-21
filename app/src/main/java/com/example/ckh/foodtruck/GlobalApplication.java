@@ -10,8 +10,12 @@ import com.kakao.auth.*;
  * AndroidManifest에 등록 해주어야함.
  */
 public class GlobalApplication extends Application {
+    //volatile 키워드 -> 단어 뜻은 '변덕스러운' 이라는 뜻을 가지고 있다.
+    //프로그래밍 언어에서의 정의는 '자주 변할수 있으니 잘 가져다 쓰라'
+    //1)특정 최적화에 주의 한다. 2) 멀티 쓰레드 환경에서 주의한다.
     private static volatile GlobalApplication instance = null;
     private static volatile Activity currentActivity = null;
+
     public static String User_info_name=null;
 
     public static Activity getCurrentActivity() {
@@ -33,7 +37,6 @@ public class GlobalApplication extends Application {
         super.onCreate();
         instance=this;
         KakaoSDK.init(new KakaoSDKAdapter());
-
     }
     /**
      * 애플리케이션 종료시 singleton 어플리케이션 객체 초기화한다.

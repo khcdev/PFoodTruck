@@ -19,7 +19,6 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
-
 /**
  * Created by Ckh on 2016-09-08.
  * 메인에서 User로 접근했을 경우 나타나게 되는 Activity
@@ -69,7 +68,9 @@ public class User_Login extends Activity {
     private void isLoginfacebook(){
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
-        LoginManager.getInstance().logInWithReadPermissions(User_Login.this,
+
+        //페이스북에서 권한을 가져오는것것
+       LoginManager.getInstance().logInWithReadPermissions(User_Login.this,
                 Arrays.asList("public_profile", "email"));
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
 
@@ -88,6 +89,7 @@ public class User_Login extends Activity {
 
                             Log.i("TAG", "AccessToken: " + result.getAccessToken().getToken());
                             try{
+
                                 GlobalApplication.User_info_name=user.getString("name");
                             }catch(Exception e){
                                 e.printStackTrace();

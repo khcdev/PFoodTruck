@@ -21,7 +21,7 @@ public class Seller_Login extends Activity{
         sellerlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Seller_Login.this,null);
+                Intent intent = new Intent(Seller_Login.this,Seller_TabFragment.class);
                 startActivity(intent);
             }
         });
