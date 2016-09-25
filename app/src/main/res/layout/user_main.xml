@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+
+<!--
+    *해상도대응
+    *버튼 규격
+-->
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -6,20 +13,21 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="110dp"
-        android:paddingBottom="@dimen/activity_vertical_margin">
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:background="@drawable/login_bgimg">
 
-    <include layout="@layout/title_layout"/>
+
     <RelativeLayout
             android:id="@+id/Relative_container1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="50dp">
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="220dp">
         <ImageView
                 android:id="@+id/usermain_btn_NonAccLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/login_google_bg_red"
+                android:src="@drawable/user_main_guestlgnbtn"
                 android:clickable="true"
         />
     </RelativeLayout>
@@ -28,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/Relative_container1"
-            android:paddingTop="30dp"
+            android:paddingTop="20dp"
             android:layout_centerHorizontal="true">
         <!--<ImageView
                 android:id="@+id/usermain_btn_kkoLogin"
@@ -49,13 +57,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/Relative_container2"
             android:layout_centerHorizontal="true"
-            android:paddingTop="30dp">
+            android:paddingTop="10dp">
         <ImageView
                 android:id="@+id/usermain_btn_fbLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/login_facebook_bg"
+                android:src="@drawable/fblogin"
                 android:clickable="true"
+                android:padding="20dp"
         />
     </RelativeLayout>
 </RelativeLayout>

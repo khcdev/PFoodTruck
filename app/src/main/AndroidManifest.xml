@@ -27,6 +27,9 @@
         <activity android:name=".Seller_Login">
 
         </activity>
+        <activity android:name=".ReviewMore">
+
+        </activity>
 
         <activity android:name="com.facebook.FacebookActivity"
                   android:configChanges=
@@ -36,10 +39,13 @@
         <activity android:name=".SampleSignupActivity">
 
         </activity>
-        <activity android:name=".User_tmploginaccess">
+        <activity android:name=".Seller_TabFragment">
 
         </activity>
-        <activity android:name=".Seller_TabFragment">
+        <activity android:name=".User_TabFragment">
+
+        </activity>
+        <activity android:name=".User_TruckDetail">
 
         </activity>
         <!--Permission-->

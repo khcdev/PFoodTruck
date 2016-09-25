@@ -48,7 +48,7 @@ public class User_Login extends Activity {
             public void onClick(View v) {
                 switch(v.getId()){
                     case R.id.usermain_btn_NonAccLogin :
-                        Intent intent = new Intent(User_Login.this,User_tmploginaccess.class);
+                        Intent intent = new Intent(User_Login.this,User_TabFragment.class);
                         startActivity(intent);
                         break;
                     case R.id.usermain_btn_fbLogin:
@@ -95,7 +95,7 @@ public class User_Login extends Activity {
                                 e.printStackTrace();
                             }
                             setResult(RESULT_OK);
-                            Intent intent = new Intent(User_Login.this,User_tmploginaccess.class);
+                            Intent intent = new Intent(User_Login.this,User_TabFragment.class);
                             startActivity(intent);
                             finish();
                         }

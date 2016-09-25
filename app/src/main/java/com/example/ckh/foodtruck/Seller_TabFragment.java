@@ -1,5 +1,6 @@
 package com.example.ckh.foodtruck;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -23,7 +24,7 @@ public class Seller_TabFragment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seller_fragment);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.seller_viewpager);
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
         fi1=new FragmentInflater();
         fi1.setresId(R.layout.seller_tab1_sales);
@@ -39,11 +40,15 @@ public class Seller_TabFragment extends AppCompatActivity {
         adapter.addFragment(fi4, "설정");
 
         viewPager.setAdapter(adapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.seller_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
 
     }
 
+    public void onClick_seller_reviewmore(View view) {
+        Intent intent =new Intent(Seller_TabFragment.this,ReviewMore.class);
+        startActivity(intent);
+    }
 }
 

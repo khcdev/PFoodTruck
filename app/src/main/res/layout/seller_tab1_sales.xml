@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
@@ -8,4 +9,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
     android:text="영업 가능 지역 및 인구 밀집 지역"/>
-</RelativeLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  android:layout_weight="1">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="지도"
+                android:textSize="40sp"/>
+    </LinearLayout>
+    <View android:layout_width="match_parent"
+      android:layout_height="1dp"
+        android:background="#000000"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  android:layout_weight="1">
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+        android:text=""/>
+    </LinearLayout>
+</LinearLayout>

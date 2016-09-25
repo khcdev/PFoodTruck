@@ -87,7 +87,7 @@ public class SampleSignupActivity extends Activity {
     }
 
     private void redirectMainActivity() {
-        Intent intent = new Intent(SampleSignupActivity.this,User_tmploginaccess.class);
+        Intent intent = new Intent(SampleSignupActivity.this,User_TabFragment.class);
         startActivity(intent);
         Toast.makeText(SampleSignupActivity.this, "access!", Toast.LENGTH_SHORT).show();
         Log.i("ckh","다음 액티비티 접근");
