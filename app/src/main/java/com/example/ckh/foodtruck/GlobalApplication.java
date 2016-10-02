@@ -41,6 +41,7 @@ public class GlobalApplication extends Application {
     /**
      * 애플리케이션 종료시 singleton 어플리케이션 객체 초기화한다.
      */
+
     @Override
     public void onTerminate() {
         super.onTerminate();

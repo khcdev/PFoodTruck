@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <TextView
-            android:layout_width="wrap_content"
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="0dp"
+                  android:orientation="horizontal"
+    android:layout_weight="0.8">
+        <ListView
+            android:id="@+id/User_Truck_List"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="트럭 리스트"
-    />
-    <ListView android:layout_width="wrap_content"
-              android:layout_height="wrap_content">
+            android:dividerHeight="5dp"
+            android:divider="#cccccc"
 
-    </ListView>
-    <Button
-            android:id="@+id/user_tab1_truckdetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="트럭 상세"
-            android:onClick="onClick_truckdetail"
-    />
+            />
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+        android:text="temp"/>
+    </LinearLayout>
+<LinearLayout android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:layout_weight="0.2">
+
+</LinearLayout>
 </LinearLayout>

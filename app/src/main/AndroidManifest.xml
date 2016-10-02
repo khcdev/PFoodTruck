@@ -34,8 +34,8 @@
         <activity android:name="com.facebook.FacebookActivity"
                   android:configChanges=
                           "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-                  android:theme="@android:style/Theme.Translucent.NoTitleBar"
                   android:label="@string/app_name" />
+
         <activity android:name=".SampleSignupActivity">
 
         </activity>
@@ -46,6 +46,12 @@
 
         </activity>
         <activity android:name=".User_TruckDetail">
+
+        </activity>
+        <activity android:name=".MenuManagement">
+
+        </activity>
+        <activity android:name=".Seller_MenuAdd">
 
         </activity>
         <!--Permission-->

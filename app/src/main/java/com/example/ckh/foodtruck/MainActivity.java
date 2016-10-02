@@ -21,8 +21,6 @@ public class MainActivity extends Activity {
         ImageView imgbtn_user = (ImageView)findViewById(R.id.titlelayout_start_user);
         imgbtn_seller.setOnClickListener(titlelayout_listener);
         imgbtn_user.setOnClickListener(titlelayout_listener);
-
-
     }
 
     class btnClickLister implements View.OnClickListener{

@@ -1,15 +1,22 @@
 package com.example.ckh.foodtruck;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.view.ViewGroup;
+import android.widget.*;
+
+import java.util.ArrayList;
 
 /**
  * Created by Ckh on 2016-09-18.
@@ -19,10 +26,15 @@ public class Seller_TabFragment extends AppCompatActivity {
     FragmentInflater fi2;
     FragmentInflater fi3;
     FragmentInflater fi4;
+
+
     @Override
     protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seller_fragment);
+
+        SharedPreferences setting;
+        setting = getSharedPreferences("setting",0);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.seller_viewpager);
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
@@ -50,5 +62,12 @@ public class Seller_TabFragment extends AppCompatActivity {
         Intent intent =new Intent(Seller_TabFragment.this,ReviewMore.class);
         startActivity(intent);
     }
+
+    public void onClick_seller_menumanagement(View view) {
+        Intent intent = new Intent(Seller_TabFragment.this, MenuManagement.class);
+        startActivity(intent);
+    }
+
+
 }
 

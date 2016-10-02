@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              >
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                  android:orientation="vertical"
+                  android:layout_margin="2dp"
+                  android:gravity="center_horizontal"
+                  android:onClick="onClick_seller_Menu_imgadd">
+        <TextView
+                android:id="@+id/seller_menu_tvVisibility"
+                android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+
+        android:text="이미지를 추가하시려면 클릭하세요"/>
+        <ImageView
+                android:id="@+id/seller_menu_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"/>
+
+    </LinearLayout>
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+    android:background="#000000"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  android:layout_weight="0.8"
+                  android:background="#ffffff">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                    android:layout_margin="10dp"
+                    android:gravity="center">
+
+            <EditText
+                    android:id="@+id/seller_textinput_menu_item_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="25"
+                    android:singleLine = "true"
+                    android:lines = "1"
+                    android:hint="메뉴명"/>
+            <EditText
+                    android:id="@+id/seller_textinput_menu_item_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="25"
+                    android:singleLine = "true"
+                    android:lines = "1"
+                    android:inputType="number"
+                    android:hint="가격(원)"/>
+            <EditText
+                    android:id="@+id/seller_textinput_menu_item_from"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="25"
+                    android:singleLine = "true"
+                    android:lines = "1"
+                    android:hint="원산지"/>
+            <EditText
+                    android:id="@+id/seller_textinput_menu_item_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines = "4"
+                    android:hint="설명"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  android:layout_weight="0.2"
+                  android:gravity="center"
+                  android:layout_margin="20dp">
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+        android:text="확인"
+        android:onClick="onClick_seller_Menu_addbtnclicked"/>
+    </LinearLayout>
+</LinearLayout>
