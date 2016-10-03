@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-
 public class MainActivity extends Activity {
 
     @Override
@@ -17,7 +16,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         View.OnClickListener titlelayout_listener = new btnClickLister();
-
         ImageView imgbtn_seller = (ImageView) findViewById(R.id.titlelayout_start_seller);
         ImageView imgbtn_user = (ImageView)findViewById(R.id.titlelayout_start_user);
         imgbtn_seller.setOnClickListener(titlelayout_listener);

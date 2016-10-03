@@ -16,7 +16,7 @@ public class User_TabFragment extends AppCompatActivity {
     FragmentInflater fi1;
     FragmentInflater fi2;
     private ListView trucklist = null;
-    private UserTruckListviewAdapter Adapter =null;
+    private UserTruckListviewAdapter truckAdapter =null;
     @Override
     protected  void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -36,18 +36,18 @@ public class User_TabFragment extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.user_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        /*ListView trucklist = (ListView) findViewById(R.id.User_Truck_List);
-        Adapter = new UserTruckListviewAdapter(getApplicationContext());
-        trucklist.setAdapter(Adapter);
+        ListView trucklist = (ListView) findViewById(R.id.User_Truck_List);
+        truckAdapter = new UserTruckListviewAdapter(getApplicationContext());
+        trucklist.setAdapter(truckAdapter);
 
-        Adapter.addItem(getResources().getDrawable(R.drawable.cvt_truckimg,null),
+        truckAdapter.addItem(getResources().getDrawable(R.drawable.cvt_truckimg,null),
                 "고기식당",
                 "호주산 스테이크",
                 "위치");
-        Adapter.addItem(getResources().getDrawable(R.drawable.cvt_truck2img,null),
+        truckAdapter.addItem(getResources().getDrawable(R.drawable.cvt_truck2img,null),
                 "통통브리또",
                 "맛있는 브리또",
-                "위치");*/
+                "위치");
     }
 
     public void onClick_truckdetail(View view) {
