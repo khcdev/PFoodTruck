@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.example.ckh.foodtruck.MenuManagement;
 import com.example.ckh.foodtruck.R;
 
 import java.util.ArrayList;
@@ -45,10 +44,11 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
         addInfo.MenuImage = foodImage;
         addInfo.MenuTitle = foodName;
         addInfo.Price = foodPrice;
-        addInfo.From = foodOrigin;
+        addInfo.Origin = foodOrigin;
         addInfo.Info = foodInfo;
 
         allMenuListData.add(addInfo);
+
     }
 
     public void remove(int position){
@@ -91,7 +91,7 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
 
         allMenuHolder.foodName.setText(allMenuData.MenuTitle);
         allMenuHolder.foodPrice.setText(allMenuData.Price);
-        allMenuHolder.foodOrigin.setText(allMenuData.From);
+        allMenuHolder.foodOrigin.setText(allMenuData.Origin);
 
         return convertView;
     }

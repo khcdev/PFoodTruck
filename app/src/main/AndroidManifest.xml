@@ -21,13 +21,13 @@
         <activity android:name=".MainActivity">
 
         </activity>
-        <activity android:name=".User_Login">
+        <activity android:name=".user.User_Login">
 
         </activity>
-        <activity android:name=".Seller_Login">
+        <activity android:name=".seller.Seller_Login">
 
         </activity>
-        <activity android:name=".ReviewMore">
+        <activity android:name=".seller.ReviewMore">
 
         </activity>
 
@@ -39,19 +39,19 @@
         <activity android:name=".SampleSignupActivity">
 
         </activity>
-        <activity android:name=".Seller_TabFragment">
+        <activity android:name=".seller.Seller_TabFragment">
 
         </activity>
-        <activity android:name=".User_TabFragment">
+        <activity android:name=".user.User_TabFragment">
 
         </activity>
-        <activity android:name=".User_TruckDetail">
+        <activity android:name=".user.User_TruckDetail">
 
         </activity>
-        <activity android:name=".MenuManagement">
+        <activity android:name=".seller.MenuManagement">
 
         </activity>
-        <activity android:name=".Seller_MenuAdd">
+        <activity android:name=".seller.Seller_MenuAdd">
 
         </activity>
         <!--Permission-->

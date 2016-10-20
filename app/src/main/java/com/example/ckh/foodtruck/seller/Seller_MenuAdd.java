@@ -1,4 +1,4 @@
-package com.example.ckh.foodtruck;
+package com.example.ckh.foodtruck.seller;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.ckh.cstview.Seller_MenuItem;
+import com.example.ckh.foodtruck.R;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -25,9 +26,7 @@ public class Seller_MenuAdd extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.seller_menu_added_layout);
-
-
+        setContentView(R.layout.seller_menu_item_info);
     }
 
     public void onClick_seller_Menu_imgadd(View view) {
@@ -72,6 +71,7 @@ public class Seller_MenuAdd extends Activity{
         EditText from = (EditText) findViewById(R.id.seller_textinput_menu_item_from);
         EditText info = (EditText) findViewById(R.id.seller_textinput_menu_item_info);
 
-
+        setResult(50);
+        finish();
     }
 }

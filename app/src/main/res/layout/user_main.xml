@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-
 <!--
     *해상도대응
     *버튼 규격
@@ -22,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="220dp">
+            android:layout_marginTop="240dp">
         <ImageView
                 android:id="@+id/usermain_btn_NonAccLogin"
                 android:layout_width="wrap_content"
@@ -45,6 +42,7 @@
                 android:src="@drawable/login_kakao_bg"
                 android:clickable="true"
         />-->
+
         <com.kakao.usermgmt.LoginButton
                 android:id="@+id/com_kakao_login"
                 android:layout_width="wrap_content"
@@ -64,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/fblogin"
                 android:clickable="true"
-                android:padding="20dp"
+                android:padding="15dp"
         />
     </RelativeLayout>
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.ckh.foodtruck;
+package com.example.ckh.foodtruck.user;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import com.example.ckh.foodtruck.*;
+import com.example.ckh.foodtruck.R;
 import com.facebook.*;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.kakao.auth.ISessionCallback;
-import com.kakao.auth.KakaoSDK;
 import com.kakao.auth.Session;
-import com.kakao.usermgmt.LoginButton;
 import com.kakao.util.exception.KakaoException;
 import com.kakao.util.helper.log.Logger;
 import org.json.JSONObject;
@@ -35,7 +35,7 @@ public class User_Login extends Activity {
     @Override
     public void onCreate(Bundle b) {
         super.onCreate(b);
-        setContentView(R.layout.user_main);
+        setContentView(com.example.ckh.foodtruck.R.layout.user_main);
 
         ImageView imgbtn_NonAcc = (ImageView) findViewById(R.id.usermain_btn_NonAccLogin);
         ImageView imgbtn_fblogin = (ImageView) findViewById(R.id.usermain_btn_fbLogin);
@@ -50,6 +50,7 @@ public class User_Login extends Activity {
                     case R.id.usermain_btn_NonAccLogin :
                         Intent intent = new Intent(User_Login.this,User_TabFragment.class);
                         startActivity(intent);
+                        finish();
                         break;
                     case R.id.usermain_btn_fbLogin:
                         isLoginfacebook();

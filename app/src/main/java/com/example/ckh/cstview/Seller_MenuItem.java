@@ -9,6 +9,6 @@ public class Seller_MenuItem {
     public Drawable MenuImage;
     public String MenuTitle;
     public String Price;
-    public String From;
+    public String Origin;
     public String Info;
 }

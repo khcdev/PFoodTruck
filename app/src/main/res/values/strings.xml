@@ -26,5 +26,8 @@
     <string name="str_seller_news">소식</string>
     <string name="str_seller_settings">설정</string>
 
+    <!--User_fragment-->
+    <string name="str_user_list">트럭리스트</string>
+    <string name="str_user_map">지도</string>
 
 </resources>

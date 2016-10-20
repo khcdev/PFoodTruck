@@ -1,7 +1,8 @@
-package com.example.ckh.foodtruck;
+package com.example.ckh.foodtruck.seller;
 
 import android.app.Activity;
 import android.os.Bundle;
+import com.example.ckh.foodtruck.R;
 
 /**
  * Created by Ckh on 2016-09-25.

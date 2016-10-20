@@ -39,12 +39,12 @@ public class UserTruckListviewAdapter extends BaseAdapter {
         return position;
     }
 
-    public void addItem(Drawable truckimg, String trucktitle, String truckPrice, String truckInfo){
+    public void addItem(Drawable truckimg, String trucktitle, String truckInfo,String truckLoc){
         User_TruckItem addInfo = new User_TruckItem();
         addInfo.TruckImg = truckimg;
         addInfo.TruckTitle = trucktitle;
         addInfo.TruckInfo = truckInfo;
-
+        addInfo.TruckLoc = truckLoc;
         allMenuListData.add(addInfo);
     }
 

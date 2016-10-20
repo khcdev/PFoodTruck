@@ -8,22 +8,12 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="110dp"
         android:paddingBottom="@dimen/activity_vertical_margin"
-        android:background="#ED7E5B"
+        android:background="@drawable/main"
         tools:context="com.example.ckh.foodtruck.MainActivity">
     <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true">
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/whitetruck"
-        />
-    </RelativeLayout>
-    <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="270dp"
+            android:layout_marginTop="310dp"
             android:layout_centerHorizontal="true">
         <ImageView
                 android:id="@+id/titlelayout_start_user"
@@ -35,7 +25,7 @@
     <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="330dp"
+            android:layout_marginTop="370dp"
             android:layout_centerHorizontal="true">
         <ImageView
                 android:id="@+id/titlelayout_start_seller"
