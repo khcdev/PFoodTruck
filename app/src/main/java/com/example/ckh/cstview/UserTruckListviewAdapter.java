@@ -58,38 +58,38 @@ public class UserTruckListviewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder allMenuHolder;
+        ViewHolder TruckData;
         if(convertView == null){
-            allMenuHolder = new ViewHolder();
+            TruckData = new ViewHolder();
 
             LayoutInflater inflater = (LayoutInflater)allMenuContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.seller_menu_added_layout,null);
 
-            allMenuHolder.Truckimg = (ImageView)convertView.findViewById(R.id.all_menu_image);
-            allMenuHolder.TruckTitle = (TextView)convertView.findViewById(R.id.all_menu_foodname);
-            allMenuHolder.TruckInfo = (TextView)convertView.findViewById(R.id.all_menu_price);
-            allMenuHolder.TruckInfo = (TextView)convertView.findViewById(R.id.all_menu_origin);
+            //리스트에 들어갈 데이터
+            TruckData.Truckimg = (ImageView)convertView.findViewById(R.id.all_menu_image);
+            TruckData.TruckTitle = (TextView)convertView.findViewById(R.id.all_menu_foodname);
+            TruckData.TruckInfo = (TextView)convertView.findViewById(R.id.all_menu_price);
+            TruckData.TruckLoc = (TextView)convertView.findViewById(R.id.all_menu_origin);
 
-
-            convertView.setTag(allMenuHolder);
+            convertView.setTag(TruckData);
         }
         else{
-            allMenuHolder = (ViewHolder)convertView.getTag();
+            TruckData = (ViewHolder)convertView.getTag();
         }
 
         User_TruckItem allMenuData = allMenuListData.get(position);
 
         if(allMenuData.TruckImg != null){
-            allMenuHolder.Truckimg.setVisibility(View.VISIBLE);
-            allMenuHolder.Truckimg.setImageDrawable(allMenuData.TruckImg);
+            TruckData.Truckimg.setVisibility(View.VISIBLE);
+            TruckData.Truckimg.setImageDrawable(allMenuData.TruckImg);
         }
         else{
-            allMenuHolder.Truckimg.setVisibility(View.GONE);
+            TruckData.Truckimg.setVisibility(View.GONE);
         }
 
-        allMenuHolder.TruckTitle.setText(allMenuData.TruckTitle);
-        allMenuHolder.TruckInfo.setText(allMenuData.TruckInfo);
-        allMenuHolder.TruckLoc.setText(allMenuData.TruckLoc);
+        TruckData.TruckTitle.setText(allMenuData.TruckTitle);
+        TruckData.TruckInfo.setText(allMenuData.TruckInfo);
+        TruckData.TruckLoc.setText(allMenuData.TruckLoc);
 
         return convertView;
     }

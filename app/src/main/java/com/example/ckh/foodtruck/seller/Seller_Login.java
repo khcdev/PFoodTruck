@@ -28,6 +28,7 @@ public class Seller_Login extends Activity{
             public void onClick(View v) {
                     Intent intent = new Intent(Seller_Login.this, Seller_TabFragment.class);
                     startActivity(intent);
+                finish();
             }
         });
     }

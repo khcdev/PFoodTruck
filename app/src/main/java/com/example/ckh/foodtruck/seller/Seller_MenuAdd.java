@@ -45,9 +45,8 @@ public class Seller_MenuAdd extends Activity{
             if(resultCode==Activity.RESULT_OK)
             {
                 try {
-                    Bitmap image_bitmap 	= MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                    Bitmap image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                     ImageView image = (ImageView)findViewById(R.id.seller_menu_img);
-
                     image.setImageBitmap(image_bitmap);
 
                 } catch (FileNotFoundException e) {

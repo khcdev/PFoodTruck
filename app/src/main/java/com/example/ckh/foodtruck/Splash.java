@@ -9,7 +9,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
@@ -50,6 +49,7 @@ public class Splash extends Activity {
             saveFiletoInternalStorage(R.drawable.img_chungnyun_main,"img_chungnyun_main.png");
             saveFiletoInternalStorage(R.drawable.img_gopizza_m01,"img_gopizza_m01.png");
             saveFiletoInternalStorage(R.drawable.img_gopizza_m02,"img_gopizza_m02.png");
+            saveFiletoInternalStorage(R.drawable.img_gopizza_m03,"img_gopizza_m03.png");
             saveFiletoInternalStorage(R.drawable.img_gopizza_main,"img_gopizza_main.png");
             saveFiletoInternalStorage(R.drawable.img_steakout_m01,"img_steakout_m01.png");
             saveFiletoInternalStorage(R.drawable.img_steakout_main,"img_steakout_main.png");

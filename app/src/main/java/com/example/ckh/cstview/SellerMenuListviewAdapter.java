@@ -1,6 +1,7 @@
 package com.example.ckh.cstview;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,7 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
         return position;
     }
 
-    public void addItem(Drawable foodImage, String foodName, String foodPrice, String foodOrigin,String foodInfo){
+    public void addItem(Bitmap foodImage, String foodName, String foodPrice, String foodOrigin, String foodInfo){
         Seller_MenuItem addInfo = new Seller_MenuItem();
         addInfo.MenuImage = foodImage;
         addInfo.MenuTitle = foodName;
@@ -83,7 +84,7 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
 
         if(allMenuData.MenuImage != null){
             allMenuHolder.foodImage.setVisibility(View.VISIBLE);
-            allMenuHolder.foodImage.setImageDrawable(allMenuData.MenuImage);
+            allMenuHolder.foodImage.setImageBitmap(allMenuData.MenuImage);
         }
         else{
             allMenuHolder.foodImage.setVisibility(View.GONE);

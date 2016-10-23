@@ -15,7 +15,7 @@ public class GlobalApplication extends Application {
     //1)특정 최적화에 주의 한다. 2) 멀티 쓰레드 환경에서 주의한다.
     private static volatile GlobalApplication instance = null;
     private static volatile Activity currentActivity = null;
-    public static String dbName = "tmp15.db";
+    public static String dbName = "tmp16.db";
 
     public static String User_info_name=null;
 

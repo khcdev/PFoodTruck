@@ -50,7 +50,6 @@ public class User_TabFragment extends FragmentActivity {
                     return new User_TabFirst_List(mContext);
                 case 1 :
                     return new User_TabSec_Map(mContext);
-
             }
             return null;
         }

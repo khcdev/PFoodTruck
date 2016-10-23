@@ -1,12 +1,15 @@
 package com.example.ckh.foodtruck.seller;
-
+//data/data/com.example.ckh.foodtruck/files/
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,13 +29,23 @@ import java.util.ArrayList;
 public class MenuManagement extends Activity {
     DBSQLiteOpenHelper helper;
     SQLiteDatabase db;
+    String imgpath = "data/data/com.example.ckh.foodtruck/files/";
     private ListView MenuList = null;
     private SellerMenuListviewAdapter ListViewAdapter = null;
-
+    Bitmap bm;
     @Override
     protected void onCreate(Bundle b){
         super.onCreate(b);
         setContentView(R.layout.seller_tab2_menumng);
+
+        Button adddetail = (Button) findViewById(R.id.seller_btn_menuadded);
+        adddetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuManagement.this,Seller_MenuAdd.class);
+                startActivityForResult(intent,100);
+            }
+        });
 
         MenuList=(ListView) findViewById(R.id.all_menu_list);
         ListViewAdapter = new SellerMenuListviewAdapter(this);
@@ -45,35 +58,20 @@ public class MenuManagement extends Activity {
                 1
         );
         db = helper.getReadableDatabase();
-        /*Cursor c = db.rawQuery("select * from menu where truck_id=101",null);
+        Cursor c = db.rawQuery("select * from menu where truck_id=102",null);
         while(c.moveToNext()){
-            String truckname = c.getString(1);
-            String owner = c.getString(2);
-            String imgcode = c.getString(3);
-            double score = c.getDouble(4);
-            int favorites = c.getInt(5);
-        }*/
-        ListViewAdapter.addItem(getResources().getDrawable(R.drawable.img_chungnyun_m02,null),
-                "동파육",
-                "8500원",
-                "국내산",
-                "한돈을 저렴한 가격에 제공함");
-        ListViewAdapter.addItem(getResources().getDrawable(R.drawable.img_chungnyun_m01,null),
-                "레몬크림새우",
-                "8000원",
-                "국산",
-                "맛있는 레몬크림 새우");
-
-
-
-        Button adddetail = (Button) findViewById(R.id.seller_btn_menuadded);
-        adddetail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuManagement.this,Seller_MenuAdd.class);
-                startActivityForResult(intent,100);
+            String imgcode = c.getString(6);
+            int price = c.getInt(5);
+            String origin = c.getString(4);
+            try {
+                bm = BitmapFactory.decodeFile(imgpath + imgcode+".png");
+            }catch (Exception e){
+                e.printStackTrace();
+                Log.e("fileloadfailed","비트맵 이미지 불러오기 실패");
             }
-        });
+            ListViewAdapter.addItem(bm,c.getString(2),Integer.toString(c.getInt(5)),c.getString(4),"");
+        }
+
     }
 
     @Override
