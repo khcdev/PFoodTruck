@@ -4,20 +4,19 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-
+    <!--
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
     android:text="영업 가능 지역 및 인구 밀집 지역"/>
+    -->
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="0dp"
                   android:layout_weight="1">
-        <TextView
+        <com.nhn.android.maps.NMapView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="지도"
-                android:textSize="40sp"/>
+                android:id="@+id/nMapView"/>
     </LinearLayout>
     <View android:layout_width="match_parent"
       android:layout_height="1dp"

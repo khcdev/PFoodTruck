@@ -23,7 +23,6 @@ import java.util.Arrays;
  * Created by Ckh on 2016-09-08.
  * 메인에서 User로 접근했을 경우 나타나게 되는 Activity
  * 비회원 로그인,카카오톡 로그인,페이스북 로그인 가능
- *
  * Tech
  * ->kakao,facebook API이용
  */

@@ -30,12 +30,10 @@ public class MainActivity extends Activity {
                 case R.id.titlelayout_start_seller:
                     Intent actSeller_Login = new Intent(MainActivity.this,Seller_Login.class);
                     startActivity(actSeller_Login);
-                    finish();
                     break;
                 case R.id.titlelayout_start_user:
                     Intent actUser_Login = new Intent(MainActivity.this,User_Login.class);
                     startActivity(actUser_Login);
-                    finish();
                     break;
             }
         }

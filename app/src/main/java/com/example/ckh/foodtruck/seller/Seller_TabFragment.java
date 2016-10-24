@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import com.example.ckh.foodtruck.R;
+import com.nhn.android.maps.NMapView;
 
 /**
  * Created by Ckh on 2016-09-18.

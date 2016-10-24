@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import com.nhn.android.maps.NMapView;
 
 /**
  * Created by Ckh on 2016-10-16.
@@ -17,6 +18,7 @@ public class DBSQLiteOpenHelper extends SQLiteOpenHelper {
 
     public DBSQLiteOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
+
     }
 
     @Override
