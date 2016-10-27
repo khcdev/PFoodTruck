@@ -8,14 +8,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
-        <TextView
-                android:id="@+id/seller_tab2_uploadimg"
+        <ImageView
+                android:id="@+id/seller_store_mainimg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="seller가 등록한 \n푸드트럭 이미지"
-                android:textSize="30sp"
-                android:clickable="true"/>
+                android:background="@drawable/img_gopizza_main"
+        android:layout_margin="5dp"/>
     </LinearLayout>
     <LinearLayout
             android:layout_width="match_parent"
@@ -54,7 +52,6 @@
                     android:layout_height="match_parent"
                     android:text="메뉴관리"
                     android:gravity="center"/>
-
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -75,7 +72,9 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
-                <TextView android:layout_width="match_parent"
+                <TextView
+                        android:id="@+id/seller_store_favorites"
+                        android:layout_width="match_parent"
                           android:layout_height="match_parent"
                           android:text="써클뷰 \n즐겨찾기수"
                           android:gravity="center"/>
@@ -84,16 +83,11 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
-                <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+                <TextView
+                        android:id="@+id/seller_store_score"
+                        android:layout_width="match_parent"
+                          android:layout_height="match_parent"
                           android:text="써클뷰 \n매장평점"
-                          android:gravity="center"/>
-            </LinearLayout>
-            <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-                          android:text="써클뷰 \n**"
                           android:gravity="center"/>
             </LinearLayout>
         </LinearLayout>

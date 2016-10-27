@@ -56,9 +56,9 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
         allMenuListData.remove(position);
     }
 
-    /*public void dataChange() {
-        allMenuAdapter.notifyDataSetChanged();
-    }*/
+    public void dataChange() {
+        notifyDataSetChanged();
+    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

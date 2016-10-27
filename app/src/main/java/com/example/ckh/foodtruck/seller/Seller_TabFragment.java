@@ -10,7 +10,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import com.example.ckh.foodtruck.R;
-import com.nhn.android.maps.NMapView;
 
 /**
  * Created by Ckh on 2016-09-18.
@@ -19,6 +18,7 @@ import com.nhn.android.maps.NMapView;
 public class Seller_TabFragment extends FragmentActivity {
     SellerSectionPagerAdapter mSectionPagerAdapter;
     ViewPager mViewPager;
+
     @Override
     protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -28,6 +28,7 @@ public class Seller_TabFragment extends FragmentActivity {
 
         mViewPager = (ViewPager)findViewById(R.id.seller_viewpager);
         mViewPager.setAdapter(mSectionPagerAdapter);
+
 
         TabLayout SellerTab = (TabLayout)findViewById(R.id.seller_tabs);
         SellerTab.setupWithViewPager(mViewPager);

@@ -20,6 +20,7 @@ import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.Splash;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
 
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -78,7 +79,8 @@ public class MenuManagement extends Activity {
     protected void onActivityResult(int requestCode,int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         if(resultCode == 50){
-            ListViewAdapter.notifyDataSetChanged();
+            ListViewAdapter.dataChange();
+            Log.i("resultcode","결과 코드가 실행되나욧");
         }
     }
 

@@ -21,7 +21,7 @@
                 android:id="@+id/seller_menu_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="20dp"/>
+                android:layout_margin="1dp"/>
 
     </LinearLayout>
     <View android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                     android:inputType="number"
                     android:hint="가격(원)"/>
             <EditText
-                    android:id="@+id/seller_textinput_menu_item_from"
+                    android:id="@+id/seller_textinput_menu_item_origin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLength="25"
@@ -76,9 +76,15 @@
                   android:gravity="center"
                   android:layout_margin="20dp">
         <Button
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
         android:text="확인"
         android:onClick="onClick_seller_Menu_addbtnclicked"/>
+        <Button android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+        android:text="승인"
+        android:onClick="onClick_seller_Menu_check"/>
     </LinearLayout>
 </LinearLayout>

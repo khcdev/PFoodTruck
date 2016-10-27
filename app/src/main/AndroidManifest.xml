@@ -57,11 +57,15 @@
         <activity android:name=".seller.Seller_MenuAdd">
 
         </activity>
+        <activity android:name=".seller.StoreManagement">
+
+        </activity>
         <!--Permission-->
 
         <!--Appkey-->
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <meta-data android:name="com.kakao.sdk.AppKey" android:value="@string/kakao_app_key" />
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/google_maps_key" />
     </application>
 
 </manifest>

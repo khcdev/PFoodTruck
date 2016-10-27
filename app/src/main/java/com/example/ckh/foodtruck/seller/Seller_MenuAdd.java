@@ -1,10 +1,18 @@
 package com.example.ckh.foodtruck.seller;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.preference.DialogPreference;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -12,9 +20,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.ckh.cstview.Seller_MenuItem;
+import com.example.ckh.foodtruck.GlobalApplication;
+import com.example.ckh.foodtruck.MainActivity;
 import com.example.ckh.foodtruck.R;
+import com.example.ckh.foodtruck.Splash;
+import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.AccessibleObject;
 
@@ -22,7 +35,12 @@ import java.lang.reflect.AccessibleObject;
  * Created by Ckh on 2016-10-02.
  */
 public class Seller_MenuAdd extends Activity{
+    boolean isCheck=false;
+    ImageView image;
+    Bitmap image_bitmap;
     final int REQ_CODE_SELECT_IMAGE=100;
+    DBSQLiteOpenHelper helper;
+    private SQLiteDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +63,8 @@ public class Seller_MenuAdd extends Activity{
             if(resultCode==Activity.RESULT_OK)
             {
                 try {
-                    Bitmap image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ImageView image = (ImageView)findViewById(R.id.seller_menu_img);
+                    image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                    image = (ImageView)findViewById(R.id.seller_menu_img);
                     image.setImageBitmap(image_bitmap);
 
                 } catch (FileNotFoundException e) {
@@ -64,13 +82,95 @@ public class Seller_MenuAdd extends Activity{
     }
 
     public void onClick_seller_Menu_addbtnclicked(View view) {
+        if(isCheck) {
+            String menuItem_title_detail;
+            String menuItem_price_detail;
+            String menuItem_origin_detail;
+            String menuItem_info_detail;
+            String convert_menunumber="";
 
-        EditText title = (EditText) findViewById(R.id.seller_textinput_menu_item_title);
-        EditText price = (EditText) findViewById(R.id.seller_textinput_menu_item_price);
-        EditText from = (EditText) findViewById(R.id.seller_textinput_menu_item_from);
-        EditText info = (EditText) findViewById(R.id.seller_textinput_menu_item_info);
+            EditText title = (EditText) findViewById(R.id.seller_textinput_menu_item_title);
+            EditText price = (EditText) findViewById(R.id.seller_textinput_menu_item_price);
+            EditText origin = (EditText) findViewById(R.id.seller_textinput_menu_item_origin);
+            EditText info = (EditText) findViewById(R.id.seller_textinput_menu_item_info);
+            menuItem_title_detail = title.getText().toString();
+            menuItem_price_detail = price.getText().toString();
+            menuItem_origin_detail = origin.getText().toString();
+            menuItem_info_detail = info.getText().toString();
+            helper = new DBSQLiteOpenHelper(Seller_MenuAdd.this,GlobalApplication.dbName,null,1);
+            try{
+                db=helper.getWritableDatabase();
+            }catch(SQLiteException e){
+                e.printStackTrace();
+                Log.e("SQLite", "데이터베이스 생성/열기 실패");
+                Toast.makeText(Seller_MenuAdd.this, "DB opening failed", Toast.LENGTH_LONG).show();
+            }
 
-        setResult(50);
-        finish();
+            Cursor c = db.rawQuery("select count(_id) from menu where truck_id=102",null);
+
+            while(c.moveToNext()) {
+                int menunum = c.getInt(0)+1;
+                if(menunum<10) convert_menunumber="0"+menunum;
+                else if(menunum<100)convert_menunumber=Integer.toString(menunum);
+                Log.i("baeeee",convert_menunumber);
+            }
+
+            db.execSQL("insert into menu values(null,102, '"+menuItem_title_detail+"',"+0+", '"+menuItem_origin_detail+"',"+
+                    Integer.parseInt(menuItem_price_detail)+", 'img_gopizza_m"+convert_menunumber+"'  );");
+
+            saveFiletoInternalStorage(image_bitmap,"img_gopizza_m"+convert_menunumber+".png");
+            AlertDialog.Builder successalert = new AlertDialog.Builder(Seller_MenuAdd.this);
+            successalert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            successalert.setMessage("메뉴가 추가 되었습니다!");
+            setResult(50);
+            finish();
+        }else {
+            AlertDialog.Builder alert = new AlertDialog.Builder(Seller_MenuAdd.this);
+            alert.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialog, int which){
+                    dialog.dismiss();
+                }
+            });
+            alert.setMessage("메뉴가 승인 되지 않았습니다.");
+            alert.show();
+        }
+    }
+
+    public void onClick_seller_Menu_check(View view) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(Seller_MenuAdd.this);
+        alert.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                dialog.dismiss();
+            }
+        });
+        alert.setMessage("승인 신청 되었습니다.");
+        alert.show();
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run() {
+                isCheck=true;
+            }
+        }, 3000);
+    }
+
+    public void saveFiletoInternalStorage(Bitmap bm,String str){
+        try{
+            FileOutputStream fos = openFileOutput(str,0);
+            bm.compress(Bitmap.CompressFormat.PNG,100,fos);
+            fos.flush();
+            fos.close();
+            Log.e("file/IO",str+"in");
+        }catch (Exception e){
+            e.printStackTrace();
+            Log.e("fileIOerror","fileinerror");
+        }
+
     }
 }

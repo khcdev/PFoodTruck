@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import com.nhn.android.maps.NMapView;
 
 /**
  * Created by Ckh on 2016-10-16.

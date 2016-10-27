@@ -4,6 +4,7 @@
     <!--App key-->
     <string name="facebook_app_id">1813108498900576</string>
     <string name="kakao_app_key">eb92054a910826db3b2d5d54403b1c95</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAHDzOu_dfQ5uF4X5HctOI3GNd8R6oP1VE</string>
     <!--===============================================================-->
 
     <!--activity_main res-->
@@ -29,5 +30,5 @@
     <!--User_fragment-->
     <string name="str_user_list">트럭리스트</string>
     <string name="str_user_map">지도</string>
-
+    <string name="str_done">완료</string>
 </resources>
