@@ -29,7 +29,6 @@ public class Seller_TabFirst_Sales extends Fragment implements OnMapReadyCallbac
     final int GU_SIZE = 25 * 3;
     Context mContext;
     View view;
-    GoogleMap map;
     GoogleMap gmap;
     UiSettings settings;
 
