@@ -10,7 +10,9 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.Toast;
+
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
 
 import java.io.FileOutputStream;
@@ -28,15 +30,20 @@ public class Splash extends Activity {
     DBSQLiteOpenHelper helper;
     private SQLiteDatabase db;
     String tag = "SQLite";
+    ProgressBar progressBar;
 
     //로딩 화면이 떠있는 시간(밀리초단위)
-    private final int SPLASH_DISPLAY_LENGTH = 5000;
+    private final int SPLASH_DISPLAY_LENGTH = 7000;
     /**임의 시간이 아닌 실제 데이터 로딩시간에 기반하도록 추후 변경*/
+
     @Override
     public void onCreate(Bundle b){
         SharedPreferences pref;
         super.onCreate(b);
         setContentView(R.layout.splash_loading);
+        progressBar = (ProgressBar)findViewById(R.id.pgbar);
+
+        Toast.makeText(Splash.this,"데이러를 읽어오는 중입니다.",Toast.LENGTH_LONG).show();
 
         pref=getSharedPreferences("pref", Activity.MODE_PRIVATE);
         if(!pref.getBoolean("isFirst",false)){
