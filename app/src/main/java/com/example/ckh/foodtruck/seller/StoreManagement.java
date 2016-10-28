@@ -3,30 +3,25 @@ package com.example.ckh.foodtruck.seller;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
-import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
 
 /**
  * Created by Ckh on 2016-10-27.
  */
 public class StoreManagement extends Activity {
-    /*DBSQLiteOpenHelper helper;
-    SQLiteDatabase db;*/
-    String value_intro;
-    String value_noti;
+
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seller_storeinfo);
 
         final TextView tv1 = (TextView) findViewById(R.id.seller_textinput_store_introstore);
+        tv1.setText("매장소개 : " +GlobalApplication.seller_store_introduce);
         tv1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,10 +31,11 @@ public class StoreManagement extends Activity {
                 alert_intro.setView(input_intro);
                 alert_intro.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        value_intro = input_intro.getText().toString();
+                        String value_intro = input_intro.getText().toString();
                         tv1.setText("매장소개 : "+value_intro);
+                        GlobalApplication.seller_store_introduce = value_intro;
                         dialog.dismiss();
-                        // Do something with value!
+
                     }
                 });
                 alert_intro.setNegativeButton("Cancel",
@@ -56,6 +52,7 @@ public class StoreManagement extends Activity {
 
         });
         final TextView tv2 =(TextView) findViewById(R.id.seller_textinput_store_notification);
+        tv2.setText("한마디 : " + GlobalApplication.seller_store_noti);
         tv2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +63,8 @@ public class StoreManagement extends Activity {
                 alert_noti.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String value_noti = input_noti.getText().toString();
-                        tv1.setText("한마디 : "+value_noti);
+                        tv2.setText("한마디 : "+value_noti);
+                        GlobalApplication.seller_store_noti = value_noti;
                         dialog.dismiss();
                         // Do something with value!
                     }
@@ -84,12 +82,5 @@ public class StoreManagement extends Activity {
 
         });
 
-
-
-
-
-        /*helper = new DBSQLiteOpenHelper(StoreManagement.this, GlobalApplication.dbName, null,1);
-        db = helper.getWritableDatabase();
-        */
     }
 }

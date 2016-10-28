@@ -24,26 +24,28 @@ public class Seller_TabSec_Store extends Fragment {
     Context mContext;
     DBSQLiteOpenHelper helper;
     SQLiteDatabase db;
-    int nfavorites;
-    double nscore;
     public Seller_TabSec_Store(Context context){
         mContext=context;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view=inflater.inflate(R.layout.seller_tab2_stroemng,null);
-
+        TextView favor = (TextView) view.findViewById(R.id.seller_store_favorites);
+        TextView score = (TextView) view.findViewById(R.id.seller_store_score);
         helper = new DBSQLiteOpenHelper(getActivity(), GlobalApplication.dbName, null,1);
         db = helper.getWritableDatabase();
         Cursor c = db.rawQuery("select score,favorites from foodtruck where truck_id=102;",null);
         while(c.moveToNext()){
-            nfavorites = c.getInt(1);
-            nscore = c.getDouble(0);
+            favor.setText("즐겨찾기 수\n"+c.getInt(1));
+            score.setText("매장평점\n"+c.getDouble(0));
         }
-        TextView favor = (TextView) view.findViewById(R.id.seller_store_favorites);
-        favor.setText("즐겨찾기 수\n"+nfavorites);
-        TextView score = (TextView) view.findViewById(R.id.seller_store_score);
-        score.setText("매장평점\n"+nscore);
+        TextView rv1 =(TextView) view.findViewById(R.id.reviewex1);
+        rv1.setText("치즈 듬뿍 맛있었습니다. (pizzapizza)");
+        TextView rv2 = (TextView) view.findViewById(R.id.reviewex2);
+        rv2.setText("시카고 그릴드 피자 굿굿 (숯돌이)");
+        TextView rv3 = (TextView) view.findViewById(R.id.reviewex3);
+        rv3.setText("가격대비 최고! (영광굴비)");
+
         TextView btnMenuMng = (TextView) view.findViewById(R.id.seller_tab2_menumanagement);
         btnMenuMng.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +69,8 @@ public class Seller_TabSec_Store extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),ReviewMore.class);
-                startActivity(intent);
+                intent.putExtra("Req",0);
+                startActivityForResult(intent,0);
             }
         });
         db.close();

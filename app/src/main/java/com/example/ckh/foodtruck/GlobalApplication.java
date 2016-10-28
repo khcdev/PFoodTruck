@@ -16,7 +16,8 @@ public class GlobalApplication extends Application {
     private static volatile GlobalApplication instance = null;
     private static volatile Activity currentActivity = null;
     public static String dbName = "tmp16.db";
-
+    public static String seller_store_introduce="화덕 피자 전문점 ";
+    public static String seller_store_noti="11월 3일 세종대학교 정문 11시~3시";
     public static String User_info_name=null;
 
     public static Activity getCurrentActivity() {
