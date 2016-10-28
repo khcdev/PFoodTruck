@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import com.example.ckh.cstview.SellerMenuListviewAdapter;
+
 import com.example.ckh.cstview.UserTruckListviewAdapter;
 import com.example.ckh.foodtruck.R;
 
@@ -19,6 +19,7 @@ import com.example.ckh.foodtruck.R;
 public class User_TabFirst_List extends Fragment {
     private ListView MenuList = null;
     private UserTruckListviewAdapter ListViewAdapter = null;
+    View view;
     Context mContext;
     public User_TabFirst_List(Context context){
         mContext = context;
@@ -26,8 +27,9 @@ public class User_TabFirst_List extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.user_tab1_list,null);
-
+        if(view == null) {
+         view = inflater.inflate(R.layout.user_tab1_list, null);
+        }
         MenuList=(ListView) view.findViewById(R.id.User_Truck_List);
         ListViewAdapter = new UserTruckListviewAdapter(getActivity());
         MenuList.setAdapter(ListViewAdapter);

@@ -9,14 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ckh.foodtruck.R;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 
 /**
  * Created by Ckh on 2016-10-08.
@@ -46,15 +42,5 @@ public class User_TabSec_Map extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        CameraPosition cp = new CameraPosition.Builder().target(new LatLng(37.5759, 126.9769)).zoom(13).build();
-        gmap.moveCamera(CameraUpdateFactory.newCameraPosition(cp));
-        gmap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-//                Intent intent = new Intent(getActivity(), Main2Activity.class);
-//                intent.putExtra("ID", marker.getTitle());
-//                startActivity(intent);
-            }
-        });
     }
 }
