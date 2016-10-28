@@ -30,5 +30,6 @@
     <!--User_fragment-->
     <string name="str_user_list">트럭리스트</string>
     <string name="str_user_map">지도</string>
+    <string name="str_user_setting">설정</string>
     <string name="str_done">완료</string>
 </resources>

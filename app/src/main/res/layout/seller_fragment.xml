@@ -15,7 +15,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabMode="fixed"
-        android:background="#ee8d8d"
+        android:background="#ED7E5B"
         app:tabTextColor="#000000"
         />
     </android.support.design.widget.AppBarLayout>

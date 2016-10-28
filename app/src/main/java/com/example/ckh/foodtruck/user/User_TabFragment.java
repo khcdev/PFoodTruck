@@ -2,7 +2,6 @@ package com.example.ckh.foodtruck.user;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -46,13 +45,15 @@ public class User_TabFragment extends FragmentActivity {
                     return new User_TabFirst_List(mContext);
                 case 1 :
                     return new User_TabSec_Map(mContext);
+                case 2:
+                    return null;
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
         /*fragment title get*/
         @SuppressLint("DefaultLocale")
@@ -63,6 +64,8 @@ public class User_TabFragment extends FragmentActivity {
                     return mContext.getString(R.string.str_user_list).toUpperCase();
                 case 1:
                     return mContext.getString(R.string.str_user_map).toUpperCase();
+                case 2:
+                    return mContext.getString(R.string.str_user_setting).toUpperCase();
             }
             return null;
         }

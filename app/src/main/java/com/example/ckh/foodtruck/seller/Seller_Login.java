@@ -4,6 +4,7 @@ package com.example.ckh.foodtruck.seller;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -268,9 +269,17 @@ public class Seller_Login extends Activity{
         sellerlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean id_check=false;
+                boolean pass_check=false;
+                if(i_login.getText().toString().equals("gopizza")) id_check=true;
+                if(i_password.getText().toString().equals("0000")) pass_check=true;
+                Log.i("logindata",i_login.getText().toString()+id_check+","+i_password.getText().toString()+pass_check);
+                if(id_check&&pass_check) {
                     Intent intent = new Intent(Seller_Login.this, Seller_TabFragment.class);
                     startActivity(intent);
-                finish();
+                    finish();
+                }
+                else Toast.makeText(Seller_Login.this,"아이디 혹은 패스워드가 일치하지 않습니다.",Toast.LENGTH_LONG).show();
             }
         });
 
