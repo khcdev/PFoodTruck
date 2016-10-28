@@ -48,7 +48,7 @@ public class TruckCardViewAdapter extends RecyclerView.Adapter<TruckCardViewAdap
 
         public ViewHolder(View v) {
             super(v);
-            truck_title = (TextView) v.findViewById(R.id.tv_title);
+            truck_title = (TextView) v.findViewById(R.id.user_truckinfo_trucktitle);
             truck_notiuser = (TextView) v.findViewById(R.id.user_truckinfo_notitouser);
             truck_favornum = (TextView) v.findViewById(R.id.user_truckinfo_trucktitle);
             cv = (CardView) v.findViewById(R.id.cv);

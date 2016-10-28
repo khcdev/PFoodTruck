@@ -24,7 +24,6 @@ public class User_TabSec_Map extends Fragment implements OnMapReadyCallback {
     GoogleMap gmap;
     UiSettings settings;
 
-
     public User_TabSec_Map(Context context) {
         mContext = context;
     }
@@ -34,7 +33,7 @@ public class User_TabSec_Map extends Fragment implements OnMapReadyCallback {
         if (view == null) {
             view = inflater.inflate(R.layout.user_tab2_map, container, false);
         }
-        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.gmap);
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.user_gmap);
         mapFragment.getMapAsync(this);
 
         return view;
