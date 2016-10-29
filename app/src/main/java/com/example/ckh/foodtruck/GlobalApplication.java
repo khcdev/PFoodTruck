@@ -25,6 +25,7 @@ public class GlobalApplication extends Application {
     public static boolean favor_102=false;
     public static boolean favor_103=false;
     public static boolean flag_truckinfolist=true;
+    public static boolean openStore= false;
 
 
     public static Activity getCurrentActivity() {

@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 
 /**
@@ -29,7 +28,7 @@ public class User_TabTri_settings extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         if(view==null){
             view = inflater.inflate(R.layout.user_tab3_settings,null);
-        }
+        }/*
         tv1=(TextView) view.findViewById(R.id.user_id);
         tv1.setText(GlobalApplication.User_info_name);
 
@@ -39,7 +38,7 @@ public class User_TabTri_settings extends Fragment {
 
         if(GlobalApplication.favor_101) v1.setVisibility(View.VISIBLE);
         if(GlobalApplication.favor_102) v2.setVisibility(View.VISIBLE);
-        if(GlobalApplication.favor_103) v3.setVisibility(View.VISIBLE);
+        if(GlobalApplication.favor_103) v3.setVisibility(View.VISIBLE);*/
         return view;
     }
 }

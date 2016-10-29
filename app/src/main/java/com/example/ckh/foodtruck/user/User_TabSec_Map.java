@@ -32,7 +32,10 @@ public class User_TabSec_Map extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (view == null) {
             view = inflater.inflate(R.layout.user_tab2_map, container, false);
-        }
+        }/**
+         형 GlobalApplication class에 openStore변수가 true일때만 gopizza 트럭 핀 찍어주시면 될것같습니다.
+         if만 걸어주시면 될것같아용
+         */
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.user_gmap);
         mapFragment.getMapAsync(this);
 
