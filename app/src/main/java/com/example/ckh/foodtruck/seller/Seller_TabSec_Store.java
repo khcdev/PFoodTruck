@@ -24,12 +24,15 @@ public class Seller_TabSec_Store extends Fragment {
     Context mContext;
     DBSQLiteOpenHelper helper;
     SQLiteDatabase db;
+    View view;
     public Seller_TabSec_Store(Context context){
         mContext=context;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view=inflater.inflate(R.layout.seller_tab2_stroemng,null);
+        if(view ==null ){
+            view=inflater.inflate(R.layout.seller_tab2_stroemng,null);
+        }
         TextView favor = (TextView) view.findViewById(R.id.seller_store_favorites);
         TextView score = (TextView) view.findViewById(R.id.seller_store_score);
         helper = new DBSQLiteOpenHelper(getActivity(), GlobalApplication.dbName, null,1);
@@ -51,6 +54,8 @@ public class Seller_TabSec_Store extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),MenuManagement.class);
+                intent.putExtra("isSeller",true);
+                intent.putExtra("truckvode",102);
                 startActivity(intent);
             }
         });

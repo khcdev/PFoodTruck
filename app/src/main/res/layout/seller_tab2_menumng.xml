@@ -20,6 +20,7 @@
         <Button android:id="@+id/seller_btn_menuadded"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="invisible"
                 android:layout_margin="10dp"
                 android:text="add"/>
     </LinearLayout>

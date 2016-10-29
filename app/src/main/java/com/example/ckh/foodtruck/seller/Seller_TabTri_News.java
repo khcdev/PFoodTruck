@@ -28,6 +28,7 @@ import java.util.ArrayList;
 @SuppressLint("ValidFragment")
 public class Seller_TabTri_News extends Fragment {
     Context mContext;
+    View view;
     public Seller_TabTri_News(Context context){
         mContext= context;
     }
@@ -37,7 +38,9 @@ public class Seller_TabTri_News extends Fragment {
     private ListViewAdapter seoulEventAdapter = null;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle b){
-        View view = inflater.inflate(R.layout.seller_tab3_news_list,null);
+        if(view == null){
+            view = inflater.inflate(R.layout.seller_tab3_news_list,null);
+        }
         seoulEventListView = (ListView) view.findViewById(R.id.seoulevent_menu_list);
         ListViewAdapter seoulEventAdapter = new ListViewAdapter(getActivity());
         seoulEventListView.setAdapter(seoulEventAdapter);

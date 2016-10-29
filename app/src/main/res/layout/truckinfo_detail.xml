@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8">
+        <ImageView
+                android:id="@+id/user_store_mainimg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"/>
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.05"
+            android:gravity="center">
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="0dp"
+    android:layout_weight="0.25"
+                  android:gravity="center">
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:text="11"
+        android:id="@+id/user_truck_detail_Introtext"/>
+
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.05"
+            android:gravity="center">
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.25">
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="3dp">
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                <ImageView android:layout_width="match_parent"
+                           android:layout_height="match_parent"
+                           android:id="@+id/user_truck_detail_notice"
+                           android:src="@drawable/circle"/>
+                <TextView
+                        android:id="@+id/user_truck_detail_noticetext"
+                        android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="공지사항"
+                          android:layout_centerInParent="true"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="3dp">
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                <ImageView android:layout_width="match_parent"
+                           android:layout_height="match_parent"
+                           android:id="@+id/user_truck_detail_menulist"
+                           android:src="@drawable/circle"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="메뉴보기"
+                        android:layout_centerInParent="true"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="3dp">
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                <ImageView android:layout_width="match_parent"
+                           android:layout_height="match_parent"
+                           android:id="@+id/user_truck_detail_favor"
+                           android:src="@drawable/star"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="7"
+                        android:id="@+id/user_truck_detail_favortext"
+                        android:layout_centerInParent="true"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="3dp"
+        >
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                <ImageView android:layout_width="match_parent"
+                           android:layout_height="match_parent"
+                           android:id="@+id/user_truck_detail_score"
+                           android:src="@drawable/temp_score"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 4.5"
+                        android:id="@+id/user_truck_detail_scoretext"
+                        android:layout_centerInParent="true"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.05"
+            android:gravity="center">
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000"/>
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:orientation="vertical">
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Review"
+                  android:textColor="#000000"
+                  android:gravity="center"/>
+        <!--<TextView
+                android:id="@+id/reviewex1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:text="내용들 (작성자)"/>
+        <TextView
+                android:id="@+id/reviewex2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:text="내용들 (작성자)"/>
+        <TextView
+                android:id="@+id/reviewex3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:text="내용들 (작성자)"/>-->
+
+        <Button
+                android:id="@+id/user_reviewmore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="더보기"
+                android:layout_gravity="center"/>
+
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="0dp"
+    android:layout_weight="0.3">
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+            <ImageView android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:padding="10dp"
+                       android:src="@drawable/imgbtn_fb"/>
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+            <ImageView android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:padding="10dp"
+                       android:src="@drawable/imgbtn_kko"/>
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+            <ImageView
+                    android:id="@+id/user_addfavor"
+                    android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:padding="10dp"
+                       android:src="@drawable/imgbtn_favorites"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

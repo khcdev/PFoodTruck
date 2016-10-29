@@ -2,7 +2,9 @@ package com.example.ckh.foodtruck;
 
 import android.app.Activity;
 import android.app.Application;
-import com.kakao.auth.*;
+import com.kakao.auth.KakaoSDK;
+
+import java.util.HashMap;
 
 /**
  * Created by Ckh on 2016-09-16.
@@ -16,9 +18,14 @@ public class GlobalApplication extends Application {
     private static volatile GlobalApplication instance = null;
     private static volatile Activity currentActivity = null;
     public static String dbName = "tmp16.db";
-    public static String seller_store_introduce="화덕 피자 전문점 ";
-    public static String seller_store_noti="11월 3일 세종대학교 정문 11시~3시";
     public static String User_info_name=null;
+    public static HashMap<String,String> truckintro=null;
+    public static HashMap<String,String> trucknoti=null;
+    public static boolean favor_101=false;
+    public static boolean favor_102=false;
+    public static boolean favor_103=false;
+    public static boolean flag_truckinfolist=true;
+
 
     public static Activity getCurrentActivity() {
         return currentActivity;

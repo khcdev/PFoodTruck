@@ -22,21 +22,23 @@ public class ReviewMore extends Activity {
     Button reviewadd;
     ListView listview;
     SellerReviewListviewAdapter adapter;
+    int truckid=102;
     @Override
     protected void onCreate(Bundle b){
         super.onCreate(b);
         setContentView(R.layout.seller_reviewmore);
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         reviewadd =(Button) findViewById(R.id.reviewadd);
         if(intent.getExtras().getInt("Req")==0) {
             reviewadd.setVisibility(View.INVISIBLE);
 
         }else {
             reviewadd.setVisibility(View.VISIBLE);
+            truckid=intent.getExtras().getInt("truckcode");
             reviewadd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //run
+                    //리뷰 추가 액티비티
                 }
             });
 
@@ -51,7 +53,7 @@ public class ReviewMore extends Activity {
                 1
         );
         db = helper.getWritableDatabase();
-        Cursor c = db.rawQuery("select writer,date,contents from review where truck_id = 102",null);
+        Cursor c = db.rawQuery("select writer,date,contents from review where truck_id = "+truckid+";",null);
         while(c.moveToNext()){
             c.getString(0); //writer
             adapter.addItem(c.getString(0),c.getString(1),0.1,c.getString(2));

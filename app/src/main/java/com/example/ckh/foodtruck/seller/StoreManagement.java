@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.example.ckh.foodtruck.GlobalApplication;
@@ -19,10 +20,11 @@ public class StoreManagement extends Activity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seller_storeinfo);
-
+        Button btnintro = (Button) findViewById(R.id.intromodibutton);
+        Button btnnoti=(Button) findViewById(R.id.notimodibutton);
         final TextView tv1 = (TextView) findViewById(R.id.seller_textinput_store_introstore);
-        tv1.setText("매장소개 : " +GlobalApplication.seller_store_introduce);
-        tv1.setOnClickListener(new View.OnClickListener() {
+        tv1.setText("매장소개 : " +GlobalApplication.truckintro.get("102").toString());
+        btnintro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alert_intro = new AlertDialog.Builder(StoreManagement.this);
@@ -33,9 +35,9 @@ public class StoreManagement extends Activity {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String value_intro = input_intro.getText().toString();
                         tv1.setText("매장소개 : "+value_intro);
-                        GlobalApplication.seller_store_introduce = value_intro;
+                        GlobalApplication.truckintro.remove("102");
+                        GlobalApplication.truckintro.put("102",value_intro);
                         dialog.dismiss();
-
                     }
                 });
                 alert_intro.setNegativeButton("Cancel",
@@ -52,8 +54,8 @@ public class StoreManagement extends Activity {
 
         });
         final TextView tv2 =(TextView) findViewById(R.id.seller_textinput_store_notification);
-        tv2.setText("한마디 : " + GlobalApplication.seller_store_noti);
-        tv2.setOnClickListener(new View.OnClickListener() {
+        tv2.setText("한마디 : " + GlobalApplication.trucknoti.get("102"));
+        btnnoti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alert_noti = new AlertDialog.Builder(StoreManagement.this);
@@ -64,7 +66,8 @@ public class StoreManagement extends Activity {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String value_noti = input_noti.getText().toString();
                         tv2.setText("한마디 : "+value_noti);
-                        GlobalApplication.seller_store_noti = value_noti;
+                        GlobalApplication.trucknoti.remove("102");
+                        GlobalApplication.trucknoti.put("102",value_noti);
                         dialog.dismiss();
                         // Do something with value!
                     }

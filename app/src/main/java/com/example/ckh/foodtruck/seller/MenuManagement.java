@@ -1,27 +1,20 @@
 package com.example.ckh.foodtruck.seller;
 //data/data/com.example.ckh.foodtruck/files/
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.ListView;
 import com.example.ckh.cstview.SellerMenuListviewAdapter;
 import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
-import com.example.ckh.foodtruck.Splash;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
-
-import java.io.FileOutputStream;
-import java.util.ArrayList;
 
 /**
  * Created by Ckh on 2016-10-02.
@@ -31,6 +24,7 @@ public class MenuManagement extends Activity {
     DBSQLiteOpenHelper helper;
     SQLiteDatabase db;
     String imgpath = "data/data/com.example.ckh.foodtruck/files/";
+    int truckcode =102;
     private ListView MenuList = null;
     private SellerMenuListviewAdapter ListViewAdapter = null;
     Bitmap bm;
@@ -38,15 +32,19 @@ public class MenuManagement extends Activity {
     protected void onCreate(Bundle b){
         super.onCreate(b);
         setContentView(R.layout.seller_tab2_menumng);
-
+        Intent intent = getIntent();
+        truckcode = intent.getExtras().getInt("truckcode");
         Button adddetail = (Button) findViewById(R.id.seller_btn_menuadded);
-        adddetail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuManagement.this,Seller_MenuAdd.class);
-                startActivityForResult(intent,100);
-            }
-        });
+        if(intent.getExtras().getBoolean("isSeller")) {
+            adddetail.setVisibility(View.VISIBLE);
+            adddetail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MenuManagement.this, Seller_MenuAdd.class);
+                    startActivityForResult(intent, 100);
+                }
+            });
+        }else adddetail.setVisibility(View.INVISIBLE);
 
         MenuList=(ListView) findViewById(R.id.all_menu_list);
         ListViewAdapter = new SellerMenuListviewAdapter(this);
@@ -59,7 +57,7 @@ public class MenuManagement extends Activity {
                 1
         );
         db = helper.getReadableDatabase();
-        Cursor c = db.rawQuery("select * from menu where truck_id=102",null);
+        Cursor c = db.rawQuery("select * from menu where truck_id="+truckcode+";",null);
         while(c.moveToNext()){
             String imgcode = c.getString(6);
             int price = c.getInt(5);

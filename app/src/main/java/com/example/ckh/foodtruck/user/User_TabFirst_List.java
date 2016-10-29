@@ -2,23 +2,38 @@ package com.example.ckh.foodtruck.user;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-
-import com.example.ckh.cstview.UserTruckListviewAdapter;
+import com.example.ckh.cstview.TruckCardViewAdapter;
+import com.example.ckh.cstview.TruckItem;
+import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
+import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 /**
  * Created by Ckh on 2016-10-08.
  */
 @SuppressLint("ValidFragment")
 public class User_TabFirst_List extends Fragment {
-    private ListView MenuList = null;
-    private UserTruckListviewAdapter ListViewAdapter = null;
+    SQLiteDatabase db;
+    DBSQLiteOpenHelper helper;
+    RecyclerView trucklistView;
+    TruckCardViewAdapter adapter;
+    String imgpath = "data/data/com.example.ckh.foodtruck/files/";
+    private RecyclerView.LayoutManager mLayoutManager;
+    ArrayList<TruckItem> dataList = new ArrayList<TruckItem>();
     View view;
     Context mContext;
     public User_TabFirst_List(Context context){
@@ -30,23 +45,38 @@ public class User_TabFirst_List extends Fragment {
         if(view == null) {
          view = inflater.inflate(R.layout.user_tab1_list, null);
         }
-        MenuList=(ListView) view.findViewById(R.id.User_Truck_List);
-        ListViewAdapter = new UserTruckListviewAdapter(getActivity());
-        MenuList.setAdapter(ListViewAdapter);
 
-        ListViewAdapter.addItem(getResources().getDrawable(R.drawable.img_chungnyun_main,null),
-                "청년반점",
-                "레몬 크림 새우, 동파육 두가지 메뉴",
-                "여의도 도깨비야시장");
-        ListViewAdapter.addItem(getResources().getDrawable(R.drawable.img_gopizza_main,null),
-                "Go Pizza",
-                "다양한 종류의 화덕피자",
-                "여의도 도깨비야시장"
-                );
-        ListViewAdapter.addItem(getResources().getDrawable(R.drawable.img_steakout_main,null),
-                "Steak Out",
-                "고급 스테이크를 저렴한 가격에!",
-                "여의도 도깨비야시장");
+        trucklistView = (RecyclerView) view.findViewById(R.id.user_truck_recycler);
+        trucklistView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        trucklistView.setLayoutManager(mLayoutManager);
+        if(GlobalApplication.flag_truckinfolist){
+            helper = new DBSQLiteOpenHelper(getActivity(), GlobalApplication.dbName,null,1);
+            db= helper.getReadableDatabase();
+            Cursor c = db.rawQuery("select truck_name,score,favorites,imgcode,truck_id from foodtruck",null);
+            while(c.moveToNext()) {
+                Bitmap bm = null;
+                TruckItem data = new TruckItem();
+                data.truck_id = c.getInt(4);
+                data.truckname = c.getString(0);
+                data.truckfavor = c.getInt(2);
+                data.truckscore = c.getDouble(1);
+                data.imgcode = c.getString(3) + ".png";
+                data.truck_noti = GlobalApplication.trucknoti.get(Integer.toString(data.truck_id));
+                try {
+                    bm = BitmapFactory.decodeFile(imgpath + data.imgcode);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("fileloadfailed", "비트맵 이미지 불러오기 실패");
+                }
+                data.truckimg = bm;
+                dataList.add(data);
+            }
+            GlobalApplication.flag_truckinfolist=false;
+        }
+
+        adapter = new TruckCardViewAdapter(getActivity(),dataList);
+        trucklistView.setAdapter(adapter);
         return view;
     }
 }

@@ -48,9 +48,6 @@
         <activity android:name=".user.User_TabFragment">
 
         </activity>
-        <activity android:name=".user.User_TruckDetail">
-
-        </activity>
         <activity android:name=".seller.MenuManagement">
 
         </activity>
@@ -61,6 +58,9 @@
 
         </activity>
         <activity android:name=".Main2Activity">
+
+        </activity>
+        <activity android:name=".user.User_TruckInfo">
 
         </activity>
         <!--Permission-->
