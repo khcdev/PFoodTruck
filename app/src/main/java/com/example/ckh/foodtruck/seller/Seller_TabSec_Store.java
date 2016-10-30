@@ -45,12 +45,6 @@ public class Seller_TabSec_Store extends Fragment {
             favor.setText(c.getInt(1) + " ");
             score.setText(c.getDouble(0) + " ");
         }
-        TextView rv1 = (TextView) view.findViewById(R.id.reviewex1);
-        rv1.setText("치즈 듬뿍 맛있었습니다. (pizzapizza)");
-        TextView rv2 = (TextView) view.findViewById(R.id.reviewex2);
-        rv2.setText("시카고 그릴드 피자 굿굿 (숯돌이)");
-        TextView rv3 = (TextView) view.findViewById(R.id.reviewex3);
-        rv3.setText("가격대비 최고! (영광굴비)");
 
         TextView btnMenuMng = (TextView) view.findViewById(R.id.seller_tab2_menumanagement);
         btnMenuMng.setOnClickListener(new View.OnClickListener() {

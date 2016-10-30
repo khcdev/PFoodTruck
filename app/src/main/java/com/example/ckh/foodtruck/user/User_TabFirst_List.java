@@ -21,9 +21,11 @@ import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 /**
  * Created by Ckh on 2016-10-08.
- */
+*/
 @SuppressLint("ValidFragment")
 public class User_TabFirst_List extends Fragment {
     SQLiteDatabase db;
@@ -50,7 +52,9 @@ public class User_TabFirst_List extends Fragment {
         trucklistView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         trucklistView.setLayoutManager(mLayoutManager);
-        if (GlobalApplication.flag_truckinfolist) {
+        if(GlobalApplication.dataList.size()!=0){
+            GlobalApplication.dataList = new ArrayList<>();
+        }
             helper = new DBSQLiteOpenHelper(getActivity(), GlobalApplication.dbName, null, 1);
             db = helper.getReadableDatabase();
             Cursor c = db.rawQuery("select truck_name,score,favorites,imgcode,truck_id from foodtruck", null);
@@ -72,11 +76,10 @@ public class User_TabFirst_List extends Fragment {
                 data.truckimg = bm;
                 GlobalApplication.dataList.add(data);
             }
-            GlobalApplication.flag_truckinfolist = false;
-        }
+
 
         adapter = new TruckCardViewAdapter(getActivity(), GlobalApplication.dataList);
         trucklistView.setAdapter(adapter);
         return view;
     }
-}
+    }

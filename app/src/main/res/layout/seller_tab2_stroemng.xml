@@ -110,7 +110,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="16dp"/>
 
-        <TextView
+       <!-- <TextView
                 android:id="@+id/reviewex1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="18sp"
                 android:text="내용들 (작성자)"
-                android:paddingLeft="13dp"/>
+                android:paddingLeft="13dp"/>-->
 
 
     </LinearLayout>

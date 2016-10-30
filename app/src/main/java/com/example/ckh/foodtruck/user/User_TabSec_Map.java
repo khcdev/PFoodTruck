@@ -2,24 +2,18 @@ package com.example.ckh.foodtruck.user;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import com.example.ckh.cstview.TruckItem;
 import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.*;
+import com.google.android.gms.maps.model.*;
 
 /**
  * Created by Ckh on 2016-10-08.
@@ -53,7 +47,7 @@ public class User_TabSec_Map extends Fragment implements OnMapReadyCallback {
         settings = gmap.getUiSettings();
         settings.setZoomControlsEnabled(true);
         if (GlobalApplication.openStore == true) {
-            gmap.addMarker(new MarkerOptions().title("gopizza").position(new LatLng(37.55139, 127.074111)).icon(BitmapDescriptorFactory.fromResource(R.drawable.truck)));
+            gmap.addMarker(new MarkerOptions().title("GoPizza").position(new LatLng(37.55139, 127.074111)).icon(BitmapDescriptorFactory.fromResource(R.drawable.truck)));
         }
 
         gmap.addMarker(new MarkerOptions().title("청년반점").position(new LatLng(37.5572321, 127.0431332)).icon(BitmapDescriptorFactory.fromResource(R.drawable.truck)));
@@ -64,9 +58,25 @@ public class User_TabSec_Map extends Fragment implements OnMapReadyCallback {
         gmap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-
-
+                String trname=marker.getTitle();
+                Log.i("ckhtag",trname);
+                for(int i=0;i < GlobalApplication.dataList.size(); i++) {
+                    TruckItem a;
+                    a=GlobalApplication.dataList.get(i);
+                    if (a.truckname.equals(trname)){
+                        Intent intent = new Intent(getActivity(),User_TruckInfo.class);
+                        intent.putExtra("truckname",a.truckname);
+                        intent.putExtra("truckid",a.truck_id);
+                        intent.putExtra("truckfavor",a.truckfavor);
+                        intent.putExtra("truckscore",a.truckscore);
+                        intent.putExtra("trucknoti",a.truck_noti);
+                        intent.putExtra("imgcode",a.imgcode);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(intent);
+                    }
+                }
             }
         });
+
     }
 }

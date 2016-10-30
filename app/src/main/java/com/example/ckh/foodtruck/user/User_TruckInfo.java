@@ -20,6 +20,9 @@ import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
 import com.example.ckh.foodtruck.seller.MenuManagement;
 import com.example.ckh.foodtruck.seller.ReviewMore;
+import com.kakao.kakaolink.KakaoLink;
+import com.kakao.kakaolink.KakaoTalkLinkMessageBuilder;
+import com.kakao.util.KakaoParameterException;
 
 /**
  * Created by Ckh on 2016-10-29.
@@ -28,6 +31,7 @@ public class User_TruckInfo extends Activity {
     ImageView truckimg,iv_inrto;
     TextView tv_intro,tv_favor,tv_score,tv_noti,iv_menulist;
     Button reviewmore,iv_addfavor;
+    Button kkosharing;
     String imgpath = "data/data/com.example.ckh.foodtruck/files/";
     Bitmap bm;
     boolean flag=false;
@@ -57,7 +61,20 @@ public class User_TruckInfo extends Activity {
         tv_score=(TextView) findViewById(R.id.user_truck_detail_scoretext);
         iv_addfavor=(Button) findViewById(R.id.user_addfavor);
         reviewmore = (Button) findViewById(R.id.user_reviewmore);
-
+        kkosharing = (Button) findViewById(R.id.kkosharing);
+        kkosharing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    final KakaoLink kakaoLink = KakaoLink.getKakaoLink(User_TruckInfo.this);
+                    final KakaoTalkLinkMessageBuilder kakaoTalkLinkMessageBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
+                    kakaoTalkLinkMessageBuilder.addText("테스트");
+                    kakaoLink.sendMessage(kakaoTalkLinkMessageBuilder, User_TruckInfo.this);
+                } catch (KakaoParameterException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         truckimg.setImageBitmap(bm);
         tv_noti.setOnClickListener(new View.OnClickListener() {
             @Override

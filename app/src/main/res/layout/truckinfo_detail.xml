@@ -168,7 +168,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:textSize="15dp"
-                android:text="리뷰 더보기"
+                android:text="리뷰 보기"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/color10"
                 android:textColor="@color/color6"/>
@@ -181,6 +181,7 @@
             android:layout_alignParentBottom="true">
 
         <Button
+                android:id="@+id/fb_sharing"
                 android:text="패이스북"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
@@ -193,6 +194,7 @@
                 android:layout_weight="1"/>
 
         <Button
+                android:id="@+id/kkosharing"
                 android:text="카카오톡"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"

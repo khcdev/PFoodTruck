@@ -3,6 +3,8 @@ package com.example.ckh.foodtruck.seller;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,10 +13,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.*;
 import com.androidquery.AQuery;
 import com.example.ckh.cstview.Seller_News_EventFull;
 import com.example.ckh.cstview.Seller_News_EventList;
@@ -50,6 +49,14 @@ public class Seller_TabTri_News extends Fragment {
         parser = new Seller_News_Parsing();     // 파싱하는 객체 생성
         new FestAsync().execute(null, null, null);  // 비동기식 스레드 시작하기
 
+        seoulEventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View clickedView, int position, long id) {
+                // 클릭되면 클릭된 뷰, 몇 번째 뷰가 클릭되었는지를 파라미터로 받게 됨
+                Seller_News_EventFull temp = parser.parseFest.get(position);       // parser안에 parserFest ArrayList가 있는데, 눌린 포지션의 정보 받기
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.search.naver.com/search.naver?query=+"+temp.getTitle()+"+&where=m&sm=mtp_hty")));
+
+            }
+        });
         return view;
     }
 

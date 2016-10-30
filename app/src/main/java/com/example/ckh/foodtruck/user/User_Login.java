@@ -13,6 +13,7 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
+import com.kakao.usermgmt.LoginButton;
 import com.kakao.util.exception.KakaoException;
 import com.kakao.util.helper.log.Logger;
 import org.json.JSONObject;
@@ -41,7 +42,8 @@ public class User_Login extends Activity {
 
         callback = new SessionCallback();
         Session.getCurrentSession().addCallback(callback);
-
+        com.kakao.usermgmt.LoginButton btn = (LoginButton) findViewById(R.id.com_kakao_login);
+        btn.setAlpha((float)0.0);
         class btnClickListener implements View.OnClickListener{
             @Override
             public void onClick(View v) {

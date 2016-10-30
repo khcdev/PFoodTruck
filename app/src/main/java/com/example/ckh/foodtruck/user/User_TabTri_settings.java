@@ -59,7 +59,7 @@ public class User_TabTri_settings extends Fragment {
             for(int i=0;i<GlobalApplication.favortruckList.size();i++) {
                 if (GlobalApplication.favortruckList.get(i).truck_id == 103) isin = true;
             }
-            if(!isin)adapter.addItem(getResources().getDrawable(R.drawable.img_gopizza_main),"청년반점",103);
+            if(!isin)adapter.addItem(getResources().getDrawable(R.drawable.img_chungnyun_main),"청년반점",103);
         }
 
         return view;
