@@ -2,13 +2,13 @@ package com.example.ckh.cstview;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.ckh.foodtruck.R;
 
 import java.util.ArrayList;
@@ -91,7 +91,7 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
         }
 
         allMenuHolder.foodName.setText(allMenuData.MenuTitle);
-        allMenuHolder.foodPrice.setText(allMenuData.Price);
+        allMenuHolder.foodPrice.setText(allMenuData.Price+"원");
         allMenuHolder.foodOrigin.setText(allMenuData.Origin);
 
         return convertView;

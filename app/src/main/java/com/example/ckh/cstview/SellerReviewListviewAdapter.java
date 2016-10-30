@@ -84,4 +84,4 @@ public class SellerReviewListviewAdapter extends BaseAdapter {
 }
 //팀뷰 종료 안할테니 나 분리 수거 하러 갈거니간 수정할거 있음 다 해
 // 예 제꺼에서 먼저 실험하고 완성되면 와서 할께용
-// 깃추가 꼭 해
+// 깃추가 꼭 해응? 응 넵
