@@ -25,18 +25,5 @@
 
 
     </LinearLayout>
-    <View android:layout_width="match_parent"
-      android:layout_height="1dp"
-        android:background="#000000"/>
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="0dp"
-                  android:layout_weight="1"
-    android:gravity="center">
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:textSize="20sp"
-                  android:gravity="center"
-                  android:text="서울시 여러 지역들의 유동인구 상세정보를 제공합니다.\n트럭을 클릭해보세요!"/>
-    </LinearLayout>
 </LinearLayout>
