@@ -10,26 +10,20 @@ import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.DialogPreference;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.ckh.cstview.Seller_MenuItem;
 import com.example.ckh.foodtruck.GlobalApplication;
-import com.example.ckh.foodtruck.MainActivity;
 import com.example.ckh.foodtruck.R;
-import com.example.ckh.foodtruck.Splash;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.reflect.AccessibleObject;
 
 /**
  * Created by Ckh on 2016-10-02.
@@ -45,6 +39,15 @@ public class Seller_MenuAdd extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seller_menu_item_info);
+        AlertDialog.Builder noti = new AlertDialog.Builder(Seller_MenuAdd.this);
+        noti.setMessage("입력폼을 작성한 후 승인 버튼을 누른뒤에 확인을 눌러주세요.");
+        noti.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        noti.show();
     }
 
     public void onClick_seller_Menu_imgadd(View view) {
@@ -150,7 +153,7 @@ public class Seller_MenuAdd extends Activity{
                 dialog.dismiss();
             }
         });
-        alert.setMessage("승인 신청 되었습니다.");
+        alert.setMessage("승인 신청 되었습니다.\n (승인까지 3초의 시간이 걸립니다.)");
         alert.show();
         new Handler().postDelayed(new Runnable(){
             @Override

@@ -6,11 +6,11 @@
     android:gravity="bottom"
     android:orientation="vertical">
 
-    <ProgressBar
+   <!--<ProgressBar
         android:id="@+id/pgbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="125dp"
         android:layout_gravity="center_horizontal"
-        />
+        />-->
 </LinearLayout>

@@ -45,7 +45,7 @@ public class ReviewMore extends Activity {
                     }else {
                         Intent intent = new Intent(ReviewMore.this, User_ReviewAdding.class);
                         intent.putExtra("truckcode", truckid);
-                        startActivity(intent);
+                        startActivityForResult(intent,10);
                     }
                 }
             });
@@ -68,5 +68,12 @@ public class ReviewMore extends Activity {
         }
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode ==1){
+            this.recreate();
+            adapter.notifyDataSetChanged();
+        }
+    }
 }

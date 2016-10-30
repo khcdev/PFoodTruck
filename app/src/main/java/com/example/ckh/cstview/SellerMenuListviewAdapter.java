@@ -1,15 +1,21 @@
 package com.example.ckh.cstview;
 
+
 import android.content.Context;
+import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
+import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
 
 import java.util.ArrayList;
 
@@ -31,7 +37,7 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Seller_MenuItem getItem(int position) {
         return allMenuListData.get(position);
     }
 
@@ -61,8 +67,9 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder allMenuHolder;
+        final String menuName;
         if(convertView == null){
             allMenuHolder = new ViewHolder();
 
@@ -73,7 +80,6 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
             allMenuHolder.foodName = (TextView)convertView.findViewById(R.id.all_menu_foodname);
             allMenuHolder.foodPrice = (TextView)convertView.findViewById(R.id.all_menu_price);
             allMenuHolder.foodOrigin = (TextView)convertView.findViewById(R.id.all_menu_origin);
-
             convertView.setTag(allMenuHolder);
         }
         else{
@@ -81,7 +87,7 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
         }
 
         Seller_MenuItem allMenuData = allMenuListData.get(position);
-
+        menuName = allMenuData.MenuTitle;
         if(allMenuData.MenuImage != null){
             allMenuHolder.foodImage.setVisibility(View.VISIBLE);
             allMenuHolder.foodImage.setImageBitmap(allMenuData.MenuImage);
@@ -93,7 +99,34 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
         allMenuHolder.foodName.setText(allMenuData.MenuTitle);
         allMenuHolder.foodPrice.setText(allMenuData.Price+"원");
         allMenuHolder.foodOrigin.setText(allMenuData.Origin);
-
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder not = new AlertDialog.Builder(allMenuContext);
+                not.setMessage("메뉴를 삭제하시겠습니까?");
+                not.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                not.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SQLiteDatabase db;
+                        DBSQLiteOpenHelper helper;
+                        helper = new DBSQLiteOpenHelper(allMenuContext, GlobalApplication.dbName,null,1);
+                        db = helper.getWritableDatabase();
+                        db.execSQL("delete from menu where menu_name='"+menuName+"';");
+                        Log.i("ckhtag",menuName);
+                        remove(position);
+                        notifyDataSetChanged();
+                        dialog.dismiss();
+                    }
+                });
+                not.show();
+            }
+        });
         return convertView;
     }
     private class ViewHolder{

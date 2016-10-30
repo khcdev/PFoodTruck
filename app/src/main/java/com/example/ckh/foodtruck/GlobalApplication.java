@@ -20,7 +20,7 @@ public class GlobalApplication extends Application {
     //1)특정 최적화에 주의 한다. 2) 멀티 쓰레드 환경에서 주의한다.
     private static volatile GlobalApplication instance = null;
     private static volatile Activity currentActivity = null;
-    public static String dbName = "Db_ver03.db";
+    public static String dbName = "Db_ver10.db";
     public static String User_info_name=null;
     public static HashMap<String,String> truckintro=null;
     public static HashMap<String,String> trucknoti=null;
@@ -29,6 +29,8 @@ public class GlobalApplication extends Application {
     public static boolean favor_103=false;
     public static boolean flag_truckinfolist=true;
     public static boolean openStore= false;
+    public static boolean kkouser=false;
+    public static boolean fbuser=false;
     public static ArrayList<TruckItem> dataList = new ArrayList<>();
     public static ArrayList<favorTruck> favortruckList= new ArrayList<>();
 

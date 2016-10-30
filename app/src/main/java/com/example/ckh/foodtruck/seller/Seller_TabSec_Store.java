@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
@@ -35,6 +34,15 @@ public class Seller_TabSec_Store extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (view == null) {
             view = inflater.inflate(R.layout.seller_tab2_stroemng, null);
+           /* AlertDialog.Builder noti = new AlertDialog.Builder(getActivity());
+            noti.setMessage("테스트");
+            noti.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            noti.show();*/
         }
         TextView favor = (TextView) view.findViewById(R.id.seller_store_favorites);
         TextView score = (TextView) view.findViewById(R.id.seller_store_score);

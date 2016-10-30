@@ -65,15 +65,22 @@ public class User_TruckInfo extends Activity {
         kkosharing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    final KakaoLink kakaoLink = KakaoLink.getKakaoLink(User_TruckInfo.this);
-                    final KakaoTalkLinkMessageBuilder kakaoTalkLinkMessageBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
-                    kakaoTalkLinkMessageBuilder.addText("테스트");
-                    kakaoLink.sendMessage(kakaoTalkLinkMessageBuilder, User_TruckInfo.this);
-                } catch (KakaoParameterException e) {
-                    e.printStackTrace();
+                if (GlobalApplication.kkouser) {
+                    try {
+                        String noti = GlobalApplication.truckintro.get(Integer.toString(truckdata.truck_id));
+                        final KakaoLink kakaoLink = KakaoLink.getKakaoLink(User_TruckInfo.this);
+                        final KakaoTalkLinkMessageBuilder kakaoTalkLinkMessageBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
+                        kakaoTalkLinkMessageBuilder.addText("붕붕이 앱에서 '" + truckdata.truckname + "' 푸드트럭을 공유했습니다.\n" +
+                                "매장 소개 : " + noti + "\n\n*주의* 본 데이터는 정확한 데이터를 바탕으로 하고 있지 않습니다.");
+                        kakaoLink.sendMessage(kakaoTalkLinkMessageBuilder, User_TruckInfo.this);
+                    } catch (KakaoParameterException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    Toast.makeText(User_TruckInfo.this, "카카오 아이디로 로그인 해주세요.", Toast.LENGTH_SHORT).show();
                 }
             }
+
         });
         truckimg.setImageBitmap(bm);
         tv_noti.setOnClickListener(new View.OnClickListener() {

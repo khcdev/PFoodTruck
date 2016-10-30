@@ -91,7 +91,9 @@ public class SampleSignupActivity extends Activity {
     private void redirectMainActivity() {
         Intent intent = new Intent(SampleSignupActivity.this,User_TabFragment.class);
         startActivity(intent);
-        Toast.makeText(SampleSignupActivity.this, "access!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(SampleSignupActivity.this, GlobalApplication.User_info_name+" 님 환영합니다.", Toast.LENGTH_SHORT).show();
+        GlobalApplication.kkouser=true;
+        GlobalApplication.fbuser=false;
         Log.i("ckh","다음 액티비티 접근");
         finish();
     }

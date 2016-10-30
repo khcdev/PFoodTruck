@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 import com.example.ckh.foodtruck.*;
 import com.example.ckh.foodtruck.R;
 import com.facebook.*;
@@ -50,6 +51,9 @@ public class User_Login extends Activity {
                 switch(v.getId()){
                     case R.id.usermain_btn_NonAccLogin :
                         Intent intent = new Intent(User_Login.this,User_TabFragment.class);
+                        GlobalApplication.fbuser=false;
+                        GlobalApplication.kkouser=false;
+                        GlobalApplication.User_info_name=null;
                         startActivity(intent);
                         finish();
                         break;
@@ -97,6 +101,9 @@ public class User_Login extends Activity {
                                 e.printStackTrace();
                             }
                             setResult(RESULT_OK);
+                            Toast.makeText(User_Login.this, GlobalApplication.User_info_name+" 님 환영합니다.", Toast.LENGTH_SHORT).show();
+                            GlobalApplication.fbuser=true;
+                            GlobalApplication.kkouser=false;
                             Intent intent = new Intent(User_Login.this,User_TabFragment.class);
                             startActivity(intent);
                             finish();

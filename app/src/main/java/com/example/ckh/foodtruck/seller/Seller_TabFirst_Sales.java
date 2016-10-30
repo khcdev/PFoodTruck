@@ -1,6 +1,7 @@
 package com.example.ckh.foodtruck.seller;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,20 +9,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.ckh.foodtruck.Main2Activity;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.Splash;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.*;
+import com.google.android.gms.maps.model.*;
 
 /**
  * Created by Ckh on 2016-10-03.
@@ -44,6 +36,15 @@ public class Seller_TabFirst_Sales extends Fragment implements OnMapReadyCallbac
                              Bundle savedInstanceState) {
         if (view == null) {
             view = inflater.inflate(R.layout.seller_tab1_sales, container, false);
+            AlertDialog.Builder noti = new AlertDialog.Builder(getActivity());
+            /*noti.setMessage("");
+            noti.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            noti.show();*/
         }
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.gmap);
         mapFragment.getMapAsync(this);

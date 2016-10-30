@@ -53,7 +53,7 @@ public class User_TabSec_Map extends Fragment implements OnMapReadyCallback {
         gmap.addMarker(new MarkerOptions().title("청년반점").position(new LatLng(37.5572321, 127.0431332)).icon(BitmapDescriptorFactory.fromResource(R.drawable.truck)));
         gmap.addMarker(new MarkerOptions().title("SteakOut").position(new LatLng(37.5264467, 127.029467)).icon(BitmapDescriptorFactory.fromResource(R.drawable.truck)));
 
-        CameraPosition cp = new CameraPosition.Builder().target(new LatLng(37.5759, 126.9769)).zoom(17).build();
+        CameraPosition cp = new CameraPosition.Builder().target(new LatLng(37.5759, 127.0331332)).zoom(12).build();
         gmap.moveCamera(CameraUpdateFactory.newCameraPosition(cp));
         gmap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override

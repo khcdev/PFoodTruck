@@ -75,8 +75,10 @@ public class User_TabFirst_List extends Fragment {
                 }
                 data.truckimg = bm;
                 GlobalApplication.dataList.add(data);
-            }
 
+            }
+        db.close();
+        c.close();
 
         adapter = new TruckCardViewAdapter(getActivity(), GlobalApplication.dataList);
         trucklistView.setAdapter(adapter);

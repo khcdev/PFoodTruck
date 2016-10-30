@@ -29,7 +29,9 @@ public class Seller_TabFour_Settings extends Fragment{
         if(view ==null) {
             view = inflater.inflate(R.layout.seller_tab4_settings,null);
         }
+
         sch = (Switch) view.findViewById(R.id.openstoreswitch);
+        if(GlobalApplication.openStore)sch.setChecked(true);
         sch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

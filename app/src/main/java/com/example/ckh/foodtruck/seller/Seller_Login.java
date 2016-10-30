@@ -26,7 +26,8 @@ public class Seller_Login extends Activity{
         ImageView sellerlogin = (ImageView) findViewById(R.id.sellermain_imgbtn_Login);
         final EditText i_login = (EditText) findViewById(R.id.seller_lgn_edit_text_id);
         final EditText i_password =(EditText) findViewById(R.id.seller_lgn_edit_text_password);
-
+        i_login.setText("gopizza");
+        i_password.setText("0000");
         sellerlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

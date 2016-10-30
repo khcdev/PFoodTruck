@@ -15,7 +15,7 @@
                   android:text="영업"
         android:layout_marginBottom="10dp"/>
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                      android:background="#ED7E5B">
+                      android:background="#ee8d8d">
             <TextView
                     android:layout_width="0dp"
                     android:layout_weight="0.8"
@@ -48,7 +48,7 @@
                   android:text="내 정보"/>
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:background="#ED7E5B">
+                      android:background="#ee8d8d">
             <TextView
                     android:layout_width="0dp"
                     android:layout_weight="0.8"

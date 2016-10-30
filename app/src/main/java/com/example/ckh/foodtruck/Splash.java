@@ -1,22 +1,23 @@
 package com.example.ckh.foodtruck;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
 import com.example.ckh.foodtruck.seller.MakingAbove5;
 import com.example.ckh.foodtruck.seller.MovingPeople;
-
+import kr.hyosang.coordinate.CoordPoint;
+import kr.hyosang.coordinate.TransCoord;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -29,9 +30,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-import kr.hyosang.coordinate.CoordPoint;
-import kr.hyosang.coordinate.TransCoord;
-
 /**
  * Created by Ckh on 2016-09-10.
  * 어플리케이션의 로딩 화면 Splash
@@ -43,6 +41,7 @@ import kr.hyosang.coordinate.TransCoord;
 
 public class Splash extends Activity {
     DBSQLiteOpenHelper helper;
+    SharedPreferences pref;
     private SQLiteDatabase db;
     String tag = "SQLite";
     ProgressBar progressBar;
@@ -281,70 +280,14 @@ public class Splash extends Activity {
 
     @Override
     public void onCreate(Bundle b) {
-        SharedPreferences pref;
+
         super.onCreate(b);
         setContentView(R.layout.splash_loading);
-        progressBar = (ProgressBar) findViewById(R.id.pgbar);
+        //progressBar = (ProgressBar) findViewById(R.id.pgbar);
 
         Toast.makeText(Splash.this, "데이터를 읽어오는 중입니다.", Toast.LENGTH_LONG).show();
-
-
-        File();
-        Gusort();
-
-        pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
-        if (!pref.getBoolean("isFirst", false)) {
-            SharedPreferences.Editor edit = pref.edit();
-            edit.putBoolean("isFirst", true);
-            edit.commit();
-
-            saveFiletoInternalStorage(R.drawable.img_chungnyun_m01, "img_chungnyun_m01.png");
-            saveFiletoInternalStorage(R.drawable.img_chungnyun_m02, "img_chungnyun_m02.png");
-            saveFiletoInternalStorage(R.drawable.img_chungnyun_main, "img_chungnyun_main.png");
-            saveFiletoInternalStorage(R.drawable.img_gopizza_m01, "img_gopizza_m01.png");
-            saveFiletoInternalStorage(R.drawable.img_gopizza_m02, "img_gopizza_m02.png");
-            saveFiletoInternalStorage(R.drawable.img_gopizza_m03, "img_gopizza_m03.png");
-            saveFiletoInternalStorage(R.drawable.img_gopizza_main, "img_gopizza_main.png");
-            saveFiletoInternalStorage(R.drawable.img_steakout_m01, "img_steakout_m01.png");
-            saveFiletoInternalStorage(R.drawable.img_steakout_main, "img_steakout_main.png");
-
-
-        }
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                helper = new DBSQLiteOpenHelper(
-                        Splash.this,
-                        GlobalApplication.dbName,
-                        null,
-                        1
-                );
-                try {
-                    db = helper.getWritableDatabase();
-                } catch (SQLiteException e) {
-                    e.printStackTrace();
-                    Log.e(tag, "데이터베이스 생성/열기 실패");
-                    Toast.makeText(Splash.this, "DB opening failed", Toast.LENGTH_LONG).show();
-                }
-                GlobalApplication.truckintro = new HashMap<String, String>();
-                GlobalApplication.truckintro.put("101", "합리적인 가격에 맛있는 스테이크를 제공합니다.");
-                GlobalApplication.truckintro.put("102", "화덕 피자 전문점");
-                GlobalApplication.truckintro.put("103", "최고 인기메뉴 레몬크림새우, 늦으면 즐기실수 없는 동파육!");
-
-                GlobalApplication.trucknoti = new HashMap<String, String>();
-                GlobalApplication.trucknoti.put("101", "11월 8일 4시~8시 왕십리역 akplaza 뒤편(먹자골목)");
-                GlobalApplication.trucknoti.put("102", "11월 3일 세종대학교 정문 11시~3시");
-                GlobalApplication.trucknoti.put("103", "매주 금요일 토요일 밤도깨비 야시장에서 만나요 :)");
-                    /* 메뉴액티비티를 실행하고 로딩화면(splash) 끝*/
-                db.close();
-
-                //Bitmap
-                //Bitmap bm
-                Intent mainIntent = new Intent(Splash.this, MainActivity.class);
-                Splash.this.startActivity(mainIntent);
-                Splash.this.finish();
-            }
-        }, SPLASH_DISPLAY_LENGTH);
+        MyAsyncTask tast = new MyAsyncTask(Splash.this);
+        tast.execute(0);
 
         /* SPLASH_DISPLAY_LENGTH 뒤에 메뉴 액티비티를 실행시키고 종료한다.*/
 
@@ -363,5 +306,87 @@ public class Splash extends Activity {
             Log.e("fileIOerror", "fileinerror");
         }
 
+    }
+    class MyAsyncTask extends AsyncTask<Integer, String, Integer>{
+        private ProgressDialog mDlg;
+
+        private Context mContext;
+        public MyAsyncTask(Context context){
+            mContext=context;
+        }
+        @Override
+        protected void onPreExecute() {
+            mDlg = new ProgressDialog(Splash.this);
+            mDlg.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            mDlg.setMessage("작업 시작");
+            mDlg.show();
+
+            super.onPreExecute();
+
+        }
+        @Override
+        protected Integer doInBackground(Integer... params) {
+            publishProgress("max", Integer.toString(100));
+            helper = new DBSQLiteOpenHelper(Splash.this,GlobalApplication.dbName,null,1);
+            db=helper.getWritableDatabase();
+            File();
+            Gusort();
+            publishProgress("progress", Integer.toString(30),
+                    "poidata init");
+            pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+            if (!pref.getBoolean("isFirst", false)) {
+                SharedPreferences.Editor edit = pref.edit();
+                edit.putBoolean("isFirst", true);
+                edit.commit();
+
+                saveFiletoInternalStorage(R.drawable.img_chungnyun_m01, "img_chungnyun_m01.png");
+                saveFiletoInternalStorage(R.drawable.img_chungnyun_m02, "img_chungnyun_m02.png");
+                saveFiletoInternalStorage(R.drawable.img_chungnyun_main, "img_chungnyun_main.png");
+                saveFiletoInternalStorage(R.drawable.img_gopizza_m01, "img_gopizza_m01.png");
+                saveFiletoInternalStorage(R.drawable.img_gopizza_m02, "img_gopizza_m02.png");
+                saveFiletoInternalStorage(R.drawable.img_gopizza_m03, "img_gopizza_m03.png");
+                saveFiletoInternalStorage(R.drawable.img_gopizza_main, "img_gopizza_main.png");
+                saveFiletoInternalStorage(R.drawable.img_steakout_m01, "img_steakout_m01.png");
+                saveFiletoInternalStorage(R.drawable.img_steakout_main, "img_steakout_main.png");
+                publishProgress("progress", Integer.toString(70),
+                        "img data in");
+            }
+            publishProgress("progress", Integer.toString(80),
+                    "hash data");
+            GlobalApplication.truckintro = new HashMap<String, String>();
+            GlobalApplication.truckintro.put("101", "합리적인 가격에 맛있는 스테이크를 제공합니다.");
+            GlobalApplication.truckintro.put("102", "화덕 피자 전문점");
+            GlobalApplication.truckintro.put("103", "최고 인기메뉴 레몬크림새우, 늦으면 즐기실수 없는 동파육!");
+
+            GlobalApplication.trucknoti = new HashMap<String, String>();
+            GlobalApplication.trucknoti.put("101", "11월 8일 4시~8시 왕십리역 akplaza 뒤편(먹자골목)");
+            GlobalApplication.trucknoti.put("102", "11월 3일 세종대학교 정문 11시~3시");
+            GlobalApplication.trucknoti.put("103", "매주 금요일 토요일 밤도깨비 야시장에서 만나요 :)");
+                    /* 메뉴액티비티를 실행하고 로딩화면(splash) 끝*/
+            publishProgress("progress", Integer.toString(100),
+                    "complete");
+
+            return 100;
+        }
+        @Override
+        protected void onProgressUpdate(String... params) {
+            if (params[0].equals("progress")) {
+                mDlg.setProgress(Integer.parseInt(params[1]));
+                mDlg.setMessage(params[2]);
+            } else if (params[0].equals("max")) {
+                mDlg.setMax(Integer.parseInt(params[1]));
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Integer result) {
+            super.onPostExecute(result);
+            mDlg.dismiss();
+            db.close();
+            Intent mainIntent = new Intent(Splash.this, MainActivity.class);
+            Splash.this.startActivity(mainIntent);
+            Splash.this.finish();
+            Log.d("Result", "result : " + result);
+        }
     }
 }

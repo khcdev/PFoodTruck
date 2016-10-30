@@ -1,6 +1,9 @@
 package com.example.ckh.foodtruck.seller;
 //data/data/com.example.ckh.foodtruck/files/
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,6 +31,7 @@ public class MenuManagement extends Activity {
     private ListView MenuList = null;
     private SellerMenuListviewAdapter ListViewAdapter = null;
     Bitmap bm;
+    boolean isok=false;
     @Override
     protected void onCreate(Bundle b){
         super.onCreate(b);
@@ -36,6 +40,15 @@ public class MenuManagement extends Activity {
         truckcode = intent.getExtras().getInt("truckcode");
         Button adddetail = (Button) findViewById(R.id.seller_btn_menuadded);
         if(intent.getExtras().getBoolean("isSeller")) {
+            AlertDialog.Builder noti = new AlertDialog.Builder(MenuManagement.this);
+            noti.setMessage("메뉴 관리 화면입니다.\n User에게 보여지는 메뉴리스트들을 보여줍니다.");
+            noti.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            noti.show();
             adddetail.setVisibility(View.VISIBLE);
             adddetail.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -44,7 +57,19 @@ public class MenuManagement extends Activity {
                     startActivityForResult(intent, 100);
                 }
             });
-        }else adddetail.setVisibility(View.INVISIBLE);
+
+        }else {
+            AlertDialog.Builder noti = new AlertDialog.Builder(MenuManagement.this);
+            noti.setMessage("푸드트럭에서 판매하는 메뉴 리스트 입니다.\n add를 클릭하면 메뉴를 추가할 수 있습니다.\n 메뉴를 클릭하면 삭제할 수 있습니다.");
+            noti.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            noti.show();
+            adddetail.setVisibility(View.INVISIBLE);
+        }
 
         MenuList=(ListView) findViewById(R.id.all_menu_list);
         ListViewAdapter = new SellerMenuListviewAdapter(this);
@@ -56,6 +81,21 @@ public class MenuManagement extends Activity {
                 null,
                 1
         );
+        accessDb();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(resultCode == 50){
+            this.recreate();
+            ListViewAdapter.dataChange();
+            Log.i("resultcode","결과 코드 확인");
+            Log.i("ckhtag","확인");
+        }
+    }
+    public void accessDb(){
         db = helper.getReadableDatabase();
         Cursor c = db.rawQuery("select * from menu where truck_id="+truckcode+";",null);
         while(c.moveToNext()){
@@ -70,18 +110,9 @@ public class MenuManagement extends Activity {
             }
             ListViewAdapter.addItem(bm,c.getString(2),Integer.toString(c.getInt(5)),c.getString(4),"");
         }
+        ListViewAdapter.dataChange();
         c.close();
         db.close();
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode,int resultCode, Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
-        if(resultCode == 50){
-            ListViewAdapter.dataChange();
-            Log.i("resultcode","결과 코드가 실행되나욧");
-        }
     }
 
 }

@@ -52,6 +52,7 @@ public class User_ReviewAdding extends Activity {
                 db.execSQL("insert into review values (null,"+trucknumber+",'"+GlobalApplication.User_info_name+"','"+msg+"',"+score+",'"+convertdata+"');");
                 db.close();
                 Toast.makeText(User_ReviewAdding.this,"리뷰가 추가되었습니다!",Toast.LENGTH_LONG).show();
+                setResult(1);
                 finish();
             }
         });
