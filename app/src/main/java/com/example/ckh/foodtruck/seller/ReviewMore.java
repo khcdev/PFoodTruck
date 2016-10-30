@@ -41,7 +41,7 @@ public class ReviewMore extends Activity {
                 @Override
                 public void onClick(View v) {
                     if(GlobalApplication.User_info_name==null) {
-                        Toast.makeText(ReviewMore.this,"로그인 후 이용해 주세요",Toast.LENGTH_LONG);
+                        Toast.makeText(ReviewMore.this,"로그인 후 이용해 주세요",Toast.LENGTH_LONG).show();
                     }else {
                         Intent intent = new Intent(ReviewMore.this, User_ReviewAdding.class);
                         intent.putExtra("truckcode", truckid);
