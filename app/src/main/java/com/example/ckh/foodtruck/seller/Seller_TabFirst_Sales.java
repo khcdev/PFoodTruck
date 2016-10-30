@@ -8,8 +8,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.example.ckh.foodtruck.Main2Activity;
 import com.example.ckh.foodtruck.R;
+import com.example.ckh.foodtruck.Splash;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -74,9 +76,9 @@ public class Seller_TabFirst_Sales extends Fragment implements OnMapReadyCallbac
         settings = gmap.getUiSettings();
         settings.setMyLocationButtonEnabled(true);
 
-        for (int i = 0; i < Seller_Login.allofseoul.size(); i++) {
+        for (int i = 0; i < Splash.allofseoul.size(); i++) {
             for (int j = 0; j < 5; j++) {
-                gmap.addMarker(new MarkerOptions().title(Seller_Login.allofseoul.get(i).get(j).examin_spot_name).position(new LatLng(Seller_Login.allofseoul.get(i).get(j).Ycode, Seller_Login.allofseoul.get(i).get(j).Xcode)).icon(BitmapDescriptorFactory.fromResource(R.drawable.truck)));
+                gmap.addMarker(new MarkerOptions().title(Splash.allofseoul.get(i).get(j).examin_spot_name).position(new LatLng(Splash.allofseoul.get(i).get(j).Ycode, Splash.allofseoul.get(i).get(j).Xcode)).icon(BitmapDescriptorFactory.fromResource(R.drawable.truck)));
             }
         }
 

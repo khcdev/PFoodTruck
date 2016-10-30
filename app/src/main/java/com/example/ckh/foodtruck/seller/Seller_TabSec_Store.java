@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
 import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
@@ -25,24 +26,26 @@ public class Seller_TabSec_Store extends Fragment {
     DBSQLiteOpenHelper helper;
     SQLiteDatabase db;
     View view;
-    public Seller_TabSec_Store(Context context){
-        mContext=context;
+
+    public Seller_TabSec_Store(Context context) {
+        mContext = context;
     }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        if(view ==null ){
-            view=inflater.inflate(R.layout.seller_tab2_stroemng,null);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (view == null) {
+            view = inflater.inflate(R.layout.seller_tab2_stroemng, null);
         }
         TextView favor = (TextView) view.findViewById(R.id.seller_store_favorites);
         TextView score = (TextView) view.findViewById(R.id.seller_store_score);
-        helper = new DBSQLiteOpenHelper(getActivity(), GlobalApplication.dbName, null,1);
+        helper = new DBSQLiteOpenHelper(getActivity(), GlobalApplication.dbName, null, 1);
         db = helper.getWritableDatabase();
-        Cursor c = db.rawQuery("select score,favorites from foodtruck where truck_id=102;",null);
-        while(c.moveToNext()){
-            favor.setText("즐겨찾기 수\n"+c.getInt(1));
-            score.setText("매장평점\n"+c.getDouble(0));
+        Cursor c = db.rawQuery("select score,favorites from foodtruck where truck_id=102;", null);
+        while (c.moveToNext()) {
+            favor.setText(c.getInt(1) + " ");
+            score.setText(c.getDouble(0) + " ");
         }
-        TextView rv1 =(TextView) view.findViewById(R.id.reviewex1);
+        TextView rv1 = (TextView) view.findViewById(R.id.reviewex1);
         rv1.setText("치즈 듬뿍 맛있었습니다. (pizzapizza)");
         TextView rv2 = (TextView) view.findViewById(R.id.reviewex2);
         rv2.setText("시카고 그릴드 피자 굿굿 (숯돌이)");
@@ -53,19 +56,19 @@ public class Seller_TabSec_Store extends Fragment {
         btnMenuMng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),MenuManagement.class);
-                intent.putExtra("isSeller",true);
-                intent.putExtra("truckcode",102);
+                Intent intent = new Intent(getActivity(), MenuManagement.class);
+                intent.putExtra("isSeller", true);
+                intent.putExtra("truckcode", 102);
                 startActivity(intent);
             }
         });
-        TextView btnstoreMng= (TextView) view.findViewById(R.id.seller_tab2_introducestore);
+        TextView btnstoreMng = (TextView) view.findViewById(R.id.seller_tab2_introducestore);
 
-        btnstoreMng.setOnClickListener(new View.OnClickListener(){
+        btnstoreMng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),StoreManagement.class);
-                startActivityForResult(intent,100);
+                Intent intent = new Intent(getActivity(), StoreManagement.class);
+                startActivityForResult(intent, 100);
 
             }
         });
@@ -73,9 +76,9 @@ public class Seller_TabSec_Store extends Fragment {
         reviewmore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),ReviewMore.class);
-                intent.putExtra("Req",0);
-                startActivityForResult(intent,0);
+                Intent intent = new Intent(getActivity(), ReviewMore.class);
+                intent.putExtra("Req", 0);
+                startActivityForResult(intent, 0);
             }
         });
         db.close();

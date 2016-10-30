@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.example.ckh.cstview.TruckCardViewAdapter;
 import com.example.ckh.cstview.TruckItem;
 import com.example.ckh.foodtruck.GlobalApplication;
@@ -33,25 +34,27 @@ public class User_TabFirst_List extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     View view;
     Context mContext;
-    public User_TabFirst_List(Context context){
+
+    public User_TabFirst_List(Context context) {
         mContext = context;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState){
-        if(view == null) {
-         view = inflater.inflate(R.layout.user_tab1_list, null);
+                             Bundle savedInstanceState) {
+        if (view == null) {
+            view = inflater.inflate(R.layout.user_tab1_list, null);
         }
 
         trucklistView = (RecyclerView) view.findViewById(R.id.user_truck_recycler);
         trucklistView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         trucklistView.setLayoutManager(mLayoutManager);
-        if(GlobalApplication.flag_truckinfolist){
-            helper = new DBSQLiteOpenHelper(getActivity(), GlobalApplication.dbName,null,1);
-            db= helper.getReadableDatabase();
-            Cursor c = db.rawQuery("select truck_name,score,favorites,imgcode,truck_id from foodtruck",null);
-            while(c.moveToNext()) {
+        if (GlobalApplication.flag_truckinfolist) {
+            helper = new DBSQLiteOpenHelper(getActivity(), GlobalApplication.dbName, null, 1);
+            db = helper.getReadableDatabase();
+            Cursor c = db.rawQuery("select truck_name,score,favorites,imgcode,truck_id from foodtruck", null);
+            while (c.moveToNext()) {
                 Bitmap bm = null;
                 TruckItem data = new TruckItem();
                 data.truck_id = c.getInt(4);
@@ -69,7 +72,7 @@ public class User_TabFirst_List extends Fragment {
                 data.truckimg = bm;
                 GlobalApplication.dataList.add(data);
             }
-            GlobalApplication.flag_truckinfolist=false;
+            GlobalApplication.flag_truckinfolist = false;
         }
 
         adapter = new TruckCardViewAdapter(getActivity(), GlobalApplication.dataList);

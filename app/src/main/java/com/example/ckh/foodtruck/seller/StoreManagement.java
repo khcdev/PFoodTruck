@@ -23,7 +23,7 @@ public class StoreManagement extends Activity {
         Button btnintro = (Button) findViewById(R.id.intromodibutton);
         Button btnnoti=(Button) findViewById(R.id.notimodibutton);
         final TextView tv1 = (TextView) findViewById(R.id.seller_textinput_store_introstore);
-        tv1.setText("매장소개 : " +GlobalApplication.truckintro.get("102").toString());
+        tv1.setText(GlobalApplication.truckintro.get("102").toString());
         btnintro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,7 +34,7 @@ public class StoreManagement extends Activity {
                 alert_intro.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String value_intro = input_intro.getText().toString();
-                        tv1.setText("매장소개 : "+value_intro);
+                        tv1.setText(value_intro);
                         GlobalApplication.truckintro.remove("102");
                         GlobalApplication.truckintro.put("102",value_intro);
                         dialog.dismiss();
@@ -54,7 +54,7 @@ public class StoreManagement extends Activity {
 
         });
         final TextView tv2 =(TextView) findViewById(R.id.seller_textinput_store_notification);
-        tv2.setText("한마디 : " + GlobalApplication.trucknoti.get("102"));
+        tv2.setText(GlobalApplication.trucknoti.get("102"));
         btnnoti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,11 +65,10 @@ public class StoreManagement extends Activity {
                 alert_noti.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String value_noti = input_noti.getText().toString();
-                        tv2.setText("한마디 : "+value_noti);
+                        tv2.setText(value_noti);
                         GlobalApplication.trucknoti.remove("102");
                         GlobalApplication.trucknoti.put("102",value_noti);
                         dialog.dismiss();
-                        // Do something with value!
                     }
                 });
                 alert_noti.setNegativeButton("Cancel",
