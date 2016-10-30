@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.seller.MovingPeople;
-import com.example.ckh.foodtruck.seller.Seller_Login;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
@@ -35,14 +33,15 @@ public class Main2Activity extends Activity {
     TextView mantv;
     TextView womantv;
     TextView gutv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        mantv = (TextView)findViewById(R.id.mantv);
-        womantv = (TextView)findViewById(R.id.womantv);
-        gutv = (TextView)findViewById(R.id.guinfo);
+        mantv = (TextView) findViewById(R.id.mantv);
+        womantv = (TextView) findViewById(R.id.womantv);
+        gutv = (TextView) findViewById(R.id.guinfo);
 
         Intent intent = getIntent();
         String title = intent.getStringExtra("ID");
@@ -51,16 +50,14 @@ public class Main2Activity extends Activity {
 
         // targetRatio = (MovingPeople) getIntent().getSerializableExtra(getKeys());     // 직렬화 된 객체를 받아옴 어떤 객체인지 표시해주기 위해 구분되는 것은 key값이므로, 이를 받는 메서드도 사용
 
-        for(int i = 0; i< Seller_Login.allSeoul.size(); i++)
-        {
-            if(Seller_Login.allSeoul.get(i).examin_spot_name.equals(title))
-            {
-                targetRatio=Seller_Login.allSeoul.get(i);
+        for (int i = 0; i < Splash.allSeoul.size(); i++) {
+            if (Splash.allSeoul.get(i).examin_spot_name.equals(title)) {
+                targetRatio = Splash.allSeoul.get(i);
                 break;
             }
         }
 
-        gutv.setText(targetRatio.guname+" "+targetRatio.examin_spot_name+"의 유동인구 분석입니다.");
+        gutv.setText(targetRatio.guname + " " + targetRatio.examin_spot_name + "의 유동인구 분석입니다.");
 
         makingRatio();      // 비율을 만들어 줌
         ArrayList<Entry> entries = new ArrayList<Entry>();
@@ -69,7 +66,7 @@ public class Main2Activity extends Activity {
         entries.add(new Entry(twnt_thrtsRatio, 1));
         entries.add(new Entry(frts_fftsRatio, 2));
         entries.add(new Entry(sxts_aboveRatio, 3));      // MPAndroidGrahpChart 에서 사용되는 데이터 입력방법대로 데이터 삽입
-        PieDataSet dataSet = new PieDataSet(entries,null );      // 데이터 적용시키면서 설명달기
+        PieDataSet dataSet = new PieDataSet(entries, null);      // 데이터 적용시키면서 설명달기
         ArrayList<String> labels = new ArrayList<String>();
         labels.add("20대 미만");
         labels.add("20대-30대");
@@ -84,7 +81,7 @@ public class Main2Activity extends Activity {
         data.setValueTextSize(15);      // 차트의 글씨크기 결정(dp단위, 수는 float)
         pieChart.setDescriptionTextSize(15);    // description도 글씨 크기 설정
         // System.out.println(totalAge+","+totalGender+","+twyoBelowRatio+","+twnt_thrtsRatio+","+frts_fftsRatio+","+sxts_aboveRatio);
-        Legend legend=pieChart.getLegend();
+        Legend legend = pieChart.getLegend();
 
         legend.setTextSize(15);
 
@@ -100,10 +97,10 @@ public class Main2Activity extends Activity {
         sxts_aboveRatio = (float) (targetRatio.sxts_above * 100) / totalAge;
 
         maleRatio = (int) ((float) (targetRatio.male * 100) / totalGender);
-        femaleRatio = 100-maleRatio;
+        femaleRatio = 100 - maleRatio;
 
-        mantv.setText(""+maleRatio+"%");
-        womantv.setText(""+femaleRatio+"%");
+        mantv.setText("" + maleRatio + "%");
+        womantv.setText("" + femaleRatio + "%");
     }
 
     private String getKeys() {

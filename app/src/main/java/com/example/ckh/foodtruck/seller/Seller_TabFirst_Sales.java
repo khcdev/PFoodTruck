@@ -78,7 +78,7 @@ public class Seller_TabFirst_Sales extends Fragment implements OnMapReadyCallbac
 
         for (int i = 0; i < Splash.allofseoul.size(); i++) {
             for (int j = 0; j < 5; j++) {
-                gmap.addMarker(new MarkerOptions().title(Splash.allofseoul.get(i).get(j).examin_spot_name).position(new LatLng(Splash.allofseoul.get(i).get(j).Ycode, Splash.allofseoul.get(i).get(j).Xcode)).icon(BitmapDescriptorFactory.fromResource(R.drawable.truck)));
+                gmap.addMarker(new MarkerOptions().title(Splash.allofseoul.get(i).get(j).examin_spot_name).position(new LatLng(Splash.allofseoul.get(i).get(j).Ycode, Splash.allofseoul.get(i).get(j).Xcode)).icon(BitmapDescriptorFactory.fromResource(R.drawable.person)));
             }
         }
 
