@@ -27,13 +27,6 @@
                     android:text="writer"
                     android:textColor="@color/color10"/>
 
-            <TextView
-                    android:id="@+id/reviewform_score"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/color11"
-                    android:text="평점"
-                    android:layout_toLeftOf="@+id/reviewform_data"/>
 
             <RatingBar
                     android:layout_width="wrap_content"

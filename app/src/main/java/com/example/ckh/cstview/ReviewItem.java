@@ -5,7 +5,7 @@ package com.example.ckh.cstview;
  */
 public class ReviewItem {
     String writer;
-    int score;
+    float score;
     String date;
     String content;
 }
