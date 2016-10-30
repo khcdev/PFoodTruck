@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 import com.example.ckh.cstview.SellerReviewListviewAdapter;
 import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
+import com.example.ckh.foodtruck.user.User_ReviewAdding;
 
 /**
  * Created by Ckh on 2016-09-25.
@@ -38,7 +40,13 @@ public class ReviewMore extends Activity {
             reviewadd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //리뷰 추가 액티비티
+                    if(GlobalApplication.User_info_name==null) {
+                        Toast.makeText(ReviewMore.this,"로그인 후 이용해 주세요",Toast.LENGTH_LONG);
+                    }else {
+                        Intent intent = new Intent(ReviewMore.this, User_ReviewAdding.class);
+                        intent.putExtra("truckcode", truckid);
+                        startActivity(intent);
+                    }
                 }
             });
 
@@ -53,10 +61,10 @@ public class ReviewMore extends Activity {
                 1
         );
         db = helper.getWritableDatabase();
-        Cursor c = db.rawQuery("select writer,date,contents from review where truck_id = "+truckid+";",null);
+        Cursor c = db.rawQuery("select writer,date,contents,score from review where truck_id = "+truckid+";",null);
         while(c.moveToNext()){
             c.getString(0); //writer
-            adapter.addItem(c.getString(0),c.getString(1),0.1,c.getString(2));
+            adapter.addItem(c.getString(0),c.getString(1),c.getInt(3),c.getString(2));
         }
     }
 

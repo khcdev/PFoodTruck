@@ -41,6 +41,7 @@
                     style="?android:attr/ratingBarStyleSmall"
                     android:layout_toLeftOf="@+id/reviewform_data"
                     android:rating="3.0"
+                    android:id="@+id/reviewrating"
                     android:layout_marginRight="8dp"
                     android:progressTint="@color/color11"/>
 

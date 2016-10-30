@@ -2,8 +2,11 @@ package com.example.ckh.foodtruck;
 
 import android.app.Activity;
 import android.app.Application;
+import com.example.ckh.cstview.TruckItem;
+import com.example.ckh.cstview.favorTruck;
 import com.kakao.auth.KakaoSDK;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -17,7 +20,7 @@ public class GlobalApplication extends Application {
     //1)특정 최적화에 주의 한다. 2) 멀티 쓰레드 환경에서 주의한다.
     private static volatile GlobalApplication instance = null;
     private static volatile Activity currentActivity = null;
-    public static String dbName = "tmp16.db";
+    public static String dbName = "Db_ver03.db";
     public static String User_info_name=null;
     public static HashMap<String,String> truckintro=null;
     public static HashMap<String,String> trucknoti=null;
@@ -26,6 +29,8 @@ public class GlobalApplication extends Application {
     public static boolean favor_103=false;
     public static boolean flag_truckinfolist=true;
     public static boolean openStore= false;
+    public static ArrayList<TruckItem> dataList = new ArrayList<>();
+    public static ArrayList<favorTruck> favortruckList= new ArrayList<>();
 
 
     public static Activity getCurrentActivity() {

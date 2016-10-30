@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    android:layout_marginTop="10dp">
+
+    <TextView
+        android:id="@+id/user_review_add_textview_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="리뷰를 적어주세요"/>
+
+    <EditText
+        android:id="@+id/user_review_add_edittext_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="3"
+        android:layout_below="@+id/user_review_add_textview_one"/>
+
+    <TextView
+        android:id="@+id/user_review_add_textview_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="당신의 점수는?"
+        android:layout_above="@+id/user_review_add_ratingbar"
+        android:layout_marginTop="15dp"/>
+
+    <RatingBar
+        android:id="@+id/user_review_add_ratingbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="false"
+        android:stepSize="1"
+        android:max="5"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp" />
+
+    <GridLayout
+        android:id="@+id/user_review_add_gridlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:layout_above="@+id/user_review_add_button_one"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true">
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/ratingBarStyleSmall"
+            android:rating="1"
+            android:isIndicator="true"
+            android:layout_marginRight="25dp"
+            android:progressTint="@color/color11"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사장님 저 마음에 안들죠?"/>
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/ratingBarStyleSmall"
+            android:isIndicator="true"
+            android:rating="2"
+            android:progressTint="@color/color11"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2% 부족한 맛? 서비스?"/>
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/ratingBarStyleSmall"
+            android:rating="3"
+            android:isIndicator="true"
+            android:progressTint="@color/color11"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="무난한 맛 무난한 서비스"/>
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/ratingBarStyleSmall"
+            android:isIndicator="true"
+            android:rating="4"
+            android:progressTint="@color/color11"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="입에서 살살녹네"/>
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/ratingBarStyleSmall"
+            android:rating="5"
+            android:isIndicator="true"
+            android:progressTint="@color/color11"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사장님 매일 뵙고싶습니다."/>
+
+    </GridLayout>
+
+    <Button
+        android:id="@+id/user_review_add_button_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="확인"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/review_button_add"
+        android:layout_marginTop="15dp"/>
+
+
+
+</RelativeLayout>

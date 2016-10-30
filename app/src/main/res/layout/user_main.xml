@@ -18,8 +18,9 @@
             android:id="@+id/Relative_container1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="240dp">
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="140dp"
+            >
         <ImageView
                 android:id="@+id/usermain_btn_NonAccLogin"
                 android:layout_width="wrap_content"
@@ -32,9 +33,9 @@
             android:id="@+id/Relative_container2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/Relative_container1"
-            android:paddingTop="20dp"
-            android:layout_centerHorizontal="true">
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="70dp"
+            >
         <!--<ImageView
                 android:id="@+id/usermain_btn_kkoLogin"
                 android:layout_width="wrap_content"
@@ -42,27 +43,27 @@
                 android:src="@drawable/login_kakao_bg"
                 android:clickable="true"
         />-->
-
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+        android:src="@drawable/kakaologin"/>
         <com.kakao.usermgmt.LoginButton
                 android:id="@+id/com_kakao_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"/>
+                android:visibility="gone"
+                />
     </RelativeLayout>
     <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/Relative_container2"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="10dp">
+            android:layout_alignParentBottom="true">
         <ImageView
                 android:id="@+id/usermain_btn_fbLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/fblogin"
                 android:clickable="true"
-                android:padding="15dp"
+
         />
     </RelativeLayout>
 </RelativeLayout>

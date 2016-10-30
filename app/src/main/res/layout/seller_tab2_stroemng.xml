@@ -1,142 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-        <ImageView
-                android:id="@+id/seller_store_mainimg"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/img_gopizza_main"
-        android:layout_margin="5dp"/>
-    </LinearLayout>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1"
-            android:gravity="center">
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#000000"/>
-    </LinearLayout>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp">
 
-    <LinearLayout
+    <ImageView
+            android:id="@+id/seller_store_mainimg"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.25">
-        <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="3dp">
-            <TextView
-                    android:id="@+id/seller_tab2_introducestore"
-                    android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:text="매장소개"
-                      android:gravity="center"
-                      android:clickable="true"
-                    android:elevation="3dp"/>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="3dp">
-            <TextView
-                    android:id="@+id/seller_tab2_menumanagement"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="메뉴관리"
-                    android:gravity="center"
-                    android:elevation="3dp"/>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="3dp">
-            <TextView
-                    android:id="@+id/seller_store_favorites"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="써클뷰 \n즐겨찾기수"
-                    android:gravity="center"
-                    android:elevation="3dp"/>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="3dp"
-                >
-            <TextView
-                    android:id="@+id/seller_store_score"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="써클뷰 \n매장평점"
-                    android:gravity="center"
-                    android:elevation="3dp"/>
-        </LinearLayout>
-    </LinearLayout>
+            android:layout_height="200dp"
+            android:background="@drawable/img_gopizza_main"
+            android:layout_margin="5dp"/>
+
 
 
     <LinearLayout
+            android:id="@+id/seller_tab2_stroemng_linerlayout_two"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1"
-            android:gravity="center">
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#000000"/>
-    </LinearLayout>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.6"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/seller_store_mainimg">
 
-            <TextView android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:text="Review"
-                      android:textColor="#000000"
-                      android:gravity="center"/>
+
+
         <TextView
-                android:id="@+id/reviewex1"
+                android:id="@+id/seller_tab2_introducestore"
                 android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textSize="18sp"
-        android:text="내용들 (작성자)"/>
+                android:layout_height="40dp"
+                android:text="매장소개"
+                android:gravity="center"
+                android:clickable="true"
+                android:background="@drawable/textview_line_style"
+                android:layout_marginTop="6dp"/>
+
         <TextView
-                android:id="@+id/reviewex2"
+                android:id="@+id/seller_tab2_menumanagement"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="메뉴관리"
+                android:gravity="center"
+                android:background="@drawable/textview_line_style"
+                android:layout_marginTop="8dp"/>
+
+        <LinearLayout
+                android:id="@+id/seller_tab2_stroemng_linerlayout_one"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textSize="18sp"
-                android:text="내용들 (작성자)"/>
-        <TextView
-                android:id="@+id/reviewex3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textSize="18sp"
-                android:text="내용들 (작성자)"/>
+                android:orientation="horizontal"
+                android:layout_below="@+id/seller_store_mainimg"
+                android:layout_marginTop="8dp">
 
-        <Button
-                android:id="@+id/seller_tab2_reviewmore"
+            <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:background="@drawable/textview_line_style"
+                    android:paddingRight="5dp">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="즐겨찾기"
+                        android:layout_centerInParent="true"/>
+
+                <TextView
+                        android:id="@+id/seller_store_favorites"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="즐겨찾기수"
+                        android:gravity="center"
+                        android:background="@drawable/textview_circle_style"
+                        android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:background="@drawable/textview_line_style"
+                    android:paddingRight="5dp">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="매장평점"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"/>
+
+                <TextView
+                        android:id="@+id/seller_store_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="매장평점"
+                        android:gravity="center"
+                        android:background="@drawable/textview_circle_style"
+                        android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="더보기"
-        android:layout_gravity="center"/>
+                android:text="Review"
+                android:textColor="@color/color10"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="16dp"/>
+
+        <TextView
+                android:id="@+id/reviewex1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:text="내용들 (작성자)"
+                android:paddingLeft="13dp"/>
+
+        <TextView
+                android:id="@+id/reviewex2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:text="내용들 (작성자)"
+                android:paddingLeft="13dp"/>
+
+        <TextView
+                android:id="@+id/reviewex3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:text="내용들 (작성자)"
+                android:paddingLeft="13dp"/>
+
 
     </LinearLayout>
 
-</LinearLayout>
+    <Button
+            android:id="@+id/seller_tab2_reviewmore"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="리뷰 더보기"
+            android:layout_gravity="center"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/textview_circle_style"/>
+</RelativeLayout>

@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="위치입력"
-            android:textSize="30sp" />
+            android:text="푸드트럭의 위치를 나타내어 줍니다. "
+            android:textSize="20sp" />
     </LinearLayout>
 </LinearLayout>

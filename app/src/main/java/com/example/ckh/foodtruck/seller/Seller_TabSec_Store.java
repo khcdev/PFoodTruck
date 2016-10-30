@@ -55,7 +55,7 @@ public class Seller_TabSec_Store extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),MenuManagement.class);
                 intent.putExtra("isSeller",true);
-                intent.putExtra("truckvode",102);
+                intent.putExtra("truckcode",102);
                 startActivity(intent);
             }
         });

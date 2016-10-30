@@ -1,216 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.8">
-        <ImageView
-                android:id="@+id/user_store_mainimg"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"/>
-    </LinearLayout>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.05"
-            android:gravity="center">
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#000000"/>
-    </LinearLayout>
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="0dp"
-    android:layout_weight="0.25"
-                  android:gravity="center">
-        <TextView android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:gravity="center"
-                  android:text="11"
-        android:id="@+id/user_truck_detail_Introtext"/>
+        android:padding="3dp">
 
-    </LinearLayout>
-    <LinearLayout
+    <ImageView
+            android:id="@+id/user_store_mainimg"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.05"
-            android:gravity="center">
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#000000"/>
-    </LinearLayout>
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+    />
 
-    <LinearLayout
+    <RelativeLayout
+            android:id="@+id/user_linearlayout_truckinfo_detail_one"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.25">
-        <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="3dp">
-            <RelativeLayout android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                <ImageView android:layout_width="match_parent"
-                           android:layout_height="match_parent"
-                           android:id="@+id/user_truck_detail_notice"
-                           android:src="@drawable/circle"/>
-                <TextView
-                        android:id="@+id/user_truck_detail_noticetext"
-                        android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="공지사항"
-                          android:layout_centerInParent="true"/>
-            </RelativeLayout>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="3dp">
-            <RelativeLayout android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                <ImageView android:layout_width="match_parent"
-                           android:layout_height="match_parent"
-                           android:id="@+id/user_truck_detail_menulist"
-                           android:src="@drawable/circle"/>
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="메뉴보기"
-                        android:layout_centerInParent="true"/>
-            </RelativeLayout>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="3dp">
-            <RelativeLayout android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                <ImageView android:layout_width="match_parent"
-                           android:layout_height="match_parent"
-                           android:id="@+id/user_truck_detail_favor"
-                           android:src="@drawable/star"/>
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="7"
-                        android:id="@+id/user_truck_detail_favortext"
-                        android:layout_centerInParent="true"/>
-            </RelativeLayout>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="3dp"
-        >
-            <RelativeLayout android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                <ImageView android:layout_width="match_parent"
-                           android:layout_height="match_parent"
-                           android:id="@+id/user_truck_detail_score"
-                           android:src="@drawable/temp_score"/>
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" 4.5"
-                        android:id="@+id/user_truck_detail_scoretext"
-                        android:layout_centerInParent="true"/>
-            </RelativeLayout>
-        </LinearLayout>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_store_mainimg"
+            android:padding="3dp">
+        <TextView
+                android:id="@+id/user_store_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="매장명"
+                android:textSize="25dp" />
+
+        <RelativeLayout
+                android:id="@+id/user_star_relativelayout_one"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_toLeftOf="@+id/user_truckinfo_detail_rating_image_num"
+                android:layout_marginRight="3dp">
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/user_truck_detail_favor"
+                    android:src="@drawable/star"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7"
+                    android:id="@+id/user_truck_detail_favortext"
+                    android:layout_centerInParent="true"
+                    android:textSize="14dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:id="@+id/user_truckinfo_detail_rating_image_num"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:paddingTop="3dp">
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/user_truck_detail_score"
+                    android:src="@drawable/temp_score"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 4.5"
+                    android:id="@+id/user_truck_detail_scoretext"
+                    android:layout_centerInParent="true"/>
+        </RelativeLayout>
+    </RelativeLayout>
 
 
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="매장소개"
+            android:id="@+id/user_truck_detail_Introtext"
+            android:layout_below="@+id/user_linearlayout_truckinfo_detail_one"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"/>
+
+
+    <View
+            android:id="@+id/user_truck_detil_devider_one"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color10"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/user_truck_detail_Introtext"/>
+
+    <TextView
+            android:id="@+id/user_truck_detail_noticetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="공지사항"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/user_truck_detil_devider_one"
+            android:textSize="20sp"
+    android:layout_margin="7dp"/>
+
+    <View
+            android:id="@+id/user_truck_detil_devider_two"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color10"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@+id/user_truck_detail_noticetext"/>
+
+
+    <TextView
+            android:id="@+id/user_truck_detail_menulist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="메뉴보기"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/user_truck_detil_devider_two"
+            android:layout_margin="7dp"
+            android:textSize="20sp"/>
+
+    <View
+            android:id="@+id/user_truck_detil_devider_three"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color10"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@+id/user_truck_detail_menulist"/>
+
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.05"
-            android:gravity="center">
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#000000"/>
-    </LinearLayout>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.3"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout"
+            android:layout_below="@+id/user_truck_detil_devider_three">
 
         <TextView android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:text="Review"
-                  android:textColor="#000000"
-                  android:gravity="center"/>
+                  android:textColor="#000000"/>
+
         <!--<TextView
-                android:id="@+id/reviewex1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textSize="18sp"
-                android:text="내용들 (작성자)"/>
-        <TextView
-                android:id="@+id/reviewex2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textSize="18sp"
-                android:text="내용들 (작성자)"/>
-        <TextView
-                android:id="@+id/reviewex3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textSize="18sp"
-                android:text="내용들 (작성자)"/>-->
+            android:id="@+id/reviewex1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:text="내용들 (작성자)"/>
+    <TextView
+            android:id="@+id/reviewex2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:text="내용들 (작성자)"/>
+    <TextView
+            android:id="@+id/reviewex3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:text="내용들 (작성자)"/>-->
 
         <Button
                 android:id="@+id/user_reviewmore"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textSize="15dp"
+                android:text="리뷰 더보기"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/color10"
+                android:textColor="@color/color6"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true">
+
+        <Button
+                android:text="패이스북"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="더보기"
-                android:layout_gravity="center"/>
+                android:background="@drawable/facebook_bnt_style"
+                android:drawableRight="@drawable/fbbtn_small"
+                android:paddingLeft="10dp"
+                android:paddingRight="4dp"
+                android:layout_weight="1"/>
+
+        <Button
+                android:text="카카오톡"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/kakao_bnt_style"
+                android:drawableRight="@drawable/kabtn_small"
+                android:paddingLeft="10dp"
+                android:paddingRight="4dp"
+                android:layout_weight="1"/>
+
+        <Button
+                android:id="@+id/user_addfavor"
+                android:text="즐겨찾기"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/favorites_bnt_style"
+                android:drawableRight="@drawable/fabtn_small"
+                android:paddingLeft="10dp"
+                android:paddingRight="4dp"
+                android:layout_weight="1"/>
 
     </LinearLayout>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="0dp"
-    android:layout_weight="0.3">
-        <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-            <ImageView android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:padding="10dp"
-                       android:src="@drawable/imgbtn_fb"/>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-            <ImageView android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:padding="10dp"
-                       android:src="@drawable/imgbtn_kko"/>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-            <ImageView
-                    android:id="@+id/user_addfavor"
-                    android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:padding="10dp"
-                       android:src="@drawable/imgbtn_favorites"/>
-        </LinearLayout>
-    </LinearLayout>
 
-</LinearLayout>
+
+
+</RelativeLayout>

@@ -80,11 +80,15 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
         android:text="확인"
+                android:backgroundTint="@color/color10"
+                android:textColor="@color/color6"
         android:onClick="onClick_seller_Menu_addbtnclicked"/>
         <Button android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
         android:text="승인"
+                android:backgroundTint="@color/color10"
+                android:textColor="@color/color6"
         android:onClick="onClick_seller_Menu_check"/>
     </LinearLayout>
 </LinearLayout>

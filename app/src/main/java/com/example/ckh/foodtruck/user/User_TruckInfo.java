@@ -25,9 +25,9 @@ import com.example.ckh.foodtruck.seller.ReviewMore;
  * Created by Ckh on 2016-10-29.
  */
 public class User_TruckInfo extends Activity {
-    ImageView truckimg,iv_inrto,iv_menulist,iv_addfavor;
-    TextView tv_intro,tv_favor,tv_score,tv_noti;
-    Button reviewmore;
+    ImageView truckimg,iv_inrto;
+    TextView tv_intro,tv_favor,tv_score,tv_noti,iv_menulist;
+    Button reviewmore,iv_addfavor;
     String imgpath = "data/data/com.example.ckh.foodtruck/files/";
     Bitmap bm;
     boolean flag=false;
@@ -50,17 +50,16 @@ public class User_TruckInfo extends Activity {
             Log.e("fileloadfailed","비트맵 이미지 불러오기 실패");
         }
         truckimg = (ImageView) findViewById(R.id.user_store_mainimg);
-        iv_inrto =(ImageView) findViewById(R.id.user_truck_detail_notice);
         tv_noti=(TextView) findViewById(R.id.user_truck_detail_noticetext);
         tv_intro=(TextView) findViewById(R.id.user_truck_detail_Introtext);
-        iv_menulist=(ImageView) findViewById(R.id.user_truck_detail_menulist);
+        iv_menulist=(TextView) findViewById(R.id.user_truck_detail_menulist);
         tv_favor=(TextView) findViewById(R.id.user_truck_detail_favortext);
         tv_score=(TextView) findViewById(R.id.user_truck_detail_scoretext);
-        iv_addfavor=(ImageView) findViewById(R.id.user_addfavor);
+        iv_addfavor=(Button) findViewById(R.id.user_addfavor);
         reviewmore = (Button) findViewById(R.id.user_reviewmore);
 
         truckimg.setImageBitmap(bm);
-        iv_inrto.setOnClickListener(new View.OnClickListener() {
+        tv_noti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alert_intro = new AlertDialog.Builder(User_TruckInfo.this);

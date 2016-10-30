@@ -70,6 +70,8 @@ public class MenuManagement extends Activity {
             }
             ListViewAdapter.addItem(bm,c.getString(2),Integer.toString(c.getInt(5)),c.getString(4),"");
         }
+        c.close();
+        db.close();
 
     }
 

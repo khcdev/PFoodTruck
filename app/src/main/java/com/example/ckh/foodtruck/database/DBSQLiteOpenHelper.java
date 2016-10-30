@@ -35,6 +35,7 @@ public class DBSQLiteOpenHelper extends SQLiteOpenHelper {
                 "truck_id integer," +
                 "writer text," +
                 "contents text," +
+                "score integer,"+
                 "date text);";
         String table_menu = "create table menu(" +
                 "_id integer primary key autoincrement," +
@@ -90,23 +91,23 @@ public class DBSQLiteOpenHelper extends SQLiteOpenHelper {
         sql = "insert into menu values(null,103,'동파육',0,'국산',4500, 'img_chungnyun_m02');";
         db.execSQL(sql);
 
-        sql = "insert into review values (null,101,'akex','너무 맛있네요!','2016-10-17');";
+        sql = "insert into review values (null,101,'akex','너무 맛있네요!',4,'2016-10-17');";
         db.execSQL(sql);
-        sql = "insert into review values (null,101,'wtod','고기가 퍽퍽하지 않고 맛있습니다.','2016-10-17');";
+        sql = "insert into review values (null,101,'wtod','고기가 퍽퍽하지 않고 맛있습니다.',4,'2016-10-17');";
         db.execSQL(sql);
-        sql = "insert into review values (null,101,'ksad','다른 부위도 있었으면 좋겠습니다~','2016-10-17');";
+        sql = "insert into review values (null,101,'ksad','다른 부위도 있었으면 좋겠습니다~',5,'2016-10-17');";
         db.execSQL(sql);
-        sql = "insert into review values (null,102,'pizzapizza','치즈 듬뿍 맛있었습니다.','2016-10-17');";
+        sql = "insert into review values (null,102,'pizzapizza','치즈 듬뿍 맛있었습니다.',5,'2016-10-17');";
         db.execSQL(sql);
-        sql = "insert into review values (null,102,'숯돌이','시카고 그릴드 피자 굿굿','2016-10-17');";
+        sql = "insert into review values (null,102,'숯돌이','시카고 그릴드 피자 굿굿',3,'2016-10-17');";
         db.execSQL(sql);
-        sql = "insert into review values (null,102,'영광굴비','가격대비 최고!','2016-10-17');";
+        sql = "insert into review values (null,102,'영광굴비','가격대비 최고!',4,'2016-10-17');";
         db.execSQL(sql);
-        sql = "insert into review values (null,103,'dasdas','레몬 크림새우 느끼하지 않고 너무 맛있네요~','2016-10-17');";
+        sql = "insert into review values (null,103,'dasdas','레몬 크림새우 느끼하지 않고 너무 맛있네요~',4,'2016-10-17');";
         db.execSQL(sql);
-        sql = "insert into review values (null,103,'krez0521','이런 퀼리티의 동파육일꺼라곤 생각도 못했습니다~ 맛있네요','2016-10-17');";
+        sql = "insert into review values (null,103,'krez0521','이런 퀼리티의 동파육일꺼라곤 생각도 못했습니다~ 맛있네요',5,'2016-10-17');";
         db.execSQL(sql);
-        sql = "insert into review values (null,103,'짜잔형','good~','2016-10-17');";
+        sql = "insert into review values (null,103,'짜잔형','good~',3,'2016-10-17');";
         db.execSQL(sql);
 
     }

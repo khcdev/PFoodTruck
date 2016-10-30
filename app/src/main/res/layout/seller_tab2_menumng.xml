@@ -22,6 +22,8 @@
                 android:layout_height="wrap_content"
                 android:visibility="invisible"
                 android:layout_margin="10dp"
+                android:backgroundTint="@color/color10"
+                android:textColor="@color/color6"
                 android:text="add"/>
     </LinearLayout>
 </LinearLayout>

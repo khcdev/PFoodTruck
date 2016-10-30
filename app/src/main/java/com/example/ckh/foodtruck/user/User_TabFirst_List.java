@@ -20,8 +20,6 @@ import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
 
-import java.util.ArrayList;
-
 /**
  * Created by Ckh on 2016-10-08.
  */
@@ -33,7 +31,6 @@ public class User_TabFirst_List extends Fragment {
     TruckCardViewAdapter adapter;
     String imgpath = "data/data/com.example.ckh.foodtruck/files/";
     private RecyclerView.LayoutManager mLayoutManager;
-    ArrayList<TruckItem> dataList = new ArrayList<TruckItem>();
     View view;
     Context mContext;
     public User_TabFirst_List(Context context){
@@ -70,12 +67,12 @@ public class User_TabFirst_List extends Fragment {
                     Log.e("fileloadfailed", "비트맵 이미지 불러오기 실패");
                 }
                 data.truckimg = bm;
-                dataList.add(data);
+                GlobalApplication.dataList.add(data);
             }
             GlobalApplication.flag_truckinfolist=false;
         }
 
-        adapter = new TruckCardViewAdapter(getActivity(),dataList);
+        adapter = new TruckCardViewAdapter(getActivity(), GlobalApplication.dataList);
         trucklistView.setAdapter(adapter);
         return view;
     }
