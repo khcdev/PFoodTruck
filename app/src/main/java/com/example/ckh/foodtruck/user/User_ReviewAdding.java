@@ -45,7 +45,7 @@ public class User_ReviewAdding extends Activity {
                 String msg;
                 int score;
                 msg=input1.getText().toString();
-                score = rating.getNumStars();
+                score = (int)rating.getRating();
                 Date date = new Date(System.currentTimeMillis());
                 SimpleDateFormat CurDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String convertdata =  CurDateFormat.format(date);

@@ -37,7 +37,7 @@ public class User_Login extends Activity {
     public void onCreate(Bundle b) {
         super.onCreate(b);
         setContentView(com.example.ckh.foodtruck.R.layout.user_main);
-
+        GlobalApplication.seller=false;
         ImageView imgbtn_NonAcc = (ImageView) findViewById(R.id.usermain_btn_NonAccLogin);
         ImageView imgbtn_fblogin = (ImageView) findViewById(R.id.usermain_btn_fbLogin);
 

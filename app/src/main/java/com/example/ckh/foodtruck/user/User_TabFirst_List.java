@@ -84,4 +84,5 @@ public class User_TabFirst_List extends Fragment {
         trucklistView.setAdapter(adapter);
         return view;
     }
-    }
+
+}

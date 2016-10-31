@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
+import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 
 
@@ -39,6 +39,9 @@ public class Seller_Login extends Activity{
                 if(id_check&&pass_check) {
                     Intent intent = new Intent(Seller_Login.this, Seller_TabFragment.class);
                     startActivity(intent);
+                    GlobalApplication.seller = true;
+                    GlobalApplication.fbuser=false;
+                    GlobalApplication.kkouser=false;
                     finish();
                 }
                 else Toast.makeText(Seller_Login.this,"아이디 혹은 패스워드가 일치하지 않습니다.",Toast.LENGTH_LONG).show();

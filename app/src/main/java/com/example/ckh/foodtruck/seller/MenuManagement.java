@@ -41,7 +41,8 @@ public class MenuManagement extends Activity {
         Button adddetail = (Button) findViewById(R.id.seller_btn_menuadded);
         if(intent.getExtras().getBoolean("isSeller")) {
             AlertDialog.Builder noti = new AlertDialog.Builder(MenuManagement.this);
-            noti.setMessage("메뉴 관리 화면입니다.\n User에게 보여지는 메뉴리스트들을 보여줍니다.");
+            noti.setMessage("메뉴 관리 화면입니다.\n User에게 보여지는 메뉴리스트들을 보여줍니다.\n" +
+                    "add를 클릭하면 메뉴를 추가할 수 있습니다.\n 메뉴를 클릭하면 삭제할 수 있습니다.");
             noti.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -60,7 +61,7 @@ public class MenuManagement extends Activity {
 
         }else {
             AlertDialog.Builder noti = new AlertDialog.Builder(MenuManagement.this);
-            noti.setMessage("푸드트럭에서 판매하는 메뉴 리스트 입니다.\n add를 클릭하면 메뉴를 추가할 수 있습니다.\n 메뉴를 클릭하면 삭제할 수 있습니다.");
+            noti.setMessage("푸드트럭에서 판매하는 메뉴 리스트 입니다.\n ");
             noti.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

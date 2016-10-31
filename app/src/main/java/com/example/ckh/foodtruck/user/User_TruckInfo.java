@@ -150,8 +150,10 @@ public class User_TruckInfo extends Activity {
                     int numb = Integer.parseInt(tv_favor.getText().toString());
                     numb++;
                     tv_favor.setText(Integer.toString(numb));
+                    Toast.makeText(User_TruckInfo.this, "즐겨찾기에 추가되었습니다. 설정탭을 확인하세요", Toast.LENGTH_SHORT).show();
                     db.execSQL("update foodtruck set favorites = " + numb + " where truck_id=" + truckdata.truck_id + ";");
                     db.close();
+                    setResult(2);
                     switch (truckdata.truck_id) {
                         case 101:
                             GlobalApplication.favor_101 = true;

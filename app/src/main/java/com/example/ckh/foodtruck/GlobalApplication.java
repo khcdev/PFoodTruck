@@ -31,6 +31,7 @@ public class GlobalApplication extends Application {
     public static boolean openStore= false;
     public static boolean kkouser=false;
     public static boolean fbuser=false;
+    public static boolean seller=false;
     public static ArrayList<TruckItem> dataList = new ArrayList<>();
     public static ArrayList<favorTruck> favortruckList= new ArrayList<>();
 

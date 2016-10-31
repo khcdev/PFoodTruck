@@ -99,34 +99,36 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
         allMenuHolder.foodName.setText(allMenuData.MenuTitle);
         allMenuHolder.foodPrice.setText(allMenuData.Price+"원");
         allMenuHolder.foodOrigin.setText(allMenuData.Origin);
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder not = new AlertDialog.Builder(allMenuContext);
-                not.setMessage("메뉴를 삭제하시겠습니까?");
-                not.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                not.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        SQLiteDatabase db;
-                        DBSQLiteOpenHelper helper;
-                        helper = new DBSQLiteOpenHelper(allMenuContext, GlobalApplication.dbName,null,1);
-                        db = helper.getWritableDatabase();
-                        db.execSQL("delete from menu where menu_name='"+menuName+"';");
-                        Log.i("ckhtag",menuName);
-                        remove(position);
-                        notifyDataSetChanged();
-                        dialog.dismiss();
-                    }
-                });
-                not.show();
-            }
-        });
+        if(GlobalApplication.seller) {
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder not = new AlertDialog.Builder(allMenuContext);
+                    not.setMessage("메뉴를 삭제하시겠습니까?");
+                    not.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    not.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            SQLiteDatabase db;
+                            DBSQLiteOpenHelper helper;
+                            helper = new DBSQLiteOpenHelper(allMenuContext, GlobalApplication.dbName, null, 1);
+                            db = helper.getWritableDatabase();
+                            db.execSQL("delete from menu where menu_name='" + menuName + "';");
+                            Log.i("ckhtag", menuName);
+                            remove(position);
+                            notifyDataSetChanged();
+                            dialog.dismiss();
+                        }
+                    });
+                    not.show();
+                }
+            });
+        }
         return convertView;
     }
     private class ViewHolder{
