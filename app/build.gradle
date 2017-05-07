@@ -3,18 +3,18 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         config {
-            keyAlias 'MyKey'
-            keyPassword 'rhkdgns2'
-            storeFile file('C:/Users/Ckh/keystores/android.jks')
+            keyAlias 'bbesign'
+            keyPassword '!rhkdgns2@'
+            storeFile file('C:/Users/ckj/keyfolder/bbe_relkey.keystore')
             storePassword '!rhkdgns2@'
         }
     }
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
     defaultConfig {
         applicationId "com.example.ckh.foodtruck"
         minSdkVersion 21
-        targetSdkVersion 23
+        targetSdkVersion 25
         versionCode 1
         multiDexEnabled true
         versionName "1.0"
@@ -31,18 +31,18 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:design:25.0.1'
     compile group: project.KAKAO_SDK_GROUP, name: 'kakaolink', version: project.KAKAO_SDK_VERSION
-    compile group: project.KAKAO_SDK_GROUP, name: 'kakaotalk', version: project.KAKAO_SDK_VERSION
+    compile group: project.KAKAO_SDK_GROUP, name: 'kakaotalk', version: project.KAKAO_SDK_VERSION 
     compile group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
     compile 'com.facebook.android:facebook-android-sdk:4.14.0'
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
-    compile 'com.google.android.gms:play-services:9.8.0'
+    compile 'com.google.android.gms:play-services:10.0.1'
     compile files('libs/TransCoord.jar')
+    compile files('libs/poi-3.14-20160307.jar')
     compile 'com.googlecode.android-query:android-query:0.25.9'
-    compile 'com.android.support:cardview-v7:23.4.0'
-    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.android.support:cardview-v7:25.0.1'
+    compile 'com.android.support:recyclerview-v7:25.0.1'
 
-    testCompile 'junit:junit:4.12'
 }
