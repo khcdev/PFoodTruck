@@ -49,33 +49,33 @@ public class Splash extends Activity {
     //로딩 화면이 떠있는 시간(밀리초단위)
     private final int SPLASH_DISPLAY_LENGTH = 4500;
 
-    public static ArrayList<MovingPeople> dobong = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> gangbuk = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> nowon = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> eunpyoung = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> seoungbook = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> jonglo = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> dongdaemoon = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> jungrang = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> seodaemoon = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> junggu = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> sungdong = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> gwangjin = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> youngsan = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> mapo = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> gangseo = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> yangcheon = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> guro = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> youngdengpo = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> gumcheon = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> gwhanak = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> dongjak = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> seocho = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> gangnam = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> songpa = new ArrayList<MovingPeople>();
-    public static ArrayList<MovingPeople> gangdong = new ArrayList<MovingPeople>();
+    public static ArrayList<MovingPeople> dobong = new ArrayList<>();
+    public static ArrayList<MovingPeople> gangbuk = new ArrayList<>();
+    public static ArrayList<MovingPeople> nowon = new ArrayList<>();
+    public static ArrayList<MovingPeople> eunpyoung = new ArrayList<>();
+    public static ArrayList<MovingPeople> seoungbook = new ArrayList<>();
+    public static ArrayList<MovingPeople> jonglo = new ArrayList<>();
+    public static ArrayList<MovingPeople> dongdaemoon = new ArrayList<>();
+    public static ArrayList<MovingPeople> jungrang = new ArrayList<>();
+    public static ArrayList<MovingPeople> seodaemoon = new ArrayList<>();
+    public static ArrayList<MovingPeople> junggu = new ArrayList<>();
+    public static ArrayList<MovingPeople> sungdong = new ArrayList<>();
+    public static ArrayList<MovingPeople> gwangjin = new ArrayList<>();
+    public static ArrayList<MovingPeople> youngsan = new ArrayList<>();
+    public static ArrayList<MovingPeople> mapo = new ArrayList<>();
+    public static ArrayList<MovingPeople> gangseo = new ArrayList<>();
+    public static ArrayList<MovingPeople> yangcheon = new ArrayList<>();
+    public static ArrayList<MovingPeople> guro = new ArrayList<>();
+    public static ArrayList<MovingPeople> youngdengpo = new ArrayList<>();
+    public static ArrayList<MovingPeople> gumcheon = new ArrayList<>();
+    public static ArrayList<MovingPeople> gwhanak = new ArrayList<>();
+    public static ArrayList<MovingPeople> dongjak = new ArrayList<>();
+    public static ArrayList<MovingPeople> seocho = new ArrayList<>();
+    public static ArrayList<MovingPeople> gangdong = new ArrayList<>();
+    public static ArrayList<MovingPeople> gangnam = new ArrayList<>();
+    public static ArrayList<MovingPeople> songpa = new ArrayList<>();
 
-    public static ArrayList<MovingPeople> allSeoul = new ArrayList<MovingPeople>();
+    public static ArrayList<MovingPeople> allSeoul = new ArrayList<>();
 
     public static ArrayList<ArrayList<MovingPeople>> allofseoul = new ArrayList<>();
 
@@ -100,10 +100,13 @@ public class Splash extends Activity {
                         (int) (Double.parseDouble(row.getCell(j + 3).toString())),
                         (int) (Double.parseDouble(row.getCell(j + 4).toString())),
                         (int) (Double.parseDouble(row.getCell(j + 5).toString())),
-                        (int) (Double.parseDouble(row.getCell(j + 6).toString())), row.getCell(j + 7).toString(),
+                        (int) (Double.parseDouble(row.getCell(j + 6).toString())),
+                        row.getCell(j + 7).toString(),
                         Double.parseDouble(row.getCell(j + 8).toString()),
-                        Double.parseDouble(row.getCell(j + 9).toString()), row.getCell(j + 10).toString(),
-                        row.getCell(j + 11).toString());
+                        Double.parseDouble(row.getCell(j + 9).toString()),
+                        row.getCell(j + 10).toString(),
+                        row.getCell(j + 11).toString()
+                );
 
                 row = sheet.getRow(i + 1);        //두개를 합쳐야 하기 때문에 i+1행을 읽어온다.
 
@@ -117,7 +120,7 @@ public class Splash extends Activity {
                         Double.parseDouble(row.getCell(j + 8).toString()),
                         Double.parseDouble(row.getCell(j + 9).toString()), row.getCell(10).toString(),
                         row.getCell(j + 11).toString());
-
+                //TODO : 좌표변환, pin
                 CoordPoint pt = new CoordPoint(temp1.Xcode, temp1.Ycode);
                 CoordPoint ktmPt = TransCoord.getTransCoord(pt, TransCoord.COORD_TYPE_WTM, TransCoord.COORD_TYPE_WGS84);
                 Double TransXCode = ktmPt.x;
@@ -328,7 +331,13 @@ public class Splash extends Activity {
         protected Integer doInBackground(Integer... params) {
             publishProgress("max", Integer.toString(100));
             helper = new DBSQLiteOpenHelper(Splash.this,GlobalApplication.dbName,null,1);
+            /** REFACTORING*/
+            //TODO : DB Helper 초기화 하면서 테이블 정의하고 데이터 삽입하는 부분 모듈화 하여 따로 처리한다.
             db=helper.getWritableDatabase();
+            //TODO : http 요청 모듈 필요
+            //module
+
+            //FIXME : DB처리하는 부분이 해결 되면 삭제 해도 되는 부분
             File();
             Gusort();
             publishProgress("progress", Integer.toString(30),
@@ -338,7 +347,8 @@ public class Splash extends Activity {
                 SharedPreferences.Editor edit = pref.edit();
                 edit.putBoolean("isFirst", true);
                 edit.commit();
-
+                //FIXME : 이미지 파일을 디바이스 내장 스토리지에 저장하는 부분이기 때문에 굉장히 시간 소모가 크다.
+                //FIXME : 이미지 서버에 post 요청하는 부분까지는 불가능 할듯, 기본 트럭,메뉴 이미지 불러오는것만 서버에서 처리
                 saveFiletoInternalStorage(R.drawable.img_chungnyun_m01, "img_chungnyun_m01.png");
                 saveFiletoInternalStorage(R.drawable.img_chungnyun_m02, "img_chungnyun_m02.png");
                 saveFiletoInternalStorage(R.drawable.img_chungnyun_main, "img_chungnyun_main.png");
