@@ -5,6 +5,8 @@ import android.app.Application;
 import com.example.ckh.cstview.TruckItem;
 import com.example.ckh.cstview.favorTruck;
 import com.kakao.auth.KakaoSDK;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +17,7 @@ import java.util.HashMap;
  * AndroidManifest에 등록 해주어야함.
  */
 public class GlobalApplication extends Application {
+
     //volatile 키워드 -> 단어 뜻은 '변덕스러운' 이라는 뜻을 가지고 있다.
     //프로그래밍 언어에서의 정의는 '자주 변할수 있으니 잘 가져다 쓰라'
     //1)특정 최적화에 주의 한다. 2) 멀티 쓰레드 환경에서 주의한다.
@@ -34,6 +37,7 @@ public class GlobalApplication extends Application {
     public static boolean seller=false;
     public static ArrayList<TruckItem> dataList = new ArrayList<>();
     public static ArrayList<favorTruck> favortruckList= new ArrayList<>();
+
 
 
     public static Activity getCurrentActivity() {

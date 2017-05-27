@@ -16,12 +16,22 @@ import android.widget.Toast;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
 import com.example.ckh.foodtruck.seller.MakingAbove5;
 import com.example.ckh.foodtruck.seller.MovingPeople;
+import com.google.gson.annotations.SerializedName;
 import kr.hyosang.coordinate.CoordPoint;
 import kr.hyosang.coordinate.TransCoord;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -29,6 +39,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Ckh on 2016-09-10.
@@ -41,7 +52,8 @@ import java.util.HashMap;
 
 public class Splash extends Activity {
     DBSQLiteOpenHelper helper;
-    SharedPreferences pref;
+    SharedPreferences appVersion,pref;
+    SharedPreferences.Editor edit;
     private SQLiteDatabase db;
     String tag = "SQLite";
     ProgressBar progressBar;
@@ -107,7 +119,6 @@ public class Splash extends Activity {
                         row.getCell(j + 10).toString(),
                         row.getCell(j + 11).toString()
                 );
-
                 row = sheet.getRow(i + 1);        //두개를 합쳐야 하기 때문에 i+1행을 읽어온다.
 
                 MovingPeople temp2 = new MovingPeople(row.getCell(j).toString(),
@@ -116,9 +127,11 @@ public class Splash extends Activity {
                         (int) (Double.parseDouble(row.getCell(j + 3).toString())),
                         (int) (Double.parseDouble(row.getCell(j + 4).toString())),
                         (int) (Double.parseDouble(row.getCell(j + 5).toString())),
-                        (int) (Double.parseDouble(row.getCell(j + 6).toString())), row.getCell(j + 7).toString(),
+                        (int) (Double.parseDouble(row.getCell(j + 6).toString())),
+                        row.getCell(j + 7).toString(),
                         Double.parseDouble(row.getCell(j + 8).toString()),
-                        Double.parseDouble(row.getCell(j + 9).toString()), row.getCell(10).toString(),
+                        Double.parseDouble(row.getCell(j + 9).toString()),
+                        row.getCell(10).toString(),
                         row.getCell(j + 11).toString());
                 //TODO : 좌표변환, pin
                 CoordPoint pt = new CoordPoint(temp1.Xcode, temp1.Ycode);
@@ -310,6 +323,8 @@ public class Splash extends Activity {
         }
 
     }
+    /*AsyncTask*/
+    //execute() 메서드를 호출 함으로써 AsyncTask를 실행합니다.
     class MyAsyncTask extends AsyncTask<Integer, String, Integer>{
         private ProgressDialog mDlg;
 
@@ -317,34 +332,80 @@ public class Splash extends Activity {
         public MyAsyncTask(Context context){
             mContext=context;
         }
+        //AsyncTask로 백그라운드 작업을 실행하기 전에 실행되는 onPreExecuted 메서드
+        //ex 이미지를 불러올때 로딩중.. 이란 팝업을 띄우는등 스레드 작업 이전에
+        //수행할 동작을 구현함.
         @Override
         protected void onPreExecute() {
-            mDlg = new ProgressDialog(Splash.this);
+            /*mDlg = new ProgressDialog(Splash.this);
+            //FIXME : 프로그레스 스타일 spinner로 변경
             mDlg.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             mDlg.setMessage("작업 시작");
             mDlg.show();
-
+            */
             super.onPreExecute();
-
         }
+        //실제로 백그라운드 작업을 수행하는 메서드
+        //execute 메서드를 호출 할 때 사용된 파라미터를 전달 받습니다.
+        //doInBackGround() 에서 중간 중간 진행 상태를 UI에 업데이트 하도록 하려면
+        // publishProgress() 메소드를 호출하여 진행한다.
         @Override
         protected Integer doInBackground(Integer... params) {
             publishProgress("max", Integer.toString(100));
-            helper = new DBSQLiteOpenHelper(Splash.this,GlobalApplication.dbName,null,1);
             /** REFACTORING*/
-            //TODO : DB Helper 초기화 하면서 테이블 정의하고 데이터 삽입하는 부분 모듈화 하여 따로 처리한다.
-            db=helper.getWritableDatabase();
-            //TODO : http 요청 모듈 필요
             //module
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://52.78.234.100:3040/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            DBCheckService service = retrofit.create(DBCheckService.class);
+            Call<List<ServerVersion>> call = service.checkVersion();
+            List<ServerVersion> result=null;
+            try {
+                result = call.execute().body();
+                Log.e("Http",Integer.toString(result.get(0).version));
+            }catch (IOException e){
+                Log.e("Httperrckh","err");
+                e.printStackTrace();
+            }
+            appVersion = getSharedPreferences("appVersion", Activity.MODE_PRIVATE);
+            if(result!=null && result.get(0).version>appVersion.getInt("appVersion",1)){
+                //데이터 input
 
+                //좌표 변환
+                //CoordPoint pt = new CoordPoint(temp1.Xcode, temp1.Ycode);
+                //CoordPoint ktmPt = TransCoord.getTransCoord(pt, TransCoord.COORD_TYPE_WTM, TransCoord.COORD_TYPE_WGS84);
+                //Double TransXCode = ktmPt.x;
+                //Double TransYCode = ktmPt.y;
+
+                //TransXCode = Math.round(TransXCode * 10000) / 10000.0;
+                //TransYCode = Math.round(TransYCode * 10000) / 10000.0;
+
+                helper = new DBSQLiteOpenHelper(Splash.this,GlobalApplication.dbName,null,appVersion.getInt("appVersion",1));
+                //TODO : DB Helper 초기화 하면서 테이블 정의하고 데이터 삽입하는 부분 모듈화 하여 따로 처리한다.
+                db=helper.getWritableDatabase();
+                String sql ="insert into SPOT_INFO values("+
+                            ""
+
+                        ;
+                //db.execSQL();
+                //TODO : http 요청 모듈 필요
+                edit = appVersion.edit();
+                edit.putInt("appVersion",result.get(0).version);
+                db.close();
+                edit.commit();
+            }
+            publishProgress("progress", Integer.toString(10),
+                    "poidata init");
             //FIXME : DB처리하는 부분이 해결 되면 삭제 해도 되는 부분
             File();
             Gusort();
             publishProgress("progress", Integer.toString(30),
                     "poidata init");
-            pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+
+            pref = getSharedPreferences("appVersion", Activity.MODE_PRIVATE);
             if (!pref.getBoolean("isFirst", false)) {
-                SharedPreferences.Editor edit = pref.edit();
+                edit = pref.edit();
                 edit.putBoolean("isFirst", true);
                 edit.commit();
                 //FIXME : 이미지 파일을 디바이스 내장 스토리지에 저장하는 부분이기 때문에 굉장히 시간 소모가 크다.
@@ -380,23 +441,45 @@ public class Splash extends Activity {
         }
         @Override
         protected void onProgressUpdate(String... params) {
-            if (params[0].equals("progress")) {
+            /*if (params[0].equals("progress")) {
                 mDlg.setProgress(Integer.parseInt(params[1]));
                 mDlg.setMessage(params[2]);
             } else if (params[0].equals("max")) {
                 mDlg.setMax(Integer.parseInt(params[1]));
-            }
+            }*/
+            if (params[0].equals("progress")) Log.d("progress","t");
+            if (params[0].equals("max")) Log.d("progress","next");
         }
 
         @Override
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
-            mDlg.dismiss();
-            db.close();
+            //mDlg.dismiss();
+
             Intent mainIntent = new Intent(Splash.this, MainActivity.class);
             Splash.this.startActivity(mainIntent);
             Splash.this.finish();
             Log.d("Result", "result : " + result);
         }
     }
+    public class ServerVersion{
+        @SerializedName("version")
+        int version;
+    }
+    /*public class SpotInform{
+        @SerializedName("SPOT_ID")
+        String SPOT_ID;
+        String MALE;
+        String FEMALE;
+
+    }*/
+    public interface DBCheckService{
+        @GET("newdata/checkversion")
+        Call<List<ServerVersion>> checkVersion();
+    }
+    /*public interface getDB{
+        @GET("newdata")
+        Call<List<>>
+    }*/
+
 }
