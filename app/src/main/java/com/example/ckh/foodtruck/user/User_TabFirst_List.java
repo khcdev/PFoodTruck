@@ -55,7 +55,7 @@ public class User_TabFirst_List extends Fragment {
         if(GlobalApplication.dataList.size()!=0){
             GlobalApplication.dataList = new ArrayList<>();
         }
-            helper = new DBSQLiteOpenHelper(getActivity(), GlobalApplication.dbName, null, 1);
+            helper = new DBSQLiteOpenHelper(getActivity(), GlobalApplication.dbName, null, 2);
             db = helper.getReadableDatabase();
             Cursor c = db.rawQuery("select truck_name,score,favorites,imgcode,truck_id from foodtruck", null);
             while (c.moveToNext()) {

@@ -5,19 +5,18 @@ import android.util.AttributeSet;
 import com.kakao.usermgmt.LoginButton;
 
 /**
- * Created by Ckh on 2016-10-30.
+ * Created by ckj on 2017-05-29.
  */
-public class cstkakalogin extends LoginButton {
-
-    public cstkakalogin(Context context) {
+public class CustomKKOLogin extends LoginButton {
+    public CustomKKOLogin(Context context) {
         super(context);
     }
 
-    public cstkakalogin(Context context, AttributeSet attrs) {
+    public CustomKKOLogin(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public cstkakalogin(Context context, AttributeSet attrs, int defStyle) {
+    public CustomKKOLogin(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

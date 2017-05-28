@@ -6,14 +6,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.example.ckh.foodtruck.Main2Activity;
+import com.example.ckh.foodtruck.SpotDetail;
 import com.example.ckh.foodtruck.R;
-import com.example.ckh.foodtruck.Splash;
+import com.example.ckh.restdataform.SpotInform;
 import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.*;
+
+import java.util.ArrayList;
 
 /**
  * Created by Ckh on 2016-10-03.
@@ -25,13 +28,17 @@ public class Seller_TabFirst_Sales extends Fragment implements OnMapReadyCallbac
     View view;
     GoogleMap gmap;
     UiSettings settings;
+    ArrayList<SpotInform> spotInformList;
 
     public Seller_TabFirst_Sales(Context context) {
         mContext = context;
     }
 
+    public Seller_TabFirst_Sales(Context context, ArrayList<SpotInform> spotInformList){
+        mContext = context;
+        this.spotInformList=spotInformList;
+    }
     @Override
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (view == null) {
@@ -76,20 +83,40 @@ public class Seller_TabFirst_Sales extends Fragment implements OnMapReadyCallbac
         gmap = googleMap;
         settings = gmap.getUiSettings();
         settings.setMyLocationButtonEnabled(true);
-
+        Log.e("spotnumber",Integer.toString(spotInformList.size()));
+        for(int i=0;i<spotInformList.size();i++){
+            gmap.addMarker(new MarkerOptions()
+                    .title(spotInformList.get(i).getSPOT_NAME())
+                    .position(new LatLng(spotInformList.get(i).getY_POS(),spotInformList.get(i).getX_POS()))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.person))
+            );
+        }
+        /**before refactor*/
+        /*
         for (int i = 0; i < Splash.allofseoul.size(); i++) {
             for (int j = 0; j < 5; j++) {
-                gmap.addMarker(new MarkerOptions().title(Splash.allofseoul.get(i).get(j).examin_spot_name).position(new LatLng(Splash.allofseoul.get(i).get(j).Ycode, Splash.allofseoul.get(i).get(j).Xcode)).icon(BitmapDescriptorFactory.fromResource(R.drawable.person)));
+                gmap.addMarker(new MarkerOptions()
+                        .title(Splash.allofseoul.get(i).get(j).examin_spot_name)
+                        .position(new LatLng(Splash.allofseoul.get(i).get(j).Ycode, Splash.allofseoul.get(i).get(j).Xcode))
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.person)));
             }
-        }
+        }*/
 
         CameraPosition cp = new CameraPosition.Builder().target(new LatLng(37.5759, 126.9769)).zoom(13).build();
         gmap.moveCamera(CameraUpdateFactory.newCameraPosition(cp));
         gmap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                Intent intent = new Intent(getActivity(), Main2Activity.class);
-                intent.putExtra("ID", marker.getTitle());
+                boolean check=false;
+                Intent intent = new Intent(getActivity(), SpotDetail.class);
+
+                for(int i=0;i<spotInformList.size();i++){
+                    if(marker.getTitle().equals(spotInformList.get(i).getSPOT_NAME())){
+                        check=true;
+                        intent.putExtra("SpotInfoObj",spotInformList.get(i));
+                    }
+                }
+                intent.putExtra("check",check);
                 startActivity(intent);
             }
         });

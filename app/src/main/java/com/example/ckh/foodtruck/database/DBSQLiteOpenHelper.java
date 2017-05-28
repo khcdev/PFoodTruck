@@ -34,7 +34,8 @@ public class DBSQLiteOpenHelper extends SQLiteOpenHelper {
                 "SPOT_NAME text, "+
                 "X_POS real,"+
                 "Y_POS real,"+
-                "GU_ID integer);";
+                "GU_ID integer,"+
+                "GU_NAME text);";
         db.execSQL(table_SPOT_INFO);
         /*======================== refactor 이전 ========================*/
         String table_foodtruck = "create table foodtruck(" +
@@ -128,20 +129,7 @@ public class DBSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-       db.execSQL("drop table SPOT_INFO;");
-        String table_SPOT_INFO = "create table SPOT_INFO(" +
-                "SPOT_ID integer primary key, "+
-                "MALE integer, "+
-                "FEMALE integer, "+
-                "TWYO_BELOW integer, "+
-                "TWNT_THRTS integer, "+
-                "FRTS_FFTS integer, "+
-                "SXTS_ABOVE integer, "+
-                "SPOT_NAME text, "+
-                "X_POS real,"+
-                "Y_POS real,"+
-                "GU_ID integer);";
-        db.execSQL(table_SPOT_INFO);
+
 
     }
 }

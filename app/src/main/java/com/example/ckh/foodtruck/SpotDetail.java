@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.ckh.foodtruck.seller.MovingPeople;
+import com.example.ckh.restdataform.SpotInform;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
@@ -17,10 +17,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
-public class Main2Activity extends Activity {
+public class SpotDetail extends Activity {
 
-
-    private MovingPeople targetRatio;
+    //private MovingPeople targetRatio;
+    /*private int totalAge;
     private int maleRatio;
     private int femaleRatio;
     private int totalGender;
@@ -28,38 +28,55 @@ public class Main2Activity extends Activity {
     private float twnt_thrtsRatio;
     private float frts_fftsRatio;
     private float sxts_aboveRatio;
-    private int totalAge;
 
-    TextView mantv;
-    TextView womantv;
-    TextView gutv;
-
+    TextView man_tv;
+    TextView woman_tv;
+    TextView gu_tv;
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.spotdetail);
 
-        mantv = (TextView) findViewById(R.id.mantv);
-        womantv = (TextView) findViewById(R.id.womantv);
-        gutv = (TextView) findViewById(R.id.guinfo);
+        int totalAge,maleRatio,femaleRatio,totalGender;
+        float twyoBelowRatio,twnt_thrtsRatio,frts_fftsRatio,sxts_aboveRatio;
 
         Intent intent = getIntent();
-        String title = intent.getStringExtra("ID");
+        boolean check = intent.getBooleanExtra("check",false);
+        //TODO : 객체 checking 후에 띄우기
+        SpotInform spotInform = (SpotInform)intent.getSerializableExtra("SpotInfoObj");
+
+        TextView man_tv = (TextView) findViewById(R.id.mantv);
+        TextView woman_tv = (TextView) findViewById(R.id.womantv);
+        TextView gu_tv = (TextView) findViewById(R.id.guinfo);
 
         PieChart pieChart = (PieChart) findViewById(R.id.Piechart);
 
         // targetRatio = (MovingPeople) getIntent().getSerializableExtra(getKeys());     // 직렬화 된 객체를 받아옴 어떤 객체인지 표시해주기 위해 구분되는 것은 key값이므로, 이를 받는 메서드도 사용
-
+/*
         for (int i = 0; i < Splash.allSeoul.size(); i++) {
             if (Splash.allSeoul.get(i).examin_spot_name.equals(title)) {
                 targetRatio = Splash.allSeoul.get(i);
                 break;
             }
-        }
+        }*/
 
-        gutv.setText(targetRatio.guname + " " + targetRatio.examin_spot_name + "의 유동인구 분석입니다.");
+        gu_tv.setText(spotInform.getGU_NAME()+ " " + spotInform.getSPOT_NAME() + "의 유동인구 분석입니다.");
 
-        makingRatio();      // 비율을 만들어 줌
+        //makingRatio();      // 비율을 만들어 줌
+        totalAge = spotInform.getTWYO_BELOW() + spotInform.getTWNT_THRTS() + spotInform.getFRTS_FFTS() + spotInform.getSXTS_ABOVE();
+        totalGender = spotInform.getFEMALE() + spotInform.getMALE();
+
+        twyoBelowRatio = (float) (spotInform.getTWYO_BELOW() * 100) / totalAge;
+        twnt_thrtsRatio = (float) (spotInform.getTWNT_THRTS() * 100) / totalAge;
+        frts_fftsRatio = (float) (spotInform.getFRTS_FFTS() * 100) / totalAge;
+        sxts_aboveRatio = (float) (spotInform.getSXTS_ABOVE() * 100) / totalAge;
+
+        maleRatio = (int) ((float) (spotInform.getFEMALE() * 100) / totalGender);
+        femaleRatio = 100 - maleRatio;
+
+        man_tv.setText("" + maleRatio + "%");
+        woman_tv.setText("" + femaleRatio + "%");
         ArrayList<Entry> entries = new ArrayList<Entry>();
 
         entries.add(new Entry(twyoBelowRatio, 0));
@@ -87,7 +104,7 @@ public class Main2Activity extends Activity {
 
     }
 
-    private void makingRatio() {
+   /* private void makingRatio() {
         totalAge = targetRatio.twyoBelow + targetRatio.twnt_thrts + targetRatio.frts_ffts + targetRatio.sxts_above;
         totalGender = targetRatio.female + targetRatio.male;
 
@@ -99,16 +116,15 @@ public class Main2Activity extends Activity {
         maleRatio = (int) ((float) (targetRatio.male * 100) / totalGender);
         femaleRatio = 100 - maleRatio;
 
-        mantv.setText("" + maleRatio + "%");
-        womantv.setText("" + femaleRatio + "%");
+        man_tv.setText("" + maleRatio + "%");
+        woman_tv.setText("" + femaleRatio + "%");
     }
-
+*/
     private String getKeys() {
         Intent pastIntent = getIntent();      // 호출한 인텐트를 받아와서
         Bundle bundle = pastIntent.getExtras();      // 번들형태로 Extras뽑아내기 그럼 예를들어 first={ v1,v2,...,vn}이렇게 나오는데 우리는 저 first를 뽑아낼 것
         Set<String> tmp = bundle.keySet();        // Set형태의 리스트에 키값 저장
         Iterator<String> bb = tmp.iterator();
-
 
         return bb.next();
     }

@@ -46,13 +46,14 @@ public class Seller_TabSec_Store extends Fragment {
         }
         TextView favor = (TextView) view.findViewById(R.id.seller_store_favorites);
         TextView score = (TextView) view.findViewById(R.id.seller_store_score);
-        helper = new DBSQLiteOpenHelper(getActivity(), GlobalApplication.dbName, null, 1);
+        helper = new DBSQLiteOpenHelper(getActivity(), GlobalApplication.dbName, null, 2);
         db = helper.getWritableDatabase();
         Cursor c = db.rawQuery("select score,favorites from foodtruck where truck_id=102;", null);
         while (c.moveToNext()) {
             favor.setText(c.getInt(1) + " ");
             score.setText(c.getDouble(0) + " ");
         }
+        c.close();
 
         TextView btnMenuMng = (TextView) view.findViewById(R.id.seller_tab2_menumanagement);
         btnMenuMng.setOnClickListener(new View.OnClickListener() {

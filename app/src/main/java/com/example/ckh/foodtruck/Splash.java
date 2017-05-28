@@ -16,6 +16,9 @@ import android.widget.Toast;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
 import com.example.ckh.foodtruck.seller.MakingAbove5;
 import com.example.ckh.foodtruck.seller.MovingPeople;
+import com.example.ckh.restdataform.ServerVersion;
+import com.example.ckh.restdataform.SpotInform;
+
 import com.google.gson.annotations.SerializedName;
 import kr.hyosang.coordinate.CoordPoint;
 import kr.hyosang.coordinate.TransCoord;
@@ -52,7 +55,7 @@ import java.util.List;
 
 public class Splash extends Activity {
     DBSQLiteOpenHelper helper;
-    SharedPreferences appVersion,pref;
+    SharedPreferences pref;
     SharedPreferences.Editor edit;
     private SQLiteDatabase db;
     String tag = "SQLite";
@@ -94,7 +97,7 @@ public class Splash extends Activity {
     HSSFRow row;
     MakingAbove5 m = new MakingAbove5();
 
-    private void File() {
+    /*private void File() {
         try {
             InputStream in = getResources().getAssets().open("movingPeople.xls");
             POIFSFileSystem fileSystem = new POIFSFileSystem(in);
@@ -133,7 +136,7 @@ public class Splash extends Activity {
                         Double.parseDouble(row.getCell(j + 9).toString()),
                         row.getCell(10).toString(),
                         row.getCell(j + 11).toString());
-                //TODO : 좌표변환, pin
+
                 CoordPoint pt = new CoordPoint(temp1.Xcode, temp1.Ycode);
                 CoordPoint ktmPt = TransCoord.getTransCoord(pt, TransCoord.COORD_TYPE_WTM, TransCoord.COORD_TYPE_WGS84);
                 Double TransXCode = ktmPt.x;
@@ -282,17 +285,15 @@ public class Splash extends Activity {
 
         } catch (IOException e) {
         }
-    }
+    }*/
 
-    private void Gusort() {
-
-
+    /*private void Gusort() {
         for (int i = 0; i < allofseoul.size(); i++) {
             m.quickSort(allofseoul.get(i), 0, allofseoul.get(i).size() - 1);
             Collections.reverse(allofseoul.get(i));
         }
 
-    }
+    }*/
 
     @Override
     public void onCreate(Bundle b) {
@@ -305,7 +306,6 @@ public class Splash extends Activity {
         MyAsyncTask tast = new MyAsyncTask(Splash.this);
         tast.execute(0);
 
-        /* SPLASH_DISPLAY_LENGTH 뒤에 메뉴 액티비티를 실행시키고 종료한다.*/
 
     }
 
@@ -323,11 +323,54 @@ public class Splash extends Activity {
         }
 
     }
+
+    public void DBInsert(List<SpotInform> data){
+        helper = new DBSQLiteOpenHelper(
+                Splash.this,GlobalApplication.dbName,
+                null,
+                pref.getInt("appVersion",1)
+        );
+
+        db=helper.getWritableDatabase();
+        // 데이터를 직접 sql 문에 포함 시키지 않고 '?'를 일단 입력하고, execute시에 객체를 넘겨주어 삽입 가능
+        String sql ="insert into SPOT_INFO ( "+
+                "SPOT_ID, MALE, FEMALE, TWYO_BELOW, TWNT_THRTS, FRTS_FFTS, SXTS_ABOVE, SPOT_NAME, "+
+                "X_POS, Y_POS, GU_ID, GU_NAME ) "+
+                "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        for(int i=0;i<data.size();i++){
+            //좌표 변환
+            CoordPoint pt = new CoordPoint(data.get(i).getX_POS(), data.get(i).getY_POS());
+            CoordPoint ktmPt = TransCoord.getTransCoord(pt, TransCoord.COORD_TYPE_WTM, TransCoord.COORD_TYPE_WGS84);
+            Double TransXCode = ktmPt.x;
+            Double TransYCode = ktmPt.y;
+
+            TransXCode = Math.round(TransXCode * 10000) / 10000.0;
+            TransYCode = Math.round(TransYCode * 10000) / 10000.0;
+
+            //sql execute
+            db.execSQL(sql,
+                    new Object[]{
+                            data.get(i).getSPOT_ID(),
+                            data.get(i).getMALE(),
+                            data.get(i).getFEMALE(),
+                            data.get(i).getTWYO_BELOW(),
+                            data.get(i).getTWNT_THRTS(),
+                            data.get(i).getFRTS_FFTS(),
+                            data.get(i).getSXTS_ABOVE(),
+                            data.get(i).getSPOT_NAME(),
+                            TransXCode,
+                            TransYCode,
+                            data.get(i).getGU_ID(),
+                            data.get(i).getGU_NAME()
+                    });
+
+        }
+    }
+
     /*AsyncTask*/
-    //execute() 메서드를 호출 함으로써 AsyncTask를 실행합니다.
+    //UI스레드와 백그라운드/네트워크 작업을 분리하기 위함
     class MyAsyncTask extends AsyncTask<Integer, String, Integer>{
         private ProgressDialog mDlg;
-
         private Context mContext;
         public MyAsyncTask(Context context){
             mContext=context;
@@ -343,6 +386,8 @@ public class Splash extends Activity {
             mDlg.setMessage("작업 시작");
             mDlg.show();
             */
+            pref = getSharedPreferences("Version", Activity.MODE_PRIVATE);
+            Log.d("작업 이전",Integer.toString(pref.getInt("appVersion",1)));
             super.onPreExecute();
         }
         //실제로 백그라운드 작업을 수행하는 메서드
@@ -353,63 +398,55 @@ public class Splash extends Activity {
         protected Integer doInBackground(Integer... params) {
             publishProgress("max", Integer.toString(100));
             /** REFACTORING*/
-            //module
+            //서버에 GET 요청하여 app의 DB 버전과 서버의 DB 버전차이를 확인 하고 업데이트 내역을 가져오는 부분
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://52.78.234.100:3040/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
-            DBCheckService service = retrofit.create(DBCheckService.class);
-            Call<List<ServerVersion>> call = service.checkVersion();
-            List<ServerVersion> result=null;
+            DBCheckService service_dbCheck = retrofit.create(DBCheckService.class);
+            Call<List<ServerVersion>> call_version = service_dbCheck.checkVersion();
+            List<ServerVersion> result_version=null;
             try {
-                result = call.execute().body();
-                Log.e("Http",Integer.toString(result.get(0).version));
+                result_version = call_version.execute().body();
+                Log.e("Http",Integer.toString(result_version.get(0).getVersion()));
             }catch (IOException e){
                 Log.e("Httperrckh","err");
                 e.printStackTrace();
             }
-            appVersion = getSharedPreferences("appVersion", Activity.MODE_PRIVATE);
-            if(result!=null && result.get(0).version>appVersion.getInt("appVersion",1)){
+            if(result_version!=null && result_version.get(0).getVersion() > pref.getInt("appVersion",1)){
                 //데이터 input
-
-                //좌표 변환
-                //CoordPoint pt = new CoordPoint(temp1.Xcode, temp1.Ycode);
-                //CoordPoint ktmPt = TransCoord.getTransCoord(pt, TransCoord.COORD_TYPE_WTM, TransCoord.COORD_TYPE_WGS84);
-                //Double TransXCode = ktmPt.x;
-                //Double TransYCode = ktmPt.y;
-
-                //TransXCode = Math.round(TransXCode * 10000) / 10000.0;
-                //TransYCode = Math.round(TransYCode * 10000) / 10000.0;
-
-                helper = new DBSQLiteOpenHelper(Splash.this,GlobalApplication.dbName,null,appVersion.getInt("appVersion",1));
-                //TODO : DB Helper 초기화 하면서 테이블 정의하고 데이터 삽입하는 부분 모듈화 하여 따로 처리한다.
-                db=helper.getWritableDatabase();
-                String sql ="insert into SPOT_INFO values("+
-                            ""
-
-                        ;
-                //db.execSQL();
-                //TODO : http 요청 모듈 필요
-                edit = appVersion.edit();
-                edit.putInt("appVersion",result.get(0).version);
+                GetDB service_getDB = retrofit.create(GetDB.class);
+                Call<List<SpotInform>> call_data=service_getDB.getDBData();
+                try{
+                    //서버로부터 새로운 업데이트 내역 요청
+                    List<SpotInform> result_SpotDB = call_data.execute().body();
+                    //가져온 데이터 내부 DB에 저장
+                    DBInsert(result_SpotDB);
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+                edit = pref.edit();
+                //SharedPreference에 업데이트 버전 저장
+                edit.putInt("appVersion",result_version.get(0).getVersion());
                 db.close();
+                edit.apply();
                 edit.commit();
             }
+            Log.d("작업 이후",Integer.toString(pref.getInt("appVersion",1)));
             publishProgress("progress", Integer.toString(10),
                     "poidata init");
-            //FIXME : DB처리하는 부분이 해결 되면 삭제 해도 되는 부분
-            File();
-            Gusort();
+            //TODO : 서버 응답 에러 처리 후 테스트여러번 테스트 후에
+            //File();
+            //Gusort();
             publishProgress("progress", Integer.toString(30),
                     "poidata init");
-
-            pref = getSharedPreferences("appVersion", Activity.MODE_PRIVATE);
-            if (!pref.getBoolean("isFirst", false)) {
+            //FIXME : 이미지 파일을 디바이스 내장 스토리지에 저장하는 부분이기 때문에 굉장히 시간 소모가 크다.
+            //FIXME : 이미지 서버에 post 요청하는 부분까지는 불가능 할듯, 기본 트럭,메뉴 이미지 불러오는것만 서버에서 처리
+            /*if (!pref.getBoolean("isFirst", false)) {
                 edit = pref.edit();
                 edit.putBoolean("isFirst", true);
                 edit.commit();
-                //FIXME : 이미지 파일을 디바이스 내장 스토리지에 저장하는 부분이기 때문에 굉장히 시간 소모가 크다.
-                //FIXME : 이미지 서버에 post 요청하는 부분까지는 불가능 할듯, 기본 트럭,메뉴 이미지 불러오는것만 서버에서 처리
+
                 saveFiletoInternalStorage(R.drawable.img_chungnyun_m01, "img_chungnyun_m01.png");
                 saveFiletoInternalStorage(R.drawable.img_chungnyun_m02, "img_chungnyun_m02.png");
                 saveFiletoInternalStorage(R.drawable.img_chungnyun_main, "img_chungnyun_main.png");
@@ -421,7 +458,7 @@ public class Splash extends Activity {
                 saveFiletoInternalStorage(R.drawable.img_steakout_main, "img_steakout_main.png");
                 publishProgress("progress", Integer.toString(70),
                         "img data in");
-            }
+            }*/
             publishProgress("progress", Integer.toString(80),
                     "hash data");
             GlobalApplication.truckintro = new HashMap<String, String>();
@@ -439,6 +476,7 @@ public class Splash extends Activity {
 
             return 100;
         }
+        //백그라운드 작업 도중에 UI작업을 할 수 있는 스레드
         @Override
         protected void onProgressUpdate(String... params) {
             /*if (params[0].equals("progress")) {
@@ -455,31 +493,20 @@ public class Splash extends Activity {
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
             //mDlg.dismiss();
-
             Intent mainIntent = new Intent(Splash.this, MainActivity.class);
             Splash.this.startActivity(mainIntent);
             Splash.this.finish();
             Log.d("Result", "result : " + result);
         }
     }
-    public class ServerVersion{
-        @SerializedName("version")
-        int version;
-    }
-    /*public class SpotInform{
-        @SerializedName("SPOT_ID")
-        String SPOT_ID;
-        String MALE;
-        String FEMALE;
 
-    }*/
     public interface DBCheckService{
         @GET("newdata/checkversion")
         Call<List<ServerVersion>> checkVersion();
     }
-    /*public interface getDB{
+    public interface GetDB{
         @GET("newdata")
-        Call<List<>>
-    }*/
+        Call<List<SpotInform>> getDBData();
+    }
 
 }
