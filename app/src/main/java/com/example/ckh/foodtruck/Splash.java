@@ -14,33 +14,24 @@ import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
-import com.example.ckh.foodtruck.seller.MakingAbove5;
+import com.example.ckh.foodtruck.seller.MakingAbove;
 import com.example.ckh.foodtruck.seller.MovingPeople;
 import com.example.ckh.restdataform.ServerVersion;
 import com.example.ckh.restdataform.SpotInform;
 
-import com.google.gson.annotations.SerializedName;
 import kr.hyosang.coordinate.CoordPoint;
 import kr.hyosang.coordinate.TransCoord;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+
 import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -95,7 +86,7 @@ public class Splash extends Activity {
     public static ArrayList<ArrayList<MovingPeople>> allofseoul = new ArrayList<>();
 
     HSSFRow row;
-    MakingAbove5 m = new MakingAbove5();
+    MakingAbove m = new MakingAbove();
 
     /*private void File() {
         try {
