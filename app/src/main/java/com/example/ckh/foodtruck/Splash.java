@@ -13,11 +13,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
+
+import com.example.ckh.foodtruck.externLibrary.GlobalApplication;
+import com.example.ckh.restdataform.DBSQLiteOpenHelper;
 import com.example.ckh.foodtruck.seller.MakingAbove;
-import com.example.ckh.viewDTO.MovingPeopleDTO;
+import com.example.ckh.ViewDTO.MovingPeopleDTO;
 import com.example.ckh.restdataform.ServerVersion;
-import com.example.ckh.restdataform.SpotInformDTO;
+import com.example.ckh.ViewDTO.SpotInformDTO;
 
 import kr.hyosang.coordinate.CoordPoint;
 import kr.hyosang.coordinate.TransCoord;
@@ -317,7 +319,7 @@ public class Splash extends Activity {
 
     public void DBInsert(List<SpotInformDTO> data){
         helper = new DBSQLiteOpenHelper(
-                Splash.this,GlobalApplication.dbName,
+                Splash.this, GlobalApplication.dbName,
                 null,
                 pref.getInt("appVersion",1)
         );

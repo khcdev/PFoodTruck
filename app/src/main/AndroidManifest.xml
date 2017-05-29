@@ -15,7 +15,7 @@
             android:label="@string/app_name"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
-            android:name=".GlobalApplication">
+            android:name=".externLibrary.GlobalApplication">
 
         <activity android:name=".Splash">
             <intent-filter>
@@ -29,7 +29,7 @@
         <activity android:name=".user.User_Login">
 
         </activity>
-        <activity android:name=".seller.Seller_Login">
+        <activity android:name=".seller.SellerLogin">
 
         </activity>
         <activity android:name=".seller.ReviewMore">
@@ -41,10 +41,10 @@
                           "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
                   android:label="@string/app_name" />
 
-        <activity android:name=".SampleSignupActivity">
+        <activity android:name=".externLibrary.SampleSignupActivity">
 
         </activity>
-        <activity android:name=".seller.Seller_TabFragment">
+        <activity android:name=".seller.SellerTabFragment">
 
         </activity>
         <activity android:name=".user.User_TabFragment">
@@ -53,13 +53,13 @@
         <activity android:name=".seller.MenuManagement">
 
         </activity>
-        <activity android:name=".seller.Seller_MenuAdd">
+        <activity android:name=".seller.SellerMenuAdd">
 
         </activity>
         <activity android:name=".seller.StoreManagement">
 
         </activity>
-        <activity android:name=".SpotDetail">
+        <activity android:name=".externLibrary.SpotDetail">
 
         </activity>
         <activity android:name=".user.User_TruckInfo">

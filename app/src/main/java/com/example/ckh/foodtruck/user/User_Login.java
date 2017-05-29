@@ -7,8 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-import com.example.ckh.foodtruck.*;
+
 import com.example.ckh.foodtruck.R;
+import com.example.ckh.foodtruck.externLibrary.GlobalApplication;
+import com.example.ckh.foodtruck.externLibrary.SampleSignupActivity;
 import com.facebook.*;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
