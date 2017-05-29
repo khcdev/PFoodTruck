@@ -2,11 +2,9 @@ package com.example.ckh.foodtruck;
 
 import android.app.Activity;
 import android.app.Application;
-import com.example.ckh.cstview.TruckItem;
-import com.example.ckh.cstview.favorTruck;
+import com.example.ckh.viewDTO.TruckItemDTO;
+import com.example.ckh.viewDTO.FavorTruckDTO;
 import com.kakao.auth.KakaoSDK;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,8 +33,8 @@ public class GlobalApplication extends Application {
     public static boolean kkouser=false;
     public static boolean fbuser=false;
     public static boolean seller=false;
-    public static ArrayList<TruckItem> dataList = new ArrayList<>();
-    public static ArrayList<favorTruck> favortruckList= new ArrayList<>();
+    public static ArrayList<TruckItemDTO> dataList = new ArrayList<>();
+    public static ArrayList<FavorTruckDTO> favortruckList= new ArrayList<>();
 
 
 

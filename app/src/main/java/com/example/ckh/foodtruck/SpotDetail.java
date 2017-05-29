@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.ckh.restdataform.SpotInform;
+import com.example.ckh.restdataform.SpotInformDTO;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
@@ -19,7 +19,7 @@ import java.util.Set;
 
 public class SpotDetail extends Activity {
 
-    //private MovingPeople targetRatio;
+    //private MovingPeopleDTO targetRatio;
     /*private int totalAge;
     private int maleRatio;
     private int femaleRatio;
@@ -44,7 +44,7 @@ public class SpotDetail extends Activity {
         Intent intent = getIntent();
         boolean check = intent.getBooleanExtra("check",false);
         //TODO : 객체 checking 후에 띄우기
-        SpotInform spotInform = (SpotInform)intent.getSerializableExtra("SpotInfoObj");
+        SpotInformDTO spotInformDTO = (SpotInformDTO)intent.getSerializableExtra("SpotInfoObj");
 
         TextView man_tv = (TextView) findViewById(R.id.mantv);
         TextView woman_tv = (TextView) findViewById(R.id.womantv);
@@ -52,7 +52,7 @@ public class SpotDetail extends Activity {
 
         PieChart pieChart = (PieChart) findViewById(R.id.Piechart);
 
-        // targetRatio = (MovingPeople) getIntent().getSerializableExtra(getKeys());     // 직렬화 된 객체를 받아옴 어떤 객체인지 표시해주기 위해 구분되는 것은 key값이므로, 이를 받는 메서드도 사용
+        // targetRatio = (MovingPeopleDTO) getIntent().getSerializableExtra(getKeys());     // 직렬화 된 객체를 받아옴 어떤 객체인지 표시해주기 위해 구분되는 것은 key값이므로, 이를 받는 메서드도 사용
 /*
         for (int i = 0; i < Splash.allSeoul.size(); i++) {
             if (Splash.allSeoul.get(i).examin_spot_name.equals(title)) {
@@ -61,18 +61,18 @@ public class SpotDetail extends Activity {
             }
         }*/
 
-        gu_tv.setText(spotInform.getGU_NAME()+ " " + spotInform.getSPOT_NAME() + "의 유동인구 분석입니다.");
+        gu_tv.setText(spotInformDTO.getGU_NAME()+ " " + spotInformDTO.getSPOT_NAME() + "의 유동인구 분석입니다.");
 
         //makingRatio();      // 비율을 만들어 줌
-        totalAge = spotInform.getTWYO_BELOW() + spotInform.getTWNT_THRTS() + spotInform.getFRTS_FFTS() + spotInform.getSXTS_ABOVE();
-        totalGender = spotInform.getFEMALE() + spotInform.getMALE();
+        totalAge = spotInformDTO.getTWYO_BELOW() + spotInformDTO.getTWNT_THRTS() + spotInformDTO.getFRTS_FFTS() + spotInformDTO.getSXTS_ABOVE();
+        totalGender = spotInformDTO.getFEMALE() + spotInformDTO.getMALE();
 
-        twyoBelowRatio = (float) (spotInform.getTWYO_BELOW() * 100) / totalAge;
-        twnt_thrtsRatio = (float) (spotInform.getTWNT_THRTS() * 100) / totalAge;
-        frts_fftsRatio = (float) (spotInform.getFRTS_FFTS() * 100) / totalAge;
-        sxts_aboveRatio = (float) (spotInform.getSXTS_ABOVE() * 100) / totalAge;
+        twyoBelowRatio = (float) (spotInformDTO.getTWYO_BELOW() * 100) / totalAge;
+        twnt_thrtsRatio = (float) (spotInformDTO.getTWNT_THRTS() * 100) / totalAge;
+        frts_fftsRatio = (float) (spotInformDTO.getFRTS_FFTS() * 100) / totalAge;
+        sxts_aboveRatio = (float) (spotInformDTO.getSXTS_ABOVE() * 100) / totalAge;
 
-        maleRatio = (int) ((float) (spotInform.getFEMALE() * 100) / totalGender);
+        maleRatio = (int) ((float) (spotInformDTO.getFEMALE() * 100) / totalGender);
         femaleRatio = 100 - maleRatio;
 
         man_tv.setText("" + maleRatio + "%");

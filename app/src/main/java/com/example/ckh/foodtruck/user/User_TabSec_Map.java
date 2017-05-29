@@ -9,7 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.example.ckh.cstview.TruckItem;
+
+import com.example.ckh.viewDTO.TruckItemDTO;
 import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.google.android.gms.maps.*;
@@ -58,19 +59,19 @@ public class User_TabSec_Map extends Fragment implements OnMapReadyCallback {
         gmap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                String trname=marker.getTitle();
-                Log.i("ckhtag",trname);
-                for(int i=0;i < GlobalApplication.dataList.size(); i++) {
-                    TruckItem a;
-                    a=GlobalApplication.dataList.get(i);
-                    if (a.truckname.equals(trname)){
-                        Intent intent = new Intent(getActivity(),User_TruckInfo.class);
-                        intent.putExtra("truckname",a.truckname);
-                        intent.putExtra("truckid",a.truck_id);
-                        intent.putExtra("truckfavor",a.truckfavor);
-                        intent.putExtra("truckscore",a.truckscore);
-                        intent.putExtra("trucknoti",a.truck_noti);
-                        intent.putExtra("imgcode",a.imgcode);
+                String trname = marker.getTitle();
+                Log.i("ckhtag", trname);
+                for (int i = 0; i < GlobalApplication.dataList.size(); i++) {
+                    TruckItemDTO a;
+                    a = GlobalApplication.dataList.get(i);
+                    if (a.getTruckname().equals(trname)) {
+                        Intent intent = new Intent(getActivity(), User_TruckInfo.class);
+                        intent.putExtra("truckname", a.getTruckname());
+                        intent.putExtra("truckid", a.getTruck_id());
+                        intent.putExtra("truckfavor", a.getTruckfavor());
+                        intent.putExtra("truckscore", a.getTruckscore());
+                        intent.putExtra("trucknoti", a.getTruck_noti());
+                        intent.putExtra("imgcode", a.getImgcode());
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mContext.startActivity(intent);
                     }

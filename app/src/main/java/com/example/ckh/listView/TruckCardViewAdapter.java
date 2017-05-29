@@ -1,4 +1,4 @@
-package com.example.ckh.cstview;
+package com.example.ckh.listView;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -13,58 +13,62 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.user.User_TruckInfo;
+import com.example.ckh.viewDTO.TruckItemDTO;
 
 import java.util.ArrayList;
+
 /**
  * Created by Ckh on 2016-10-28.
  */
 
 public class TruckCardViewAdapter extends RecyclerView.Adapter<TruckCardViewAdapter.ViewHolder> {
     Context mContext;
-    ArrayList<TruckItem> truckdata;
+    ArrayList<TruckItemDTO> truckdata;
 
-    public TruckCardViewAdapter(Context context, ArrayList<TruckItem> List){
-        this.mContext=context;
+    public TruckCardViewAdapter(Context context, ArrayList<TruckItemDTO> List) {
+        this.mContext = context;
         this.truckdata = List;
     }
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_truck_item,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_truck_item, null);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        final TruckItem Data = truckdata.get(position);
+        final TruckItemDTO Data = truckdata.get(position);
         final int pos = position;
-        String titledata = Data.truckname;
-        String notistrdata =Data.truck_noti;
-        if(titledata.length()>18) {
+        String titledata = Data.getTruckname();
+        String notistrdata = Data.getTruck_noti();
+        if (titledata.length() > 18) {
             titledata = titledata.substring(0, 18) + "...";
         }
         holder.truck_title.setText(titledata);
-        if(notistrdata.length()>50){
-            notistrdata = notistrdata.substring(0,50)+"...";
+        if (notistrdata.length() > 50) {
+            notistrdata = notistrdata.substring(0, 50) + "...";
         }
         holder.truck_notiuser.setText(notistrdata);
-        holder.truck_favornum.setText(Integer.toString(Data.truckfavor));
-        holder.truck_image.setBackground(new BitmapDrawable(Data.truckimg));
+        holder.truck_favornum.setText(Integer.toString(Data.getTruckfavor()));
+        holder.truck_image.setBackground(new BitmapDrawable(Data.getTruckimg()));
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 클릭 이벤트
-                Intent intent = new Intent(mContext,User_TruckInfo.class);
-                intent.putExtra("truckname",Data.truckname);
-                intent.putExtra("truckid",Data.truck_id);
-                intent.putExtra("truckfavor",Data.truckfavor);
-                intent.putExtra("truckscore",Data.truckscore);
-                intent.putExtra("trucknoti",Data.truck_noti);
-                intent.putExtra("imgcode",Data.imgcode);
-                Log.i("ckh/intent",Data.truckname+" "+Data.truck_noti+" "+Data.truck_noti);
+                Intent intent = new Intent(mContext, User_TruckInfo.class);
+                intent.putExtra("truckname", Data.getTruckname());
+                intent.putExtra("truckid", Data.getTruck_id());
+                intent.putExtra("truckfavor", Data.getTruckfavor());
+                intent.putExtra("truckscore", Data.getTruckscore());
+                intent.putExtra("trucknoti", Data.getTruck_noti());
+                intent.putExtra("imgcode", Data.getImgcode());
+                Log.i("ckh/intent", Data.getTruckname() + " " + Data.getTruck_noti() + " " + Data.getTruck_noti());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
                 mContext.startActivity(intent);
             }

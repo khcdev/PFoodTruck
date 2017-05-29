@@ -15,8 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ckh.cstview.TruckCardViewAdapter;
-import com.example.ckh.cstview.TruckItem;
+import com.example.ckh.listView.TruckCardViewAdapter;
+import com.example.ckh.viewDTO.TruckItemDTO;
 import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Ckh on 2016-10-08.
-*/
+ */
 @SuppressLint("ValidFragment")
 public class User_TabFirst_List extends Fragment {
     SQLiteDatabase db;
@@ -52,31 +52,31 @@ public class User_TabFirst_List extends Fragment {
         trucklistView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         trucklistView.setLayoutManager(mLayoutManager);
-        if(GlobalApplication.dataList.size()!=0){
+        if (GlobalApplication.dataList.size() != 0) {
             GlobalApplication.dataList = new ArrayList<>();
         }
-            helper = new DBSQLiteOpenHelper(getActivity(), GlobalApplication.dbName, null, 2);
-            db = helper.getReadableDatabase();
-            Cursor c = db.rawQuery("select truck_name,score,favorites,imgcode,truck_id from foodtruck", null);
-            while (c.moveToNext()) {
-                Bitmap bm = null;
-                TruckItem data = new TruckItem();
-                data.truck_id = c.getInt(4);
-                data.truckname = c.getString(0);
-                data.truckfavor = c.getInt(2);
-                data.truckscore = c.getDouble(1);
-                data.imgcode = c.getString(3) + ".png";
-                data.truck_noti = GlobalApplication.trucknoti.get(Integer.toString(data.truck_id));
-                try {
-                    bm = BitmapFactory.decodeFile(imgpath + data.imgcode);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e("fileloadfailed", "비트맵 이미지 불러오기 실패");
-                }
-                data.truckimg = bm;
-                GlobalApplication.dataList.add(data);
-
+        helper = new DBSQLiteOpenHelper(getActivity(), GlobalApplication.dbName, null, 2);
+        db = helper.getReadableDatabase();
+        Cursor c = db.rawQuery("select truck_name,score,favorites,imgcode,truck_id from foodtruck", null);
+        while (c.moveToNext()) {
+            Bitmap bm = null;
+            TruckItemDTO data = new TruckItemDTO();
+            data.setTruck_id(c.getInt(4));
+            data.setTruckname(c.getString(0));
+            data.setTruckfavor(c.getInt(2));
+            data.setTruckscore(c.getDouble(1));
+            data.setImgcode(c.getString(3) + ".png");
+            data.setTruck_noti(GlobalApplication.trucknoti.get(Integer.toString(data.getTruck_id())));
+            try {
+                bm = BitmapFactory.decodeFile(imgpath + data.getImgcode());
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("fileloadfailed", "비트맵 이미지 불러오기 실패");
             }
+            data.setTruckimg(bm);
+            GlobalApplication.dataList.add(data);
+
+        }
         db.close();
         c.close();
 

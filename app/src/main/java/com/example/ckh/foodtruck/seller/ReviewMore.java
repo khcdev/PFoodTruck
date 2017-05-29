@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.example.ckh.cstview.SellerReviewListviewAdapter;
+import com.example.ckh.listView.SellerReviewListviewAdapter;
 import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;

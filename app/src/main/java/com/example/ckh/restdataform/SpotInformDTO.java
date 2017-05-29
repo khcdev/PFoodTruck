@@ -7,31 +7,31 @@ import java.io.Serializable;
 /**
  * Created by ckj on 2017-05-27.
  */
-public class SpotInform implements Serializable{
+public class SpotInformDTO implements Serializable {
     @SerializedName("SPOT_ID")
-    int SPOT_ID;
+    private int SPOT_ID;
     @SerializedName("MALE")
-    int MALE;
+    private int MALE;
     @SerializedName("FEMALE")
-    int FEMALE;
+    private int FEMALE;
     @SerializedName("TWYO_BELOW")
-    int TWYO_BELOW;
+    private int TWYO_BELOW;
     @SerializedName("TWNT_THRTS")
-    int TWNT_THRTS;
+    private int TWNT_THRTS;
     @SerializedName("FRTS_FFTS")
-    int FRTS_FFTS;
+    private int FRTS_FFTS;
     @SerializedName("SXTS_ABOVE")
-    int SXTS_ABOVE;
+    private int SXTS_ABOVE;
     @SerializedName("SPOT_NAME")
-    String SPOT_NAME;
+    private String SPOT_NAME;
     @SerializedName("X_POS")
-    double X_POS;
+    private double X_POS;
     @SerializedName("Y_POS")
-    double Y_POS;
+    private double Y_POS;
     @SerializedName("GU_ID")
-    int GU_ID;
+    private int GU_ID;
     @SerializedName("GU_NAME")
-    String GU_NAME;
+    private String GU_NAME;
 
     public int getSPOT_ID() {
         return SPOT_ID;

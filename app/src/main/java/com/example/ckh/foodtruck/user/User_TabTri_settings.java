@@ -9,8 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.example.ckh.cstview.favorListViewAdapter;
-import com.example.ckh.cstview.favorTruck;
+
+import com.example.ckh.listView.FavorListViewAdapter;
+import com.example.ckh.viewDTO.FavorTruckDTO;
 import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 
@@ -23,11 +24,13 @@ public class User_TabTri_settings extends Fragment {
     View view;
     TextView tv1;
     ListView favorlist;
-    favorTruck item;
-    favorListViewAdapter adapter;
-    public User_TabTri_settings(Context context){
-        mContext =context;
+    FavorTruckDTO item;
+    FavorListViewAdapter adapter;
+
+    public User_TabTri_settings(Context context) {
+        mContext = context;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (view == null) {
@@ -36,30 +39,33 @@ public class User_TabTri_settings extends Fragment {
         tv1 = (TextView) view.findViewById(R.id.user_id);
         tv1.setText(GlobalApplication.User_info_name);
         favorlist = (ListView) view.findViewById(R.id.favorlist);
-        adapter = new favorListViewAdapter(getActivity());
+        adapter = new FavorListViewAdapter(getActivity());
         favorlist.setAdapter(adapter);
 
-        if(GlobalApplication.favor_101) {
-            boolean isin=false;
-            for(int i=0;i<GlobalApplication.favortruckList.size();i++) {
-                if (GlobalApplication.favortruckList.get(i).truck_id == 101) isin = true;
+        if (GlobalApplication.favor_101) {
+            boolean isin = false;
+            for (int i = 0; i < GlobalApplication.favortruckList.size(); i++) {
+                if (GlobalApplication.favortruckList.get(i).getTruck_id() == 101) isin = true;
             }
-            if(!isin) adapter.addItem(getResources().getDrawable(R.drawable.img_steakout_main), "SteakOut", 101);
+            if (!isin)
+                adapter.addItem(getResources().getDrawable(R.drawable.img_steakout_main), "SteakOut", 101);
 
         }
-        if (GlobalApplication.favor_102){
-            boolean isin=false;
-            for(int i=0;i<GlobalApplication.favortruckList.size();i++) {
-                if (GlobalApplication.favortruckList.get(i).truck_id == 102) isin = true;
-            }
-            if(!isin)adapter.addItem(getResources().getDrawable(R.drawable.img_gopizza_main),"GoPizza",102);
-        }
-        if(GlobalApplication.favor_103){
+        if (GlobalApplication.favor_102) {
             boolean isin = false;
-            for(int i=0;i<GlobalApplication.favortruckList.size();i++) {
-                if (GlobalApplication.favortruckList.get(i).truck_id == 103) isin = true;
+            for (int i = 0; i < GlobalApplication.favortruckList.size(); i++) {
+                if (GlobalApplication.favortruckList.get(i).getTruck_id() == 102) isin = true;
             }
-            if(!isin)adapter.addItem(getResources().getDrawable(R.drawable.img_chungnyun_main),"청년반점",103);
+            if (!isin)
+                adapter.addItem(getResources().getDrawable(R.drawable.img_gopizza_main), "GoPizza", 102);
+        }
+        if (GlobalApplication.favor_103) {
+            boolean isin = false;
+            for (int i = 0; i < GlobalApplication.favortruckList.size(); i++) {
+                if (GlobalApplication.favortruckList.get(i).getTruck_id() == 103) isin = true;
+            }
+            if (!isin)
+                adapter.addItem(getResources().getDrawable(R.drawable.img_chungnyun_main), "청년반점", 103);
         }
 
         return view;

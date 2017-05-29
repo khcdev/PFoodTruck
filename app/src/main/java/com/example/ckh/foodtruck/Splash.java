@@ -15,9 +15,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
 import com.example.ckh.foodtruck.seller.MakingAbove;
-import com.example.ckh.foodtruck.seller.MovingPeople;
+import com.example.ckh.viewDTO.MovingPeopleDTO;
 import com.example.ckh.restdataform.ServerVersion;
-import com.example.ckh.restdataform.SpotInform;
+import com.example.ckh.restdataform.SpotInformDTO;
 
 import kr.hyosang.coordinate.CoordPoint;
 import kr.hyosang.coordinate.TransCoord;
@@ -55,35 +55,35 @@ public class Splash extends Activity {
     //로딩 화면이 떠있는 시간(밀리초단위)
     private final int SPLASH_DISPLAY_LENGTH = 4500;
 
-    public static ArrayList<MovingPeople> dobong = new ArrayList<>();
-    public static ArrayList<MovingPeople> gangbuk = new ArrayList<>();
-    public static ArrayList<MovingPeople> nowon = new ArrayList<>();
-    public static ArrayList<MovingPeople> eunpyoung = new ArrayList<>();
-    public static ArrayList<MovingPeople> seoungbook = new ArrayList<>();
-    public static ArrayList<MovingPeople> jonglo = new ArrayList<>();
-    public static ArrayList<MovingPeople> dongdaemoon = new ArrayList<>();
-    public static ArrayList<MovingPeople> jungrang = new ArrayList<>();
-    public static ArrayList<MovingPeople> seodaemoon = new ArrayList<>();
-    public static ArrayList<MovingPeople> junggu = new ArrayList<>();
-    public static ArrayList<MovingPeople> sungdong = new ArrayList<>();
-    public static ArrayList<MovingPeople> gwangjin = new ArrayList<>();
-    public static ArrayList<MovingPeople> youngsan = new ArrayList<>();
-    public static ArrayList<MovingPeople> mapo = new ArrayList<>();
-    public static ArrayList<MovingPeople> gangseo = new ArrayList<>();
-    public static ArrayList<MovingPeople> yangcheon = new ArrayList<>();
-    public static ArrayList<MovingPeople> guro = new ArrayList<>();
-    public static ArrayList<MovingPeople> youngdengpo = new ArrayList<>();
-    public static ArrayList<MovingPeople> gumcheon = new ArrayList<>();
-    public static ArrayList<MovingPeople> gwhanak = new ArrayList<>();
-    public static ArrayList<MovingPeople> dongjak = new ArrayList<>();
-    public static ArrayList<MovingPeople> seocho = new ArrayList<>();
-    public static ArrayList<MovingPeople> gangdong = new ArrayList<>();
-    public static ArrayList<MovingPeople> gangnam = new ArrayList<>();
-    public static ArrayList<MovingPeople> songpa = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> dobong = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> gangbuk = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> nowon = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> eunpyoung = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> seoungbook = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> jonglo = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> dongdaemoon = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> jungrang = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> seodaemoon = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> junggu = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> sungdong = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> gwangjin = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> youngsan = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> mapo = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> gangseo = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> yangcheon = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> guro = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> youngdengpo = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> gumcheon = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> gwhanak = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> dongjak = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> seocho = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> gangdong = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> gangnam = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> songpa = new ArrayList<>();
 
-    public static ArrayList<MovingPeople> allSeoul = new ArrayList<>();
+    public static ArrayList<MovingPeopleDTO> allSeoul = new ArrayList<>();
 
-    public static ArrayList<ArrayList<MovingPeople>> allofseoul = new ArrayList<>();
+    public static ArrayList<ArrayList<MovingPeopleDTO>> allofseoul = new ArrayList<>();
 
     HSSFRow row;
     MakingAbove m = new MakingAbove();
@@ -100,7 +100,7 @@ public class Splash extends Activity {
 
                 row = sheet.getRow(i);    //i번째 행을 읽는다 첫행제외
 
-                MovingPeople temp1 = new MovingPeople(row.getCell(j).toString(),
+                MovingPeopleDTO temp1 = new MovingPeopleDTO(row.getCell(j).toString(),
                         (int) (Double.parseDouble(row.getCell(j + 1).toString())),
                         (int) (Double.parseDouble(row.getCell(j + 2).toString())),
                         (int) (Double.parseDouble(row.getCell(j + 3).toString())),
@@ -115,7 +115,7 @@ public class Splash extends Activity {
                 );
                 row = sheet.getRow(i + 1);        //두개를 합쳐야 하기 때문에 i+1행을 읽어온다.
 
-                MovingPeople temp2 = new MovingPeople(row.getCell(j).toString(),
+                MovingPeopleDTO temp2 = new MovingPeopleDTO(row.getCell(j).toString(),
                         (int) (Double.parseDouble(row.getCell(j + 1).toString())),
                         (int) (Double.parseDouble(row.getCell(j + 2).toString())),
                         (int) (Double.parseDouble(row.getCell(j + 3).toString())),
@@ -136,7 +136,7 @@ public class Splash extends Activity {
                 TransXCode = Math.round(TransXCode * 10000) / 10000.0;
                 TransYCode = Math.round(TransYCode * 10000) / 10000.0;
 
-                MovingPeople temp3 = new MovingPeople(temp1.examin_spot_cd, temp1.male + temp2.male,
+                MovingPeopleDTO temp3 = new MovingPeopleDTO(temp1.examin_spot_cd, temp1.male + temp2.male,
                         temp1.female + temp2.female, temp1.twyoBelow + temp2.twyoBelow,
                         temp1.twnt_thrts + temp2.twnt_thrts, temp1.frts_ffts + temp2.frts_ffts,
                         temp1.sxts_above + temp2.sxts_above, temp1.examin_spot_name, TransXCode, TransYCode,
@@ -315,7 +315,7 @@ public class Splash extends Activity {
 
     }
 
-    public void DBInsert(List<SpotInform> data){
+    public void DBInsert(List<SpotInformDTO> data){
         helper = new DBSQLiteOpenHelper(
                 Splash.this,GlobalApplication.dbName,
                 null,
@@ -407,10 +407,10 @@ public class Splash extends Activity {
             if(result_version!=null && result_version.get(0).getVersion() > pref.getInt("appVersion",1)){
                 //데이터 input
                 GetDB service_getDB = retrofit.create(GetDB.class);
-                Call<List<SpotInform>> call_data=service_getDB.getDBData();
+                Call<List<SpotInformDTO>> call_data=service_getDB.getDBData();
                 try{
                     //서버로부터 새로운 업데이트 내역 요청
-                    List<SpotInform> result_SpotDB = call_data.execute().body();
+                    List<SpotInformDTO> result_SpotDB = call_data.execute().body();
                     //가져온 데이터 내부 DB에 저장
                     DBInsert(result_SpotDB);
                 }catch(IOException e){
@@ -497,7 +497,7 @@ public class Splash extends Activity {
     }
     public interface GetDB{
         @GET("newdata")
-        Call<List<SpotInform>> getDBData();
+        Call<List<SpotInformDTO>> getDBData();
     }
 
 }

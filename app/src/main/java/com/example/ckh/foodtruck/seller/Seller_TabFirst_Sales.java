@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.ckh.foodtruck.SpotDetail;
 import com.example.ckh.foodtruck.R;
-import com.example.ckh.restdataform.SpotInform;
+import com.example.ckh.restdataform.SpotInformDTO;
 import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.*;
 
@@ -28,15 +28,15 @@ public class Seller_TabFirst_Sales extends Fragment implements OnMapReadyCallbac
     View view;
     GoogleMap gmap;
     UiSettings settings;
-    ArrayList<SpotInform> spotInformList;
+    ArrayList<SpotInformDTO> spotInformDTOList;
 
     public Seller_TabFirst_Sales(Context context) {
         mContext = context;
     }
 
-    public Seller_TabFirst_Sales(Context context, ArrayList<SpotInform> spotInformList){
+    public Seller_TabFirst_Sales(Context context, ArrayList<SpotInformDTO> spotInformDTOList){
         mContext = context;
-        this.spotInformList=spotInformList;
+        this.spotInformDTOList = spotInformDTOList;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,11 +83,11 @@ public class Seller_TabFirst_Sales extends Fragment implements OnMapReadyCallbac
         gmap = googleMap;
         settings = gmap.getUiSettings();
         settings.setMyLocationButtonEnabled(true);
-        Log.e("spotnumber",Integer.toString(spotInformList.size()));
-        for(int i=0;i<spotInformList.size();i++){
+        Log.e("spotnumber",Integer.toString(spotInformDTOList.size()));
+        for(int i = 0; i< spotInformDTOList.size(); i++){
             gmap.addMarker(new MarkerOptions()
-                    .title(spotInformList.get(i).getSPOT_NAME())
-                    .position(new LatLng(spotInformList.get(i).getY_POS(),spotInformList.get(i).getX_POS()))
+                    .title(spotInformDTOList.get(i).getSPOT_NAME())
+                    .position(new LatLng(spotInformDTOList.get(i).getY_POS(), spotInformDTOList.get(i).getX_POS()))
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.person))
             );
         }
@@ -110,10 +110,10 @@ public class Seller_TabFirst_Sales extends Fragment implements OnMapReadyCallbac
                 boolean check=false;
                 Intent intent = new Intent(getActivity(), SpotDetail.class);
 
-                for(int i=0;i<spotInformList.size();i++){
-                    if(marker.getTitle().equals(spotInformList.get(i).getSPOT_NAME())){
+                for(int i = 0; i< spotInformDTOList.size(); i++){
+                    if(marker.getTitle().equals(spotInformDTOList.get(i).getSPOT_NAME())){
                         check=true;
-                        intent.putExtra("SpotInfoObj",spotInformList.get(i));
+                        intent.putExtra("SpotInfoObj", spotInformDTOList.get(i));
                     }
                 }
                 intent.putExtra("check",check);

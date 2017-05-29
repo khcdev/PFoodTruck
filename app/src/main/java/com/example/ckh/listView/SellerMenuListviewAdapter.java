@@ -1,4 +1,4 @@
-package com.example.ckh.cstview;
+package com.example.ckh.listView;
 
 
 import android.content.Context;
@@ -13,9 +13,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.ckh.foodtruck.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
+import com.example.ckh.viewDTO.MenuViewHolderDTO;
+import com.example.ckh.viewDTO.Seller_MenuItemDTO;
 
 import java.util.ArrayList;
 
@@ -24,9 +27,9 @@ import java.util.ArrayList;
  */
 public class SellerMenuListviewAdapter extends BaseAdapter {
     private Context allMenuContext = null;
-    private ArrayList<Seller_MenuItem> allMenuListData = new ArrayList<Seller_MenuItem>();
+    private ArrayList<Seller_MenuItemDTO> allMenuListData = new ArrayList<Seller_MenuItemDTO>();
 
-    public SellerMenuListviewAdapter(Context allMenuContext){
+    public SellerMenuListviewAdapter(Context allMenuContext) {
         super();
         this.allMenuContext = allMenuContext;
     }
@@ -37,7 +40,7 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
     }
 
     @Override
-    public Seller_MenuItem getItem(int position) {
+    public Seller_MenuItemDTO getItem(int position) {
         return allMenuListData.get(position);
     }
 
@@ -46,19 +49,19 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
         return position;
     }
 
-    public void addItem(Bitmap foodImage, String foodName, String foodPrice, String foodOrigin, String foodInfo){
-        Seller_MenuItem addInfo = new Seller_MenuItem();
-        addInfo.MenuImage = foodImage;
-        addInfo.MenuTitle = foodName;
-        addInfo.Price = foodPrice;
-        addInfo.Origin = foodOrigin;
-        addInfo.Info = foodInfo;
+    public void addItem(Bitmap foodImage, String foodName, String foodPrice, String foodOrigin, String foodInfo) {
+        Seller_MenuItemDTO addInfo = new Seller_MenuItemDTO();
+        addInfo.setMenuImage(foodImage);
+        addInfo.setMenuTitle(foodName);
+        addInfo.setPrice(foodPrice);
+        addInfo.setOrigin(foodOrigin);
+        addInfo.setInfo(foodInfo);
 
         allMenuListData.add(addInfo);
 
     }
 
-    public void remove(int position){
+    public void remove(int position) {
         allMenuListData.remove(position);
     }
 
@@ -68,38 +71,37 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        ViewHolder allMenuHolder;
+        MenuViewHolderDTO MenuHolderDTO;
         final String menuName;
-        if(convertView == null){
-            allMenuHolder = new ViewHolder();
+        if (convertView == null) {
+            MenuHolderDTO = new MenuViewHolderDTO();
 
-            LayoutInflater inflater = (LayoutInflater)allMenuContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.seller_menu_added_layout,null);
+            LayoutInflater inflater = (LayoutInflater) allMenuContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.seller_menu_added_layout, null);
 
-            allMenuHolder.foodImage = (ImageView)convertView.findViewById(R.id.all_menu_image);
-            allMenuHolder.foodName = (TextView)convertView.findViewById(R.id.all_menu_foodname);
-            allMenuHolder.foodPrice = (TextView)convertView.findViewById(R.id.all_menu_price);
-            allMenuHolder.foodOrigin = (TextView)convertView.findViewById(R.id.all_menu_origin);
-            convertView.setTag(allMenuHolder);
-        }
-        else{
-            allMenuHolder = (ViewHolder)convertView.getTag();
-        }
-
-        Seller_MenuItem allMenuData = allMenuListData.get(position);
-        menuName = allMenuData.MenuTitle;
-        if(allMenuData.MenuImage != null){
-            allMenuHolder.foodImage.setVisibility(View.VISIBLE);
-            allMenuHolder.foodImage.setImageBitmap(allMenuData.MenuImage);
-        }
-        else{
-            allMenuHolder.foodImage.setVisibility(View.GONE);
+            MenuHolderDTO.setFoodImage((ImageView) convertView.findViewById(R.id.all_menu_image));
+            MenuHolderDTO.setFoodName((TextView) convertView.findViewById(R.id.all_menu_foodname));
+            MenuHolderDTO.setFoodPrice((TextView) convertView.findViewById(R.id.all_menu_price));
+            MenuHolderDTO.setFoodOrigin((TextView) convertView.findViewById(R.id.all_menu_origin));
+            convertView.setTag(MenuHolderDTO);
+        } else {
+            MenuHolderDTO = (MenuViewHolderDTO) convertView.getTag();
         }
 
-        allMenuHolder.foodName.setText(allMenuData.MenuTitle);
-        allMenuHolder.foodPrice.setText(allMenuData.Price+"원");
-        allMenuHolder.foodOrigin.setText(allMenuData.Origin);
-        if(GlobalApplication.seller) {
+        Seller_MenuItemDTO allMenuData = allMenuListData.get(position);
+        menuName = allMenuData.getMenuTitle();
+        if (allMenuData.getMenuImage() != null) {
+            MenuHolderDTO.getFoodImage().setVisibility(View.VISIBLE);
+            MenuHolderDTO.getFoodImage().setImageBitmap(allMenuData.getMenuImage());
+        } else {
+            MenuHolderDTO.getFoodImage().setVisibility(View.GONE);
+        }
+
+        MenuHolderDTO.getFoodName().setText(allMenuData.getMenuTitle());
+        MenuHolderDTO.getFoodPrice().setText(allMenuData.getPrice() + "원");
+        MenuHolderDTO.getFoodOrigin().setText(allMenuData.getOrigin());
+
+        if (GlobalApplication.seller) {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -131,10 +133,11 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
         }
         return convertView;
     }
-    private class ViewHolder{
-        public ImageView foodImage;
-        public TextView foodName;
-        public TextView foodPrice;
-        public TextView foodOrigin;
-    }
+//    MenuViewHolderDTO 로 대체
+//    private class ViewHolder {
+//        public ImageView foodImage;
+//        public TextView foodName;
+//        public TextView foodPrice;
+//        public TextView foodOrigin;
+//    }
 }

@@ -1,11 +1,11 @@
-package com.example.ckh.cstview;
+package com.example.ckh.viewDTO;
 
 import java.io.Serializable;
 
 /**
  * Created by HOME on 2016-10-24.
  */
-public class Seller_News_EventFull implements Serializable {
+public class Seller_News_EventFullDTO implements Serializable {
     private String title;
     private String startDate;
     private String endDate;
