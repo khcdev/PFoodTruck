@@ -14,11 +14,9 @@ import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
-import com.example.ckh.foodtruck.seller.MakingAbove;
 import com.example.ckh.viewDTO.MovingPeopleDTO;
 import com.example.ckh.restdataform.ServerVersion;
 import com.example.ckh.restdataform.SpotInformDTO;
-
 import kr.hyosang.coordinate.CoordPoint;
 import kr.hyosang.coordinate.TransCoord;
 
@@ -28,7 +26,6 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,19 +34,16 @@ import java.util.List;
 
 /**
  * Created by Ckh on 2016-09-10.
+ * Refactored by CKH on 2017-05-28.
  * 어플리케이션의 로딩 화면 Splash
- * <p>
- * 초기 데이터 세팅 진행
- * - db오픈 및 초기 데이터 세팅 값 저장
- * - drawable resource 앱 설치후 내부 저장소에 따로 저장
+ * 어플리케이션 실행에 필요한 기본 데이터들을 서버에서 가져와 저장한다.
  */
 
 public class Splash extends Activity {
-    DBSQLiteOpenHelper helper;
+    private DBSQLiteOpenHelper helper;
     SharedPreferences pref;
     SharedPreferences.Editor edit;
     private SQLiteDatabase db;
-    String tag = "SQLite";
     ProgressBar progressBar;
 
     //로딩 화면이 떠있는 시간(밀리초단위)
@@ -86,7 +80,7 @@ public class Splash extends Activity {
     public static ArrayList<ArrayList<MovingPeopleDTO>> allofseoul = new ArrayList<>();
 
     HSSFRow row;
-    MakingAbove m = new MakingAbove();
+    //MakingAbove m = new MakingAbove();
 
     /*private void File() {
         try {

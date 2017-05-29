@@ -16,11 +16,11 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        View.OnClickListener titlelayout_listener = new btnClickLister();
-        ImageView imgbtn_seller = (ImageView) findViewById(R.id.titlelayout_start_seller);
-        ImageView imgbtn_user = (ImageView)findViewById(R.id.titlelayout_start_user);
-        imgbtn_seller.setOnClickListener(titlelayout_listener);
-        imgbtn_user.setOnClickListener(titlelayout_listener);
+        View.OnClickListener titleLayoutListener = new btnClickLister();
+        ImageView imgBtn_seller = (ImageView) findViewById(R.id.titlelayout_start_seller);
+        ImageView imgBtn_user = (ImageView)findViewById(R.id.titlelayout_start_user);
+        imgBtn_seller.setOnClickListener(titleLayoutListener);
+        imgBtn_user.setOnClickListener(titleLayoutListener);
     }
 
     class btnClickLister implements View.OnClickListener{

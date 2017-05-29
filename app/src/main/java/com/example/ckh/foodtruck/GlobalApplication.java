@@ -25,6 +25,7 @@ public class GlobalApplication extends Application {
     public static String User_info_name=null;
     public static HashMap<String,String> truckintro=null;
     public static HashMap<String,String> trucknoti=null;
+    //TODO : 유저정보 리팩토링 필요함, 싱글턴 객체로 선언하여 사용할 예정
     public static boolean favor_101=false;
     public static boolean favor_102=false;
     public static boolean favor_103=false;
@@ -35,7 +36,6 @@ public class GlobalApplication extends Application {
     public static boolean seller=false;
     public static ArrayList<TruckItemDTO> dataList = new ArrayList<>();
     public static ArrayList<FavorTruckDTO> favortruckList= new ArrayList<>();
-
 
 
     public static Activity getCurrentActivity() {
