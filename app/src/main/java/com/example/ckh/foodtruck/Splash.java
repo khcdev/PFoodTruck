@@ -13,14 +13,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
-import com.example.ckh.viewDTO.MovingPeopleDTO;
+
 import com.example.ckh.restdataform.ServerVersion;
 import com.example.ckh.restdataform.SpotInformDTO;
+
+import com.example.ckh.foodtruck.utility.GlobalApplication;
+import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;
 import kr.hyosang.coordinate.CoordPoint;
 import kr.hyosang.coordinate.TransCoord;
-
-import org.apache.poi.hssf.usermodel.HSSFRow;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -46,240 +46,6 @@ public class Splash extends Activity {
     private SQLiteDatabase db;
     ProgressBar progressBar;
 
-    //로딩 화면이 떠있는 시간(밀리초단위)
-    private final int SPLASH_DISPLAY_LENGTH = 4500;
-
-    public static ArrayList<MovingPeopleDTO> dobong = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> gangbuk = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> nowon = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> eunpyoung = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> seoungbook = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> jonglo = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> dongdaemoon = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> jungrang = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> seodaemoon = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> junggu = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> sungdong = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> gwangjin = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> youngsan = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> mapo = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> gangseo = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> yangcheon = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> guro = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> youngdengpo = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> gumcheon = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> gwhanak = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> dongjak = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> seocho = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> gangdong = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> gangnam = new ArrayList<>();
-    public static ArrayList<MovingPeopleDTO> songpa = new ArrayList<>();
-
-    public static ArrayList<MovingPeopleDTO> allSeoul = new ArrayList<>();
-
-    public static ArrayList<ArrayList<MovingPeopleDTO>> allofseoul = new ArrayList<>();
-
-    HSSFRow row;
-    //MakingAbove m = new MakingAbove();
-
-    /*private void File() {
-        try {
-            InputStream in = getResources().getAssets().open("movingPeople.xls");
-            POIFSFileSystem fileSystem = new POIFSFileSystem(in);
-            HSSFWorkbook workbook = new HSSFWorkbook(fileSystem);
-            HSSFSheet sheet = workbook.getSheetAt(0);
-            int rows = sheet.getPhysicalNumberOfRows();
-
-            for (int i = 1, j = 0; i < rows; i = i + 2) {
-
-                row = sheet.getRow(i);    //i번째 행을 읽는다 첫행제외
-
-                MovingPeopleDTO temp1 = new MovingPeopleDTO(row.getCell(j).toString(),
-                        (int) (Double.parseDouble(row.getCell(j + 1).toString())),
-                        (int) (Double.parseDouble(row.getCell(j + 2).toString())),
-                        (int) (Double.parseDouble(row.getCell(j + 3).toString())),
-                        (int) (Double.parseDouble(row.getCell(j + 4).toString())),
-                        (int) (Double.parseDouble(row.getCell(j + 5).toString())),
-                        (int) (Double.parseDouble(row.getCell(j + 6).toString())),
-                        row.getCell(j + 7).toString(),
-                        Double.parseDouble(row.getCell(j + 8).toString()),
-                        Double.parseDouble(row.getCell(j + 9).toString()),
-                        row.getCell(j + 10).toString(),
-                        row.getCell(j + 11).toString()
-                );
-                row = sheet.getRow(i + 1);        //두개를 합쳐야 하기 때문에 i+1행을 읽어온다.
-
-                MovingPeopleDTO temp2 = new MovingPeopleDTO(row.getCell(j).toString(),
-                        (int) (Double.parseDouble(row.getCell(j + 1).toString())),
-                        (int) (Double.parseDouble(row.getCell(j + 2).toString())),
-                        (int) (Double.parseDouble(row.getCell(j + 3).toString())),
-                        (int) (Double.parseDouble(row.getCell(j + 4).toString())),
-                        (int) (Double.parseDouble(row.getCell(j + 5).toString())),
-                        (int) (Double.parseDouble(row.getCell(j + 6).toString())),
-                        row.getCell(j + 7).toString(),
-                        Double.parseDouble(row.getCell(j + 8).toString()),
-                        Double.parseDouble(row.getCell(j + 9).toString()),
-                        row.getCell(10).toString(),
-                        row.getCell(j + 11).toString());
-
-                CoordPoint pt = new CoordPoint(temp1.Xcode, temp1.Ycode);
-                CoordPoint ktmPt = TransCoord.getTransCoord(pt, TransCoord.COORD_TYPE_WTM, TransCoord.COORD_TYPE_WGS84);
-                Double TransXCode = ktmPt.x;
-                Double TransYCode = ktmPt.y;
-
-                TransXCode = Math.round(TransXCode * 10000) / 10000.0;
-                TransYCode = Math.round(TransYCode * 10000) / 10000.0;
-
-                MovingPeopleDTO temp3 = new MovingPeopleDTO(temp1.examin_spot_cd, temp1.male + temp2.male,
-                        temp1.female + temp2.female, temp1.twyoBelow + temp2.twyoBelow,
-                        temp1.twnt_thrts + temp2.twnt_thrts, temp1.frts_ffts + temp2.frts_ffts,
-                        temp1.sxts_above + temp2.sxts_above, temp1.examin_spot_name, TransXCode, TransYCode,
-                        temp1.guCode, temp1.guname);
-
-                allSeoul.add(temp3);
-                //guname별로 case문을 통해 데이터를 입력함
-                switch (temp3.guname) {
-                    case "종로구":
-                        jonglo.add(temp3);
-                        break;
-
-                    case "중구":
-                        junggu.add(temp3);
-                        break;
-
-                    case "용산구":
-                        youngsan.add(temp3);
-                        break;
-
-                    case "성동구":
-                        sungdong.add(temp3);
-                        break;
-
-                    case "광진구":
-                        gwangjin.add(temp3);
-                        break;
-
-                    case "동대문구":
-                        dongdaemoon.add(temp3);
-                        break;
-
-                    case "중랑구":
-                        jungrang.add(temp3);
-                        break;
-
-                    case "성북구":
-                        seoungbook.add(temp3);
-                        break;
-
-                    case "강북구":
-                        gangbuk.add(temp3);
-                        break;
-
-                    case "도봉구":
-                        dobong.add(temp3);
-                        break;
-
-                    case "노원구":
-                        nowon.add(temp3);
-                        break;
-
-                    case "은평구":
-                        eunpyoung.add(temp3);
-                        break;
-
-                    case "서대문구":
-                        seodaemoon.add(temp3);
-                        break;
-
-                    case "마포구":
-                        mapo.add(temp3);
-                        break;
-
-                    case "양천구":
-                        yangcheon.add(temp3);
-                        break;
-
-                    case "강서구":
-                        gangseo.add(temp3);
-                        break;
-
-                    case "구로구":
-                        guro.add(temp3);
-                        break;
-
-                    case "금천구":
-                        gumcheon.add(temp3);
-                        break;
-
-                    case "영등포구":
-                        youngdengpo.add(temp3);
-                        break;
-
-                    case "동작구":
-                        dongjak.add(temp3);
-                        break;
-
-                    case "관악구":
-                        gwhanak.add(temp3);
-                        break;
-
-                    case "서초구":
-                        seocho.add(temp3);
-                        break;
-
-                    case "강남구":
-                        gangnam.add(temp3);
-                        break;
-
-                    case "송파구":
-                        songpa.add(temp3);
-                        break;
-
-                    case "강동구":
-                        gangdong.add(temp3);
-                        break;
-                }
-
-
-            }
-            allofseoul.add(dobong);
-            allofseoul.add(seoungbook);
-            allofseoul.add(gangbuk);
-            allofseoul.add(nowon);
-            allofseoul.add(eunpyoung);
-            allofseoul.add(dongdaemoon);
-            allofseoul.add(jungrang);
-            allofseoul.add(seodaemoon);
-            allofseoul.add(junggu);
-            allofseoul.add(sungdong);
-            allofseoul.add(gwangjin);
-            allofseoul.add(youngsan);
-            allofseoul.add(mapo);
-            allofseoul.add(gangseo);
-            allofseoul.add(dobong);
-            allofseoul.add(yangcheon);
-            allofseoul.add(guro);
-            allofseoul.add(youngdengpo);
-            allofseoul.add(gumcheon);
-            allofseoul.add(gwhanak);
-            allofseoul.add(dongjak);
-            allofseoul.add(seocho);
-            allofseoul.add(gangnam);
-            allofseoul.add(songpa);
-            allofseoul.add(gangdong);
-
-        } catch (IOException e) {
-        }
-    }*/
-
-    /*private void Gusort() {
-        for (int i = 0; i < allofseoul.size(); i++) {
-            m.quickSort(allofseoul.get(i), 0, allofseoul.get(i).size() - 1);
-            Collections.reverse(allofseoul.get(i));
-        }
-
-    }*/
-
     @Override
     public void onCreate(Bundle b) {
 
@@ -288,8 +54,8 @@ public class Splash extends Activity {
         //progressBar = (ProgressBar) findViewById(R.id.pgbar);
 
         Toast.makeText(Splash.this, "데이터를 읽어오는 중입니다.", Toast.LENGTH_LONG).show();
-        MyAsyncTask tast = new MyAsyncTask(Splash.this);
-        tast.execute(0);
+        MyAsyncTask asyncTask = new MyAsyncTask(Splash.this);
+        asyncTask.execute(0);
 
 
     }
@@ -311,7 +77,7 @@ public class Splash extends Activity {
 
     public void DBInsert(List<SpotInformDTO> data){
         helper = new DBSQLiteOpenHelper(
-                Splash.this,GlobalApplication.dbName,
+                Splash.this, GlobalApplication.dbName,
                 null,
                 pref.getInt("appVersion",1)
         );
@@ -371,6 +137,7 @@ public class Splash extends Activity {
             mDlg.setMessage("작업 시작");
             mDlg.show();
             */
+
             pref = getSharedPreferences("Version", Activity.MODE_PRIVATE);
             Log.d("작업 이전",Integer.toString(pref.getInt("appVersion",1)));
             super.onPreExecute();

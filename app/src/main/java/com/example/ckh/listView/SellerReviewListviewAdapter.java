@@ -9,8 +9,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.ckh.foodtruck.R;
-import com.example.ckh.viewDTO.ItemViewHolderDTO;
-import com.example.ckh.viewDTO.ReviewItemDTO;
+import com.example.ckh.ViewDTO.ItemViewHolderDTO;
+import com.example.ckh.ViewDTO.ReviewItemDTO;
 
 import java.util.ArrayList;
 

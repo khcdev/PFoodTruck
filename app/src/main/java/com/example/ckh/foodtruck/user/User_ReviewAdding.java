@@ -9,9 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
-import com.example.ckh.foodtruck.GlobalApplication;
+import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
-import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
+import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

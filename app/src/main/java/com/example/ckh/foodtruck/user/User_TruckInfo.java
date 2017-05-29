@@ -15,10 +15,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ckh.viewDTO.TruckItemDTO;
-import com.example.ckh.foodtruck.GlobalApplication;
+import com.example.ckh.ViewDTO.TruckItemDTO;
+import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
-import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
+import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;
 import com.example.ckh.foodtruck.seller.MenuManagement;
 import com.example.ckh.foodtruck.seller.ReviewMore;
 import com.kakao.kakaolink.KakaoLink;

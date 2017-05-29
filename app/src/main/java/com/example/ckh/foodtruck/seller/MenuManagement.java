@@ -15,9 +15,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import com.example.ckh.listView.SellerMenuListviewAdapter;
-import com.example.ckh.foodtruck.GlobalApplication;
+import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
-import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
+import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;
 
 /**
  * Created by Ckh on 2016-10-02.
@@ -54,7 +54,7 @@ public class MenuManagement extends Activity {
             adddetail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MenuManagement.this, Seller_MenuAdd.class);
+                    Intent intent = new Intent(MenuManagement.this, SellerMenuAdd.class);
                     startActivityForResult(intent, 100);
                 }
             });

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.ckh.foodtruck.seller.Seller_Login;
+import com.example.ckh.foodtruck.seller.SellerLogin;
 import com.example.ckh.foodtruck.user.User_Login;
 
 public class MainActivity extends Activity {
@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
         public void onClick(View v){
             switch(v.getId()){
                 case R.id.titlelayout_start_seller:
-                    Intent actSeller_Login = new Intent(MainActivity.this,Seller_Login.class);
+                    Intent actSeller_Login = new Intent(MainActivity.this,SellerLogin.class);
                     startActivity(actSeller_Login);
                     break;
                 case R.id.titlelayout_start_user:

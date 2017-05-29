@@ -14,11 +14,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ckh.foodtruck.GlobalApplication;
+import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
-import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
-import com.example.ckh.viewDTO.MenuViewHolderDTO;
-import com.example.ckh.viewDTO.Seller_MenuItemDTO;
+import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;
+import com.example.ckh.ViewDTO.MenuViewHolderDTO;
+import com.example.ckh.ViewDTO.Seller_MenuItemDTO;
 
 import java.util.ArrayList;
 

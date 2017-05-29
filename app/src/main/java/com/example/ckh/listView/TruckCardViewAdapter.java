@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.user.User_TruckInfo;
-import com.example.ckh.viewDTO.TruckItemDTO;
+import com.example.ckh.ViewDTO.TruckItemDTO;
 
 import java.util.ArrayList;
 

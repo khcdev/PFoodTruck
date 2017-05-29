@@ -7,8 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-import com.example.ckh.foodtruck.*;
+
 import com.example.ckh.foodtruck.R;
+import com.example.ckh.foodtruck.utility.GlobalApplication;
+import com.example.ckh.foodtruck.utility.SampleSignupActivity;
 import com.facebook.*;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
@@ -29,7 +31,10 @@ import java.util.Arrays;
  * ->kakao,facebook API이용
  */
 
+
+//메서드 명 수정 할 것
 public class User_Login extends Activity {
+
     private SessionCallback callback;       //kko
     private CallbackManager callbackManager; //fb
 

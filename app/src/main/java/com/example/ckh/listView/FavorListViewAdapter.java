@@ -10,10 +10,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.ckh.foodtruck.GlobalApplication;
+import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
-import com.example.ckh.viewDTO.FavorListViewAdapterDTO;
-import com.example.ckh.viewDTO.FavorTruckDTO;
+import com.example.ckh.ViewDTO.FavorListViewAdapterDTO;
+import com.example.ckh.ViewDTO.FavorTruckDTO;
 
 /**
  * Created by Ckh on 2016-10-30.

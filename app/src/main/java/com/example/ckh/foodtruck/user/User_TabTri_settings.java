@@ -11,8 +11,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.ckh.listView.FavorListViewAdapter;
-import com.example.ckh.viewDTO.FavorTruckDTO;
-import com.example.ckh.foodtruck.GlobalApplication;
+import com.example.ckh.ViewDTO.FavorTruckDTO;
+import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 
 /**
