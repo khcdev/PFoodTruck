@@ -18,12 +18,16 @@ import com.example.ckh.foodtruck.R;
 
 @SuppressLint({"SetJavaScriptEnabled","ValidFragment"})
 public class Seller_TabFour_Settings extends Fragment{
+
     Context mContext;
     View view;
     Switch sch;
+
+
     public Seller_TabFour_Settings(Context context){
         mContext=context;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle b){
         if(view ==null) {

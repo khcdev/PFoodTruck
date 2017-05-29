@@ -29,12 +29,14 @@ import java.io.IOException;
  * Created by Ckh on 2016-10-02.
  */
 public class Seller_MenuAdd extends Activity{
+
     boolean isCheck=false;
     ImageView image;
     Bitmap image_bitmap;
-    final int REQ_CODE_SELECT_IMAGE=100;
     DBSQLiteOpenHelper helper;
     private SQLiteDatabase db;
+    final int REQ_CODE_SELECT_IMAGE=100;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,10 +88,10 @@ public class Seller_MenuAdd extends Activity{
 
     public void onClick_seller_Menu_addbtnclicked(View view) {
         if(isCheck) {
-            String menuItem_title_detail;
             String menuItem_price_detail;
             String menuItem_origin_detail;
             String menuItem_info_detail;
+            String menuItem_title_detail;
             String convert_menunumber="";
 
             EditText title = (EditText) findViewById(R.id.seller_textinput_menu_item_title);

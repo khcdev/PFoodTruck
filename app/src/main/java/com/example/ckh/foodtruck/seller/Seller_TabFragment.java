@@ -63,9 +63,9 @@ public class Seller_TabFragment extends FragmentActivity {
         Log.e("과연 호출?", Integer.toString(vr));
         c1.close();
         //쿼리가 정상적으로 진행 되었을 경우
+        SpotInformDTO spotInformDTO = new SpotInformDTO();
         if (guNameList.size() != 0) {
             Iterator<String> itr = guNameList.iterator();
-            SpotInformDTO spotInformDTO = new SpotInformDTO();
             while (itr.hasNext()) {
                 sql = "select " +
                         "SPOT_ID, MALE, FEMALE, TWYO_BELOW, TWNT_THRTS, FRTS_FFTS, SXTS_ABOVE, " +

@@ -28,6 +28,7 @@ import java.util.ArrayList;
  */
 @SuppressLint("ValidFragment")
 public class Seller_TabTri_News extends Fragment {
+
     Context mContext;
     View view;
 

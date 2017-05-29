@@ -29,7 +29,10 @@ import java.util.Arrays;
  * ->kakao,facebook API이용
  */
 
+
+//메서드 명 수정 할 것
 public class User_Login extends Activity {
+
     private SessionCallback callback;       //kko
     private CallbackManager callbackManager; //fb
 

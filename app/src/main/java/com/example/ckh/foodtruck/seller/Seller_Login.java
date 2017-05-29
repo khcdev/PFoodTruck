@@ -28,6 +28,8 @@ public class Seller_Login extends Activity{
         final EditText i_password =(EditText) findViewById(R.id.seller_lgn_edit_text_password);
         i_login.setText("gopizza");
         i_password.setText("0000");
+
+        //sqlite를 활용하여 회원연동 수정
         sellerlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

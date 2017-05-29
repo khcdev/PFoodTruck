@@ -21,6 +21,7 @@ import com.example.ckh.foodtruck.database.DBSQLiteOpenHelper;
  */
 @SuppressLint("ValidFragment")
 public class Seller_TabSec_Store extends Fragment {
+
     Context mContext;
     DBSQLiteOpenHelper helper;
     SQLiteDatabase db;
