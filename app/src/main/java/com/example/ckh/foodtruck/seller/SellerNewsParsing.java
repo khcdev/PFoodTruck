@@ -1,6 +1,6 @@
 package com.example.ckh.foodtruck.seller;
 
-import com.example.ckh.ViewDTO.Seller_News_EventFullDTO;
+import com.example.ckh.viewdto.Seller_News_EventFullDTO;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by HOME on 2016-10-24.
  */
 public class SellerNewsParsing {
-    ArrayList<Seller_News_EventFullDTO> parseFest = new ArrayList<Seller_News_EventFullDTO>();
+    ArrayList<Seller_News_EventFullDTO> parseFest = new ArrayList<>();
     URL parseURL;
 
     //변수의 수정이 불가능하게 final 로 전부 선언
@@ -98,7 +98,6 @@ public class SellerNewsParsing {
                         }
                         break;
 
-
                 }
                 parserEvent = parser.next();
             }
@@ -118,7 +117,6 @@ public class SellerNewsParsing {
                 e.printStackTrace();
             }
         }
-
         return parseFest;
     }
 }

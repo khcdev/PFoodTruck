@@ -14,8 +14,9 @@ import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.ckh.restdataform.ServerVersion;
-import com.example.ckh.restdataform.SpotInformDTO;
+import com.example.ckh.foodtruck.utility.MyRetrofit;
+import com.example.ckh.viewdto.restdataform.ServerVersionDTO;
+import com.example.ckh.viewdto.restdataform.SpotInformDTO;
 
 import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;
@@ -28,7 +29,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -52,11 +52,9 @@ public class Splash extends Activity {
         super.onCreate(b);
         setContentView(R.layout.splash_loading);
         //progressBar = (ProgressBar) findViewById(R.id.pgbar);
-
         Toast.makeText(Splash.this, "데이터를 읽어오는 중입니다.", Toast.LENGTH_LONG).show();
         MyAsyncTask asyncTask = new MyAsyncTask(Splash.this);
         asyncTask.execute(0);
-
 
     }
 
@@ -138,6 +136,13 @@ public class Splash extends Activity {
             mDlg.show();
             */
 
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://52.78.234.100:3040/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            // retrofit 싱글턴 객체 패턴 사용
+            MyRetrofit.getInstance().setRetrofit(retrofit);
+
             pref = getSharedPreferences("Version", Activity.MODE_PRIVATE);
             Log.d("작업 이전",Integer.toString(pref.getInt("appVersion",1)));
             super.onPreExecute();
@@ -151,13 +156,10 @@ public class Splash extends Activity {
             publishProgress("max", Integer.toString(100));
             /** REFACTORING*/
             //서버에 GET 요청하여 app의 DB 버전과 서버의 DB 버전차이를 확인 하고 업데이트 내역을 가져오는 부분
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://52.78.234.100:3040/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            DBCheckService service_dbCheck = retrofit.create(DBCheckService.class);
-            Call<List<ServerVersion>> call_version = service_dbCheck.checkVersion();
-            List<ServerVersion> result_version=null;
+
+            DBCheckService service_dbCheck = MyRetrofit.getInstance().getRetrofit().create(DBCheckService.class);
+            Call<List<ServerVersionDTO>> call_version = service_dbCheck.checkVersion();
+            List<ServerVersionDTO> result_version=null;
             try {
                 result_version = call_version.execute().body();
                 Log.e("Http",Integer.toString(result_version.get(0).getVersion()));
@@ -167,7 +169,7 @@ public class Splash extends Activity {
             }
             if(result_version!=null && result_version.get(0).getVersion() > pref.getInt("appVersion",1)){
                 //데이터 input
-                GetDB service_getDB = retrofit.create(GetDB.class);
+                GetDB service_getDB = MyRetrofit.getInstance().getRetrofit().create(GetDB.class);
                 Call<List<SpotInformDTO>> call_data=service_getDB.getDBData();
                 try{
                     //서버로부터 새로운 업데이트 내역 요청
@@ -187,9 +189,6 @@ public class Splash extends Activity {
             Log.d("작업 이후",Integer.toString(pref.getInt("appVersion",1)));
             publishProgress("progress", Integer.toString(10),
                     "poidata init");
-            //TODO : 서버 응답 에러 처리 후 테스트여러번 테스트 후에
-            //File();
-            //Gusort();
             publishProgress("progress", Integer.toString(30),
                     "poidata init");
             //FIXME : 이미지 파일을 디바이스 내장 스토리지에 저장하는 부분이기 때문에 굉장히 시간 소모가 크다.
@@ -254,7 +253,7 @@ public class Splash extends Activity {
 
     public interface DBCheckService{
         @GET("newdata/checkversion")
-        Call<List<ServerVersion>> checkVersion();
+        Call<List<ServerVersionDTO>> checkVersion();
     }
     public interface GetDB{
         @GET("newdata")

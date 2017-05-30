@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ckh.ViewDTO.TruckItemDTO;
+import com.example.ckh.viewdto.TruckItemDTO;
 import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;

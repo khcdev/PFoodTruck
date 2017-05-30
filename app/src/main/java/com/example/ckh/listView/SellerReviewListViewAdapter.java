@@ -9,19 +9,19 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.ckh.foodtruck.R;
-import com.example.ckh.ViewDTO.ItemViewHolderDTO;
-import com.example.ckh.ViewDTO.ReviewItemDTO;
+import com.example.ckh.viewdto.ItemViewHolderDTO;
+import com.example.ckh.viewdto.ReviewItemDTO;
 
 import java.util.ArrayList;
 
 /**
  * Created by Ckh on 2016-10-27.
  */
-public class SellerReviewListviewAdapter extends BaseAdapter {
+public class SellerReviewListViewAdapter extends BaseAdapter {
     private Context mContext;
-    private ArrayList<ReviewItemDTO> ReviewItemListData = new ArrayList<ReviewItemDTO>();
+    private ArrayList<ReviewItemDTO> ReviewItemListData = new ArrayList<>();
 
-    public SellerReviewListviewAdapter(Context allMenuContext) {
+    public SellerReviewListViewAdapter(Context allMenuContext) {
         super();
         this.mContext = allMenuContext;
     }

@@ -22,10 +22,8 @@ import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;
 @SuppressLint("ValidFragment")
 public class SellerTabSecStore extends Fragment {
 
-    Context mContext;
-    DBSQLiteOpenHelper helper;
-    SQLiteDatabase db;
-    View view;
+    private Context mContext;
+    private View view;
 
     public SellerTabSecStore(Context context) {
         mContext = context;
@@ -45,6 +43,8 @@ public class SellerTabSecStore extends Fragment {
             });
             noti.show();*/
         }
+        DBSQLiteOpenHelper helper;
+        SQLiteDatabase db;
         TextView favor = (TextView) view.findViewById(R.id.seller_store_favorites);
         TextView score = (TextView) view.findViewById(R.id.seller_store_score);
         helper = new DBSQLiteOpenHelper(getActivity(), GlobalApplication.dbName, null, 2);
@@ -66,9 +66,9 @@ public class SellerTabSecStore extends Fragment {
                 startActivity(intent);
             }
         });
-        TextView btnstoreMng = (TextView) view.findViewById(R.id.seller_tab2_introducestore);
+        TextView btnStoreMng = (TextView) view.findViewById(R.id.seller_tab2_introducestore);
 
-        btnstoreMng.setOnClickListener(new View.OnClickListener() {
+        btnStoreMng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), StoreManagement.class);
@@ -76,8 +76,8 @@ public class SellerTabSecStore extends Fragment {
 
             }
         });
-        Button reviewmore = (Button) view.findViewById(R.id.seller_tab2_reviewmore);
-        reviewmore.setOnClickListener(new View.OnClickListener() {
+        Button reviewMore = (Button) view.findViewById(R.id.seller_tab2_reviewmore);
+        reviewMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ReviewMore.class);

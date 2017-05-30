@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ckh.foodtruck.R;
-import com.example.ckh.ViewDTO.TruckDataDTO;
-import com.example.ckh.ViewDTO.User_TruckItemDTO;
+import com.example.ckh.viewdto.TruckDataDTO;
+import com.example.ckh.viewdto.User_TruckItemDTO;
 
 import java.util.ArrayList;
 

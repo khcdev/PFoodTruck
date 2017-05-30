@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ckh.listView.TruckCardViewAdapter;
-import com.example.ckh.ViewDTO.TruckItemDTO;
+import com.example.ckh.viewdto.TruckItemDTO;
 import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;

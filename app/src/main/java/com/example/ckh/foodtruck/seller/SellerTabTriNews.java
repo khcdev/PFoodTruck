@@ -16,9 +16,11 @@ import android.view.ViewGroup;
 import android.widget.*;
 
 import com.androidquery.AQuery;
-import com.example.ckh.ViewDTO.NewsViewHolderDTO;
-import com.example.ckh.ViewDTO.Seller_News_EventFullDTO;
-import com.example.ckh.ViewDTO.Seller_News_EventListDTO;
+
+import com.example.ckh.viewdto.NewsViewHolderDTO;
+import com.example.ckh.viewdto.Seller_News_EventFullDTO;
+import com.example.ckh.viewdto.Seller_News_EventListDTO;
+
 import com.example.ckh.foodtruck.R;
 
 import java.util.ArrayList;
@@ -28,9 +30,9 @@ import java.util.ArrayList;
  */
 @SuppressLint("ValidFragment")
 public class SellerTabTriNews extends Fragment {
-
-    Context mContext;
-    View view;
+    //TODO refactoring 요소 찾기
+    private Context mContext;
+    private View view;
 
     public SellerTabTriNews(Context context) {
         mContext = context;

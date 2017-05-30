@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.example.ckh.listView.SellerReviewListviewAdapter;
+import com.example.ckh.listView.SellerReviewListViewAdapter;
 import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;
@@ -19,25 +19,27 @@ import com.example.ckh.foodtruck.user.User_ReviewAdding;
  * Created by Ckh on 2016-09-25.
  */
 public class ReviewMore extends Activity {
-    SQLiteDatabase db;
-    DBSQLiteOpenHelper helper;
-    Button reviewadd;
-    ListView listview;
-    SellerReviewListviewAdapter adapter;
+
+    private SellerReviewListViewAdapter adapter;
+
+    //FIXME : GlobalApplication static 트럭 데이터 해결
     int truckid=102;
+
     @Override
     protected void onCreate(Bundle b){
         super.onCreate(b);
         setContentView(R.layout.seller_reviewmore);
+        Button reviewAdd;
+        ListView listView;
         final Intent intent = getIntent();
-        reviewadd =(Button) findViewById(R.id.reviewadd);
+        reviewAdd =(Button) findViewById(R.id.reviewadd);
         if(intent.getExtras().getInt("Req")==0) {
-            reviewadd.setVisibility(View.INVISIBLE);
+            reviewAdd.setVisibility(View.INVISIBLE);
 
         }else {
-            reviewadd.setVisibility(View.VISIBLE);
+            reviewAdd.setVisibility(View.VISIBLE);
             truckid=intent.getExtras().getInt("truckcode");
-            reviewadd.setOnClickListener(new View.OnClickListener() {
+            reviewAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(GlobalApplication.User_info_name==null) {
@@ -51,16 +53,16 @@ public class ReviewMore extends Activity {
             });
 
         }
-        listview = (ListView) findViewById(R.id.reviewList);
-        adapter = new SellerReviewListviewAdapter(ReviewMore.this);
-        listview.setAdapter(adapter);
+        listView = (ListView) findViewById(R.id.reviewList);
+        adapter = new SellerReviewListViewAdapter(ReviewMore.this);
+        listView.setAdapter(adapter);
 
-        helper = new DBSQLiteOpenHelper(ReviewMore.this,
+        DBSQLiteOpenHelper helper = new DBSQLiteOpenHelper(ReviewMore.this,
                 GlobalApplication.dbName,
                 null,
                 1
         );
-        db = helper.getWritableDatabase();
+        SQLiteDatabase db = helper.getWritableDatabase();
         Cursor c = db.rawQuery("select writer,date,contents,score from review where truck_id = "+truckid+";",null);
         while(c.moveToNext()){
             c.getString(0); //writer

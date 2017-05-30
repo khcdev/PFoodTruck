@@ -1,4 +1,4 @@
-package com.example.ckh.restdataform;
+package com.example.ckh.viewdto.restdataform;
 
 import com.google.gson.annotations.SerializedName;
 

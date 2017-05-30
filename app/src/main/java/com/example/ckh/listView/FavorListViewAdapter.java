@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
-import com.example.ckh.ViewDTO.FavorListViewAdapterDTO;
-import com.example.ckh.ViewDTO.FavorTruckDTO;
+import com.example.ckh.viewdto.FavorListViewAdapterDTO;
+import com.example.ckh.viewdto.FavorTruckDTO;
 
 /**
  * Created by Ckh on 2016-10-30.

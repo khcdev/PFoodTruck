@@ -17,8 +17,8 @@ import android.widget.TextView;
 import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;
-import com.example.ckh.ViewDTO.MenuViewHolderDTO;
-import com.example.ckh.ViewDTO.Seller_MenuItemDTO;
+import com.example.ckh.viewdto.MenuViewHolderDTO;
+import com.example.ckh.viewdto.Seller_MenuItemDTO;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,7 @@ import java.util.ArrayList;
  */
 public class SellerMenuListviewAdapter extends BaseAdapter {
     private Context allMenuContext = null;
-    private ArrayList<Seller_MenuItemDTO> allMenuListData = new ArrayList<Seller_MenuItemDTO>();
+    private ArrayList<Seller_MenuItemDTO> allMenuListData = new ArrayList<>();
 
     public SellerMenuListviewAdapter(Context allMenuContext) {
         super();

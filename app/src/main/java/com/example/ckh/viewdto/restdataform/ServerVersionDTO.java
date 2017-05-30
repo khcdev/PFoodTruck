@@ -1,11 +1,11 @@
-package com.example.ckh.restdataform;
+package com.example.ckh.viewdto.restdataform;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by ckj on 2017-05-27.
  */
-public class ServerVersion {
+public class ServerVersionDTO {
     @SerializedName("version")
     private int version;
 

@@ -59,7 +59,7 @@
         <activity android:name=".seller.StoreManagement">
 
         </activity>
-        <activity android:name=".utility.SpotDetail">
+        <activity android:name=".seller.SpotDetail">
 
         </activity>
         <activity android:name=".user.User_TruckInfo">

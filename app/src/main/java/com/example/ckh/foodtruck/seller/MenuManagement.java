@@ -99,6 +99,7 @@ public class MenuManagement extends Activity {
     public void accessDb(){
         db = helper.getReadableDatabase();
         Cursor c = db.rawQuery("select * from menu where truck_id="+truckcode+";",null);
+        c.getColumnIndex("column");
         while(c.moveToNext()){
             String imgcode = c.getString(6);
             int price = c.getInt(5);

@@ -1,4 +1,4 @@
-package com.example.ckh.ViewDTO;
+package com.example.ckh.viewdto;
 
 /**
  * Created by HOME on 2016-10-24.

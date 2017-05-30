@@ -1,4 +1,4 @@
-package com.example.ckh.ViewDTO;
+package com.example.ckh.viewdto;
 
 import android.graphics.drawable.Drawable;
 

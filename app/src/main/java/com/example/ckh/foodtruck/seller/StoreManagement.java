@@ -20,11 +20,11 @@ public class StoreManagement extends Activity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seller_storeinfo);
-        Button btnintro = (Button) findViewById(R.id.intromodibutton);
-        Button btnnoti=(Button) findViewById(R.id.notimodibutton);
+        Button btnIntro = (Button) findViewById(R.id.intromodibutton);
+        Button btnNoti=(Button) findViewById(R.id.notimodibutton);
         final TextView tv1 = (TextView) findViewById(R.id.seller_textinput_store_introstore);
         tv1.setText(GlobalApplication.truckintro.get("102").toString());
-        btnintro.setOnClickListener(new View.OnClickListener() {
+        btnIntro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alert_intro = new AlertDialog.Builder(StoreManagement.this);
@@ -47,15 +47,13 @@ public class StoreManagement extends Activity {
                                 dialog.dismiss();
                             }
                         });
-
                 alert_intro.show();
-
             }
 
         });
         final TextView tv2 =(TextView) findViewById(R.id.seller_textinput_store_notification);
         tv2.setText(GlobalApplication.trucknoti.get("102"));
-        btnnoti.setOnClickListener(new View.OnClickListener() {
+        btnNoti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alert_noti = new AlertDialog.Builder(StoreManagement.this);

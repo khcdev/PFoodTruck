@@ -20,18 +20,20 @@ import java.util.Date;
  * Created by Ckh on 2016-10-30.
  */
 public class User_ReviewAdding extends Activity {
-    EditText input1;
-    RatingBar rating;
-    Button btn;
-    DBSQLiteOpenHelper helper;
+    private EditText input1;
+    private RatingBar rating;
     SQLiteDatabase db;
     @Override
     public void onCreate(Bundle b){
         super.onCreate(b);
         setContentView(R.layout.user_review_add);
 
+        Button btn;
+        DBSQLiteOpenHelper helper;
+
+
         Intent intent =getIntent();
-        final int trucknumber = intent.getExtras().getInt("truckcode");
+        final int truckNumber = intent.getExtras().getInt("truckcode");
         input1 = (EditText) findViewById(R.id.user_review_add_edittext_one);
         rating = (RatingBar) findViewById(R.id.user_review_add_ratingbar);
         btn =(Button) findViewById(R.id.user_review_add_button_one);
@@ -48,8 +50,8 @@ public class User_ReviewAdding extends Activity {
                 score = (int)rating.getRating();
                 Date date = new Date(System.currentTimeMillis());
                 SimpleDateFormat CurDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                String convertdata =  CurDateFormat.format(date);
-                db.execSQL("insert into review values (null,"+trucknumber+",'"+GlobalApplication.User_info_name+"','"+msg+"',"+score+",'"+convertdata+"');");
+                String convertData =  CurDateFormat.format(date);
+                db.execSQL("insert into review values (null,"+truckNumber+",'"+GlobalApplication.User_info_name+"','"+msg+"',"+score+",'"+convertData+"');");
                 db.close();
                 Toast.makeText(User_ReviewAdding.this,"리뷰가 추가되었습니다!",Toast.LENGTH_LONG).show();
                 setResult(1);

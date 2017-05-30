@@ -19,13 +19,10 @@ import com.example.ckh.foodtruck.R;
 @SuppressLint({"SetJavaScriptEnabled","ValidFragment"})
 public class SellerTabFourSettings extends Fragment{
 
-    Context mContext;
-    View view;
-    Switch sch;
-
-
+    //Context mContext;
+    private View view;
     public SellerTabFourSettings(Context context){
-        mContext=context;
+        //mContext=context;
     }
 
     @Override
@@ -34,7 +31,7 @@ public class SellerTabFourSettings extends Fragment{
             view = inflater.inflate(R.layout.seller_tab4_settings,null);
         }
 
-        sch = (Switch) view.findViewById(R.id.openstoreswitch);
+        Switch sch = (Switch) view.findViewById(R.id.openstoreswitch);
         if(GlobalApplication.openStore)sch.setChecked(true);
         sch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             @Override

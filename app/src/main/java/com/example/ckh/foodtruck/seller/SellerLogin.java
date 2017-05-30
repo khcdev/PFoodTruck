@@ -23,14 +23,14 @@ public class SellerLogin extends Activity{
         super.onCreate(b);
         setContentView(R.layout.seller_main);
 
-        ImageView sellerlogin = (ImageView) findViewById(R.id.sellermain_imgbtn_Login);
+        ImageView sellerLogin = (ImageView) findViewById(R.id.sellermain_imgbtn_Login);
         final EditText i_login = (EditText) findViewById(R.id.seller_lgn_edit_text_id);
         final EditText i_password =(EditText) findViewById(R.id.seller_lgn_edit_text_password);
         i_login.setText("gopizza");
         i_password.setText("0000");
 
         //sqlite를 활용하여 회원연동 수정
-        sellerlogin.setOnClickListener(new View.OnClickListener() {
+        sellerLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean id_check=false;

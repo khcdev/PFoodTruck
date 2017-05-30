@@ -2,8 +2,8 @@ package com.example.ckh.foodtruck.utility;
 
 import android.app.Activity;
 import android.app.Application;
-import com.example.ckh.ViewDTO.TruckItemDTO;
-import com.example.ckh.ViewDTO.FavorTruckDTO;
+import com.example.ckh.viewdto.TruckItemDTO;
+import com.example.ckh.viewdto.FavorTruckDTO;
 import com.kakao.auth.KakaoSDK;
 
 import java.util.ArrayList;

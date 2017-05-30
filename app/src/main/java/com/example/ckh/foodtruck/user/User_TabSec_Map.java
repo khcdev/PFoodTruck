@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ckh.ViewDTO.TruckItemDTO;
+import com.example.ckh.viewdto.TruckItemDTO;
 import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.google.android.gms.maps.*;
