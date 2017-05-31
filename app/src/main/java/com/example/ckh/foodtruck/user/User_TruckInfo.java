@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ckh.foodtruck.utility.MySharedPreferences;
 import com.example.ckh.viewdto.TruckItemDTO;
 import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
@@ -126,7 +127,7 @@ public class User_TruckInfo extends Activity {
             public void onClick(View v) {
                 SQLiteDatabase db;
                 DBSQLiteOpenHelper helper;
-                helper = new DBSQLiteOpenHelper(User_TruckInfo.this, GlobalApplication.dbName, null, 1);
+                helper = new DBSQLiteOpenHelper(User_TruckInfo.this, GlobalApplication.dbName, null, MySharedPreferences.getInstance().getAppDBVersion(User_TruckInfo.this));
                 db = helper.getWritableDatabase();
                 switch (truckdata.getTruck_id()) {
                     case 101:

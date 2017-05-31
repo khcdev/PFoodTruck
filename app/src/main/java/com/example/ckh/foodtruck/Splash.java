@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.ckh.foodtruck.utility.MyRetrofit;
+import com.example.ckh.foodtruck.utility.MySharedPreferences;
 import com.example.ckh.viewdto.restdataform.ServerVersionDTO;
 import com.example.ckh.viewdto.restdataform.SpotInformDTO;
 
@@ -41,10 +42,12 @@ import java.util.List;
 
 public class Splash extends Activity {
     private DBSQLiteOpenHelper helper;
+    /*
     SharedPreferences pref;
     SharedPreferences.Editor edit;
+    */
     private SQLiteDatabase db;
-    ProgressBar progressBar;
+    //ProgressBar progressBar;
 
     @Override
     public void onCreate(Bundle b) {
@@ -74,11 +77,6 @@ public class Splash extends Activity {
     }
 
     public void DBInsert(List<SpotInformDTO> data){
-        helper = new DBSQLiteOpenHelper(
-                Splash.this, GlobalApplication.dbName,
-                null,
-                pref.getInt("appVersion",1)
-        );
 
         db=helper.getWritableDatabase();
         // 데이터를 직접 sql 문에 포함 시키지 않고 '?'를 일단 입력하고, execute시에 객체를 넘겨주어 삽입 가능
@@ -112,7 +110,6 @@ public class Splash extends Activity {
                             data.get(i).getGU_ID(),
                             data.get(i).getGU_NAME()
                     });
-
         }
     }
 
@@ -129,22 +126,13 @@ public class Splash extends Activity {
         //수행할 동작을 구현함.
         @Override
         protected void onPreExecute() {
-            /*mDlg = new ProgressDialog(Splash.this);
-            //FIXME : 프로그레스 스타일 spinner로 변경
-            mDlg.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            mDlg.setMessage("작업 시작");
-            mDlg.show();
-            */
-
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://52.78.234.100:3040/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            // retrofit 싱글턴 객체 패턴 사용
-            MyRetrofit.getInstance().setRetrofit(retrofit);
-
-            pref = getSharedPreferences("Version", Activity.MODE_PRIVATE);
-            Log.d("작업 이전",Integer.toString(pref.getInt("appVersion",1)));
+            helper = new DBSQLiteOpenHelper(
+                    Splash.this, GlobalApplication.dbName,
+                    null,
+                    MySharedPreferences.getInstance().getAppDBVersion(Splash.this)
+            );
+            //TODO : SharedPreferences 작동 확인하면 주석 지우기
+            Log.d("작업 이전",Integer.toString(MySharedPreferences.getInstance().getAppDBVersion(Splash.this)));
             super.onPreExecute();
         }
         //실제로 백그라운드 작업을 수행하는 메서드
@@ -162,13 +150,12 @@ public class Splash extends Activity {
             List<ServerVersionDTO> result_version=null;
             try {
                 result_version = call_version.execute().body();
-                Log.e("Http",Integer.toString(result_version.get(0).getVersion()));
             }catch (IOException e){
                 Log.e("Httperrckh","err");
                 e.printStackTrace();
             }
-            if(result_version!=null && result_version.get(0).getVersion() > pref.getInt("appVersion",1)){
-                //데이터 input
+            if(result_version!=null &&
+                    result_version.get(0).getVersion() > MySharedPreferences.getInstance().getAppDBVersion(Splash.this)){
                 GetDB service_getDB = MyRetrofit.getInstance().getRetrofit().create(GetDB.class);
                 Call<List<SpotInformDTO>> call_data=service_getDB.getDBData();
                 try{
@@ -179,25 +166,25 @@ public class Splash extends Activity {
                 }catch(IOException e){
                     e.printStackTrace();
                 }
-                edit = pref.edit();
+                //edit = pref.edit();
                 //SharedPreference에 업데이트 버전 저장
-                edit.putInt("appVersion",result_version.get(0).getVersion());
+                MySharedPreferences.getInstance().setAppDBVersion(Splash.this,result_version.get(0).getVersion());
+                //edit.putInt("AppVersion",result_version.get(0).getVersion());
                 db.close();
-                edit.apply();
-                edit.commit();
+                //edit.commit();
             }
-            Log.d("작업 이후",Integer.toString(pref.getInt("appVersion",1)));
             publishProgress("progress", Integer.toString(10),
                     "poidata init");
             publishProgress("progress", Integer.toString(30),
                     "poidata init");
             //FIXME : 이미지 파일을 디바이스 내장 스토리지에 저장하는 부분이기 때문에 굉장히 시간 소모가 크다.
             //FIXME : 이미지 서버에 post 요청하는 부분까지는 불가능 할듯, 기본 트럭,메뉴 이미지 불러오는것만 서버에서 처리
-            /*if (!pref.getBoolean("isFirst", false)) {
-                edit = pref.edit();
-                edit.putBoolean("isFirst", true);
-                edit.commit();
 
+            if (!MySharedPreferences.getInstance().getImgFirst(Splash.this)) {
+                /*edit = pref.edit();
+                edit.putBoolean("isFirst", true);
+                edit.commit();*/
+                MySharedPreferences.getInstance().setImgFirst(Splash.this,true);
                 saveFiletoInternalStorage(R.drawable.img_chungnyun_m01, "img_chungnyun_m01.png");
                 saveFiletoInternalStorage(R.drawable.img_chungnyun_m02, "img_chungnyun_m02.png");
                 saveFiletoInternalStorage(R.drawable.img_chungnyun_main, "img_chungnyun_main.png");
@@ -209,7 +196,7 @@ public class Splash extends Activity {
                 saveFiletoInternalStorage(R.drawable.img_steakout_main, "img_steakout_main.png");
                 publishProgress("progress", Integer.toString(70),
                         "img data in");
-            }*/
+            }
             publishProgress("progress", Integer.toString(80),
                     "hash data");
             GlobalApplication.truckintro = new HashMap<String, String>();
@@ -224,7 +211,6 @@ public class Splash extends Activity {
                     /* 메뉴액티비티를 실행하고 로딩화면(splash) 끝*/
             publishProgress("progress", Integer.toString(100),
                     "complete");
-
             return 100;
         }
         //백그라운드 작업 도중에 UI작업을 할 수 있는 스레드

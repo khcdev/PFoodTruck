@@ -23,8 +23,8 @@ import com.google.android.gms.maps.model.*;
 public class User_TabSec_Map extends Fragment implements OnMapReadyCallback {
     View view;
     Context mContext;
-    GoogleMap gmap;
-    UiSettings settings;
+
+
 
     public User_TabSec_Map(Context context) {
         mContext = context;
@@ -44,8 +44,8 @@ public class User_TabSec_Map extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        gmap = googleMap;
-        settings = gmap.getUiSettings();
+        GoogleMap gmap = googleMap;
+        UiSettings settings= gmap.getUiSettings();
         settings.setZoomControlsEnabled(true);
         if (GlobalApplication.openStore == true) {
             gmap.addMarker(new MarkerOptions().title("GoPizza").position(new LatLng(37.55139, 127.074111)).icon(BitmapDescriptorFactory.fromResource(R.drawable.truck)));
@@ -54,7 +54,7 @@ public class User_TabSec_Map extends Fragment implements OnMapReadyCallback {
         gmap.addMarker(new MarkerOptions().title("청년반점").position(new LatLng(37.5572321, 127.0431332)).icon(BitmapDescriptorFactory.fromResource(R.drawable.truck)));
         gmap.addMarker(new MarkerOptions().title("SteakOut").position(new LatLng(37.5264467, 127.029467)).icon(BitmapDescriptorFactory.fromResource(R.drawable.truck)));
 
-        CameraPosition cp = new CameraPosition.Builder().target(new LatLng(37.5759, 127.0331332)).zoom(12).build();
+        CameraPosition cp = new CameraPosition.Builder().target(new LatLng(37.549851, 127.074190)).zoom(14).build();
         gmap.moveCamera(CameraUpdateFactory.newCameraPosition(cp));
         gmap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override

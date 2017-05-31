@@ -3,14 +3,14 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5dp">
+        >
 
     <ImageView
             android:id="@+id/seller_store_mainimg"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@drawable/img_gopizza_main"
-            android:layout_margin="5dp"/>
+            />
 
 
 
@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="3dp"
             android:layout_below="@+id/seller_store_mainimg">
 
 
@@ -28,6 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="매장소개"
+                android:elevation="4dp"
                 android:gravity="center"
                 android:clickable="true"
                 android:background="@drawable/textview_line_style"
@@ -38,6 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="메뉴관리"
+                android:elevation="4dp"
                 android:gravity="center"
                 android:background="@drawable/textview_line_style"
                 android:layout_marginTop="8dp"/>
@@ -48,7 +51,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_below="@+id/seller_store_mainimg"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp">
 
             <RelativeLayout
                     android:layout_width="wrap_content"
@@ -56,6 +60,7 @@
                     android:gravity="right"
                     android:layout_weight="1"
                     android:background="@drawable/textview_line_style"
+                    android:elevation="4dp"
                     android:paddingRight="5dp">
 
                 <TextView
@@ -79,6 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="right"
+                    android:elevation="4dp"
                     android:background="@drawable/textview_line_style"
                     android:paddingRight="5dp">
                 <TextView

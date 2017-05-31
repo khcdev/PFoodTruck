@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;
+import com.example.ckh.foodtruck.utility.MySharedPreferences;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -102,7 +103,7 @@ public class SellerMenuAdd extends Activity{
             menuItem_price_detail = price.getText().toString();
             menuItem_origin_detail = origin.getText().toString();
             menuItem_info_detail = info.getText().toString();
-            helper = new DBSQLiteOpenHelper(SellerMenuAdd.this,GlobalApplication.dbName,null,1);
+            helper = new DBSQLiteOpenHelper(SellerMenuAdd.this,GlobalApplication.dbName,null, MySharedPreferences.getInstance().getAppDBVersion(SellerMenuAdd.this));
             try{
                 db=helper.getWritableDatabase();
             }catch(SQLiteException e){

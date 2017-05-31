@@ -1,6 +1,7 @@
 package com.example.ckh.foodtruck.utility;
 
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by ckj on 2017-05-30.
@@ -9,15 +10,20 @@ import retrofit2.Retrofit;
  */
 public class MyRetrofit {
     private static MyRetrofit instance = new MyRetrofit();
-    private Retrofit retrofit=null;
-    private MyRetrofit(){}
-
+    private Retrofit retrofit;
+    private MyRetrofit(){
+        buildRetrofit();
+    }
+    private void buildRetrofit(){
+        retrofit = new Retrofit.Builder()
+                                .baseUrl("http://52.78.234.100:3040/")
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
+    }
     public static MyRetrofit getInstance(){
         return instance;
     }
-    public void setRetrofit(Retrofit retrofit){
-        this.retrofit=retrofit;
-    }
+
     public Retrofit getRetrofit() {
         return retrofit;
     }

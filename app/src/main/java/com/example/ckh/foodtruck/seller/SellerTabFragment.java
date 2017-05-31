@@ -17,6 +17,7 @@ import android.util.Log;
 import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;
+import com.example.ckh.foodtruck.utility.MySharedPreferences;
 import com.example.ckh.viewdto.restdataform.SpotInformDTO;
 
 import java.util.ArrayList;
@@ -38,17 +39,12 @@ public class SellerTabFragment extends FragmentActivity {
         ViewPager mViewPager;
         DBSQLiteOpenHelper helper;
         SQLiteDatabase db;
-        SharedPreferences pref;
 
-        //DB version을 얻기 위한 pref 호출
-        pref = getSharedPreferences("Version", MODE_PRIVATE);
-        //DB hepler - 데이터 쿼리
-        Log.e("appversion잘?", Integer.toString(pref.getInt("appVersion", 1)));
         helper = new DBSQLiteOpenHelper(
                 getApplicationContext(),
                 GlobalApplication.dbName,
                 null,
-                pref.getInt("appVersion", 1)
+                MySharedPreferences.getInstance().getAppDBVersion(SellerTabFragment.this)
         );
         //읽기 권한
         db = helper.getReadableDatabase();
@@ -57,9 +53,10 @@ public class SellerTabFragment extends FragmentActivity {
         Cursor c1 = db.rawQuery(sql1, null);
         ArrayList<String> guNameList = new ArrayList<>();
         while (c1.moveToNext()) guNameList.add(c1.getString(0));
+        Log.e("구데이터",Integer.toString(guNameList.size()));
         c1.close();
         //쿼리가 정상적으로 진행 되었을 경우
-        SpotInformDTO spotInformDTO = new SpotInformDTO();
+        //
         if (guNameList.size() != 0) {
             Iterator<String> itr = guNameList.iterator();
             while (itr.hasNext()) {
@@ -70,6 +67,7 @@ public class SellerTabFragment extends FragmentActivity {
                         "\" order by MALE+FEMALE desc limit 5;";
                 Cursor c2 = db.rawQuery(sql2, null);
                 while (c2.moveToNext()) {
+                    SpotInformDTO spotInformDTO = new SpotInformDTO();
                     spotInformDTO.setSPOT_ID(c2.getInt(0));
                     spotInformDTO.setMALE(c2.getInt(1));
                     spotInformDTO.setFEMALE(c2.getInt(2));
@@ -148,12 +146,6 @@ public class SellerTabFragment extends FragmentActivity {
             return null;
         }
     }
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        //getMenuInflater().inflate(R.);
-        return true;
-    }*/
-
 
 }
 

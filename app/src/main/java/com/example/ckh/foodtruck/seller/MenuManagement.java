@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import com.example.ckh.foodtruck.utility.MySharedPreferences;
 import com.example.ckh.listView.SellerMenuListviewAdapter;
 import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
@@ -80,7 +81,7 @@ public class MenuManagement extends Activity {
                 MenuManagement.this,
                 GlobalApplication.dbName,
                 null,
-                1
+                MySharedPreferences.getInstance().getAppDBVersion(MenuManagement.this)
         );
         accessDb();
 

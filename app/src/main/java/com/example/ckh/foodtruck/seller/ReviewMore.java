@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+import com.example.ckh.foodtruck.utility.MySharedPreferences;
 import com.example.ckh.listView.SellerReviewListViewAdapter;
 import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
@@ -60,7 +61,7 @@ public class ReviewMore extends Activity {
         DBSQLiteOpenHelper helper = new DBSQLiteOpenHelper(ReviewMore.this,
                 GlobalApplication.dbName,
                 null,
-                1
+                MySharedPreferences.getInstance().getAppDBVersion(ReviewMore.this)
         );
         SQLiteDatabase db = helper.getWritableDatabase();
         Cursor c = db.rawQuery("select writer,date,contents,score from review where truck_id = "+truckid+";",null);
@@ -68,6 +69,7 @@ public class ReviewMore extends Activity {
             c.getString(0); //writer
             adapter.addItem(c.getString(0),c.getString(1),c.getInt(3),c.getString(2));
         }
+        c.close();
     }
 
     @Override

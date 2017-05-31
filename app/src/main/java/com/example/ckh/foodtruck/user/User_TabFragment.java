@@ -18,7 +18,7 @@ public class User_TabFragment extends FragmentActivity {
     UserSectionPagerAdapter mSectionPagerAdapter;
     ViewPager mViewPager;
     @Override
-    protected  void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_fragment);
 

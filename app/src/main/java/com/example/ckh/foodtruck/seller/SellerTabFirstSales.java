@@ -80,12 +80,14 @@ public class SellerTabFirstSales extends Fragment implements OnMapReadyCallback 
         settings.setMyLocationButtonEnabled(true);
 
         Log.e("spotnumber",Integer.toString(spotInformDTOList.size()));
+
         for(int i = 0; i< spotInformDTOList.size(); i++){
             gMap.addMarker(new MarkerOptions()
                     .title(spotInformDTOList.get(i).getSPOT_NAME())
                     .position(new LatLng(spotInformDTOList.get(i).getY_POS(), spotInformDTOList.get(i).getX_POS()))
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.person))
             );
+            Log.e("dataConfirm",spotInformDTOList.get(i).getSPOT_NAME()+spotInformDTOList.get(i).getY_POS()+spotInformDTOList.get(i).getX_POS());
         }
 
         CameraPosition cp = new CameraPosition.Builder().target(new LatLng(37.5759, 126.9769)).zoom(13).build();
