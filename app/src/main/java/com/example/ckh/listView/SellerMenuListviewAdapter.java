@@ -18,7 +18,7 @@ import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;
 import com.example.ckh.viewdto.MenuViewHolderDTO;
-import com.example.ckh.viewdto.Seller_MenuItemDTO;
+import com.example.ckh.viewdto.SellerMenuItemDTO;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,7 @@ import java.util.ArrayList;
  */
 public class SellerMenuListviewAdapter extends BaseAdapter {
     private Context allMenuContext = null;
-    private ArrayList<Seller_MenuItemDTO> allMenuListData = new ArrayList<>();
+    private ArrayList<SellerMenuItemDTO> allMenuListData = new ArrayList<>();
 
     public SellerMenuListviewAdapter(Context allMenuContext) {
         super();
@@ -40,7 +40,7 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
     }
 
     @Override
-    public Seller_MenuItemDTO getItem(int position) {
+    public SellerMenuItemDTO getItem(int position) {
         return allMenuListData.get(position);
     }
 
@@ -50,7 +50,7 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
     }
 
     public void addItem(Bitmap foodImage, String foodName, String foodPrice, String foodOrigin, String foodInfo) {
-        Seller_MenuItemDTO addInfo = new Seller_MenuItemDTO();
+        SellerMenuItemDTO addInfo = new SellerMenuItemDTO();
         addInfo.setMenuImage(foodImage);
         addInfo.setMenuTitle(foodName);
         addInfo.setPrice(foodPrice);
@@ -88,7 +88,7 @@ public class SellerMenuListviewAdapter extends BaseAdapter {
             MenuHolderDTO = (MenuViewHolderDTO) convertView.getTag();
         }
 
-        Seller_MenuItemDTO allMenuData = allMenuListData.get(position);
+        SellerMenuItemDTO allMenuData = allMenuListData.get(position);
         menuName = allMenuData.getMenuTitle();
         if (allMenuData.getMenuImage() != null) {
             MenuHolderDTO.getFoodImage().setVisibility(View.VISIBLE);

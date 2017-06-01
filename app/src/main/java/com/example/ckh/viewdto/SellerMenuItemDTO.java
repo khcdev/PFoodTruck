@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 /**
  * Created by Ckh on 2016-10-02.
  */
-public class Seller_MenuItemDTO {
+public class SellerMenuItemDTO {
     private Bitmap MenuImage;
     private String MenuTitle;
     private String Price;

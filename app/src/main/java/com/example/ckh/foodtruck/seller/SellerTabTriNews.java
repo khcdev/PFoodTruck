@@ -18,8 +18,8 @@ import android.widget.*;
 import com.androidquery.AQuery;
 
 import com.example.ckh.viewdto.NewsViewHolderDTO;
-import com.example.ckh.viewdto.Seller_News_EventFullDTO;
-import com.example.ckh.viewdto.Seller_News_EventListDTO;
+import com.example.ckh.viewdto.SellerNewsEventFullDTO;
+import com.example.ckh.viewdto.SellerNewsEventListDTO;
 
 import com.example.ckh.foodtruck.R;
 
@@ -60,7 +60,7 @@ public class SellerTabTriNews extends Fragment {
         seoulEventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View clickedView, int position, long id) {
                 // 클릭되면 클릭된 뷰, 몇 번째 뷰가 클릭되었는지를 파라미터로 받게 됨
-                Seller_News_EventFullDTO temp = parser.parseFest.get(position);       // parser안에 parserFest ArrayList가 있는데, 눌린 포지션의 정보 받기
+                SellerNewsEventFullDTO temp = parser.parseFest.get(position);       // parser안에 parserFest ArrayList가 있는데, 눌린 포지션의 정보 받기
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.search.naver.com/search.naver?query=+" + temp.getTitle() + "+&where=m&sm=mtp_hty")));
 
             }
@@ -79,7 +79,7 @@ public class SellerTabTriNews extends Fragment {
 
     private class ListViewAdapter extends BaseAdapter {
         private Context seoulEventContext = null;
-        private ArrayList<Seller_News_EventListDTO> seoulEventListData = new ArrayList<Seller_News_EventListDTO>();
+        private ArrayList<SellerNewsEventListDTO> seoulEventListData = new ArrayList<SellerNewsEventListDTO>();
 
         public ListViewAdapter(Context seoulEventContext) {
             super();
@@ -102,8 +102,8 @@ public class SellerTabTriNews extends Fragment {
         }
 
         public void addItem(String eventImage, String eventName, String eventDate, String eventPlace) {
-            Seller_News_EventListDTO addInfo = null;
-            addInfo = new Seller_News_EventListDTO();
+            SellerNewsEventListDTO addInfo = null;
+            addInfo = new SellerNewsEventListDTO();
             addInfo.setEventImage(eventImage);
             // 이거 drawable로 안하고 url로 바로 넣으면 이미지 등록되는 거 써서 String으로 바꿨당
 
@@ -142,7 +142,7 @@ public class SellerTabTriNews extends Fragment {
                 seoulEventHolder = (NewsViewHolderDTO) convertView.getTag();
             }
 
-            Seller_News_EventListDTO seoulEventData = seoulEventListData.get(position);
+            SellerNewsEventListDTO seoulEventData = seoulEventListData.get(position);
 
             if (seoulEventData.getEventImage() != null && seoulEventData.getEventImage().compareTo("Please Default Image (E)") != 0) {
 
@@ -166,13 +166,13 @@ public class SellerTabTriNews extends Fragment {
 
     // 비동기식 스레드의 필요성 : 파싱해서 리스트뷰 때려박을 때 사용
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
-    public class FestAsync extends AsyncTask<String, String, ArrayList<Seller_News_EventFullDTO>> {
-        // 마지막에 ArrayList<Seller_News_EventFullDTO>>이라는 애가 결과값으로 (파싱의 결과값) 나옴
-        protected ArrayList<Seller_News_EventFullDTO> doInBackground(String... params) {
+    public class FestAsync extends AsyncTask<String, String, ArrayList<SellerNewsEventFullDTO>> {
+        // 마지막에 ArrayList<SellerNewsEventFullDTO>>이라는 애가 결과값으로 (파싱의 결과값) 나옴
+        protected ArrayList<SellerNewsEventFullDTO> doInBackground(String... params) {
             return parser.connectFest();    // 파싱하기
         }
 
-        protected void onPostExecute(ArrayList<Seller_News_EventFullDTO> result) {
+        protected void onPostExecute(ArrayList<SellerNewsEventFullDTO> result) {
             seoulEventAdapter = new ListViewAdapter(getActivity()); // 아답터를 받아와서
             seoulEventListView.setAdapter(seoulEventAdapter);   //설정하기
             for (int i = 0; i < result.size(); i++) {

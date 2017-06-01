@@ -1,6 +1,6 @@
 package com.example.ckh.foodtruck.seller;
 
-import com.example.ckh.viewdto.Seller_News_EventFullDTO;
+import com.example.ckh.viewdto.SellerNewsEventFullDTO;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -16,16 +16,16 @@ import java.util.ArrayList;
  * Created by HOME on 2016-10-24.
  */
 public class SellerNewsParsing {
-    ArrayList<Seller_News_EventFullDTO> parseFest = new ArrayList<>();
+    ArrayList<SellerNewsEventFullDTO> parseFest = new ArrayList<>();
     URL parseURL;
 
-    //변수의 수정이 불가능하게 final 로 전부 선언
+    //변수의 수정이 불가능하게 final선언
     final private String APPKEY = "5355487069676867313039576c765745";
     final private String url = "http://openAPI.seoul.go.kr:8088/" + APPKEY + "/xml/SearchConcertDetailService/1/50";
     String temp = "";
 
 
-    ArrayList<Seller_News_EventFullDTO> connectFest() {        // 실질적인 파싱을 하는 부분
+    ArrayList<SellerNewsEventFullDTO> connectFest() {        // 실질적인 파싱을 하는 부분
         InputStream is = null;
         try {
             URL targetUrl = new URL(url);
@@ -37,7 +37,7 @@ public class SellerNewsParsing {
             XmlPullParser parser = factory.newPullParser();
             parser.setInput(is, "utf-8");
             String tag;
-            Seller_News_EventFullDTO full = null;
+            SellerNewsEventFullDTO full = null;
 
             int parserEvent = parser.getEventType();
             while (parserEvent != XmlPullParser.END_DOCUMENT) {
@@ -51,7 +51,7 @@ public class SellerNewsParsing {
                     case XmlPullParser.START_TAG:
                         tag = parser.getName();
                         if (tag.compareTo("row") == 0) {
-                            full = new Seller_News_EventFullDTO();
+                            full = new SellerNewsEventFullDTO();
                         } else if (full != null && tag.compareTo("TITLE") == 0) {
                             parser.next();
                             temp = parser.getText();

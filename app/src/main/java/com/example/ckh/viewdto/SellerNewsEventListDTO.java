@@ -3,7 +3,7 @@ package com.example.ckh.viewdto;
 /**
  * Created by HOME on 2016-10-24.
  */
-public class Seller_News_EventListDTO {
+public class SellerNewsEventListDTO {
     private String eventImage;
     private String eventName;
     private String eventDate;
@@ -41,14 +41,14 @@ public class Seller_News_EventListDTO {
         this.eventPlace = eventPlace;
     }
 
-    public Seller_News_EventListDTO(String eventImage, String eventName, String eventDate, String eventPlace) {
+    public SellerNewsEventListDTO(String eventImage, String eventName, String eventDate, String eventPlace) {
         this.eventImage = eventImage;
         this.eventName = eventName;
         this.eventDate = eventDate;
         this.eventPlace = eventPlace;
     }
 
-    public Seller_News_EventListDTO() {
+    public SellerNewsEventListDTO() {
 
     }
 

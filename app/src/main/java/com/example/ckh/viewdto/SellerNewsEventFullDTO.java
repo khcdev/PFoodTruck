@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by HOME on 2016-10-24.
  */
-public class Seller_News_EventFullDTO implements Serializable {
+public class SellerNewsEventFullDTO implements Serializable {
     private String title;
     private String startDate;
     private String endDate;
