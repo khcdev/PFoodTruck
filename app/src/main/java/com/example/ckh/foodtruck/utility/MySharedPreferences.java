@@ -11,15 +11,14 @@ public class MySharedPreferences {
     private static MySharedPreferences instance = new MySharedPreferences();
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
+
     private MySharedPreferences(){
     }
 
     public static MySharedPreferences getInstance(){
         return instance;
-    }/*
-    private void buildContext(Context mContext){
-        sharedPref = mContext.getSharedPreferences("AppStatus",Activity.MODE_PRIVATE);
-    }*/
+    }
+
     public int getAppDBVersion(Context mContext){
         sharedPref = mContext.getSharedPreferences("AppStatus",Activity.MODE_PRIVATE);
         return sharedPref.getInt("AppVersion",1);

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;
+import com.example.ckh.foodtruck.utility.MySharedPreferences;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,10 +20,10 @@ import java.util.Date;
 /**
  * Created by Ckh on 2016-10-30.
  */
-public class User_ReviewAdding extends Activity {
+public class UserReviewAdding extends Activity {
     private EditText input1;
     private RatingBar rating;
-    SQLiteDatabase db;
+    private SQLiteDatabase db;
     @Override
     public void onCreate(Bundle b){
         super.onCreate(b);
@@ -31,14 +32,17 @@ public class User_ReviewAdding extends Activity {
         Button btn;
         DBSQLiteOpenHelper helper;
 
-
         Intent intent =getIntent();
         final int truckNumber = intent.getExtras().getInt("truckcode");
         input1 = (EditText) findViewById(R.id.user_review_add_edittext_one);
         rating = (RatingBar) findViewById(R.id.user_review_add_ratingbar);
         btn =(Button) findViewById(R.id.user_review_add_button_one);
 
-        helper = new DBSQLiteOpenHelper(this, GlobalApplication.dbName,null,1);
+        helper = new DBSQLiteOpenHelper(
+                this,
+                GlobalApplication.dbName,
+                null,
+                MySharedPreferences.getInstance().getAppDBVersion(UserReviewAdding.this));
         db = helper.getWritableDatabase();
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +57,7 @@ public class User_ReviewAdding extends Activity {
                 String convertData =  CurDateFormat.format(date);
                 db.execSQL("insert into review values (null,"+truckNumber+",'"+GlobalApplication.User_info_name+"','"+msg+"',"+score+",'"+convertData+"');");
                 db.close();
-                Toast.makeText(User_ReviewAdding.this,"리뷰가 추가되었습니다!",Toast.LENGTH_LONG).show();
+                Toast.makeText(UserReviewAdding.this,"리뷰가 추가되었습니다!",Toast.LENGTH_LONG).show();
                 setResult(1);
                 finish();
             }

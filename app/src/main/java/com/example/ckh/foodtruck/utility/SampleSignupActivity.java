@@ -23,8 +23,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.ckh.foodtruck.user.User_Login;
-import com.example.ckh.foodtruck.user.User_TabFragment;
+import com.example.ckh.foodtruck.user.UserLogin;
+import com.example.ckh.foodtruck.user.UserTabFragment;
 import com.kakao.auth.ErrorCode;
 import com.kakao.network.ErrorResult;
 
@@ -89,7 +89,7 @@ public class SampleSignupActivity extends Activity {
     }
 
     private void redirectMainActivity() {
-        Intent intent = new Intent(SampleSignupActivity.this,User_TabFragment.class);
+        Intent intent = new Intent(SampleSignupActivity.this,UserTabFragment.class);
         startActivity(intent);
         Toast.makeText(SampleSignupActivity.this, GlobalApplication.User_info_name+" 님 환영합니다.", Toast.LENGTH_SHORT).show();
         GlobalApplication.kkouser=true;
@@ -98,7 +98,7 @@ public class SampleSignupActivity extends Activity {
         finish();
     }
     protected void redirectLoginActivity() {
-        final Intent intent = new Intent(this, User_Login.class);
+        final Intent intent = new Intent(this, UserLogin.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
         finish();

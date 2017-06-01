@@ -14,13 +14,15 @@ import com.example.ckh.foodtruck.R;
 /**
  * Created by Ckh on 2016-09-25.
  */
-public class User_TabFragment extends FragmentActivity {
-    UserSectionPagerAdapter mSectionPagerAdapter;
-    ViewPager mViewPager;
+public class UserTabFragment extends FragmentActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_fragment);
+
+        UserSectionPagerAdapter mSectionPagerAdapter;
+        ViewPager mViewPager;
 
         mSectionPagerAdapter =  new UserSectionPagerAdapter(getApplicationContext(),getSupportFragmentManager());
 
@@ -42,11 +44,11 @@ public class User_TabFragment extends FragmentActivity {
         public Fragment getItem(int position) {
             switch (position){
                 case 0 :
-                    return new User_TabFirst_List(mContext);
+                    return new UserTabFirstList(mContext);
                 case 1 :
-                    return new User_TabSec_Map(mContext);
+                    return new UserTabSecMap(mContext);
                 case 2:
-                    return new User_TabTri_settings(mContext);
+                    return new UserTabTrisettings(mContext);
             }
             return null;
         }

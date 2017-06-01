@@ -14,7 +14,7 @@ import com.example.ckh.listView.SellerReviewListViewAdapter;
 import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;
-import com.example.ckh.foodtruck.user.User_ReviewAdding;
+import com.example.ckh.foodtruck.user.UserReviewAdding;
 
 /**
  * Created by Ckh on 2016-09-25.
@@ -46,7 +46,7 @@ public class ReviewMore extends Activity {
                     if(GlobalApplication.User_info_name==null) {
                         Toast.makeText(ReviewMore.this,"로그인 후 이용해 주세요",Toast.LENGTH_LONG).show();
                     }else {
-                        Intent intent = new Intent(ReviewMore.this, User_ReviewAdding.class);
+                        Intent intent = new Intent(ReviewMore.this, UserReviewAdding.class);
                         intent.putExtra("truckcode", truckid);
                         startActivityForResult(intent,10);
                     }

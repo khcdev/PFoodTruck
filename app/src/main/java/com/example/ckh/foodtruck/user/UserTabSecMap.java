@@ -20,13 +20,11 @@ import com.google.android.gms.maps.model.*;
  * Created by Ckh on 2016-10-08.
  */
 @SuppressLint("ValidFragment")
-public class User_TabSec_Map extends Fragment implements OnMapReadyCallback {
-    View view;
-    Context mContext;
+public class UserTabSecMap extends Fragment implements OnMapReadyCallback {
+    private View view;
+    private Context mContext;
 
-
-
-    public User_TabSec_Map(Context context) {
+    public UserTabSecMap(Context context) {
         mContext = context;
     }
 
@@ -65,7 +63,7 @@ public class User_TabSec_Map extends Fragment implements OnMapReadyCallback {
                     TruckItemDTO a;
                     a = GlobalApplication.dataList.get(i);
                     if (a.getTruckname().equals(trname)) {
-                        Intent intent = new Intent(getActivity(), User_TruckInfo.class);
+                        Intent intent = new Intent(getActivity(), UserTruckInfo.class);
                         intent.putExtra("truckname", a.getTruckname());
                         intent.putExtra("truckid", a.getTruck_id());
                         intent.putExtra("truckfavor", a.getTruckfavor());

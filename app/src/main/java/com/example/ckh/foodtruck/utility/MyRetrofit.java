@@ -11,6 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MyRetrofit {
     private static MyRetrofit instance = new MyRetrofit();
     private Retrofit retrofit;
+
     private MyRetrofit(){
         buildRetrofit();
     }

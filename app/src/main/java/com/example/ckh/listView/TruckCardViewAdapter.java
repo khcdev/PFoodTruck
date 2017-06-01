@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ckh.foodtruck.R;
-import com.example.ckh.foodtruck.user.User_TruckInfo;
+import com.example.ckh.foodtruck.user.UserTruckInfo;
 import com.example.ckh.viewdto.TruckItemDTO;
 
 import java.util.ArrayList;
@@ -61,7 +61,7 @@ public class TruckCardViewAdapter extends RecyclerView.Adapter<TruckCardViewAdap
             @Override
             public void onClick(View v) {
                 // 클릭 이벤트
-                Intent intent = new Intent(mContext, User_TruckInfo.class);
+                Intent intent = new Intent(mContext, UserTruckInfo.class);
                 intent.putExtra("truckname", Data.getTruckname());
                 intent.putExtra("truckid", Data.getTruck_id());
                 intent.putExtra("truckfavor", Data.getTruckfavor());

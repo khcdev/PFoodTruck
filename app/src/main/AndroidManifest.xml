@@ -26,7 +26,7 @@
         <activity android:name=".MainActivity">
 
         </activity>
-        <activity android:name=".user.User_Login">
+        <activity android:name=".user.UserLogin">
 
         </activity>
         <activity android:name=".seller.SellerLogin">
@@ -47,7 +47,7 @@
         <activity android:name=".seller.SellerTabFragment">
 
         </activity>
-        <activity android:name=".user.User_TabFragment">
+        <activity android:name=".user.UserTabFragment">
 
         </activity>
         <activity android:name=".seller.MenuManagement">
@@ -62,10 +62,10 @@
         <activity android:name=".seller.SpotDetail">
 
         </activity>
-        <activity android:name=".user.User_TruckInfo">
+        <activity android:name=".user.UserTruckInfo">
 
         </activity>
-        <activity android:name=".user.User_ReviewAdding">
+        <activity android:name=".user.UserReviewAdding">
 
         </activity>
         <!--Permission-->

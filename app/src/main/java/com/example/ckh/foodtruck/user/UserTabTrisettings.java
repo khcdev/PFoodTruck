@@ -19,15 +19,11 @@ import com.example.ckh.foodtruck.R;
  * Created by Ckh on 2016-10-28.
  */
 @SuppressLint("ValidFragment")
-public class User_TabTri_settings extends Fragment {
-    Context mContext;
-    View view;
-    TextView tv1;
-    ListView favorlist;
-    FavorTruckDTO item;
-    FavorListViewAdapter adapter;
+public class UserTabTrisettings extends Fragment {
+    private Context mContext;
+    private View view;
 
-    public User_TabTri_settings(Context context) {
+    public UserTabTrisettings(Context context) {
         mContext = context;
     }
 
@@ -36,6 +32,11 @@ public class User_TabTri_settings extends Fragment {
         if (view == null) {
             view = inflater.inflate(R.layout.user_tab3_settings, null);
         }
+
+        TextView tv1;
+        ListView favorlist;
+        FavorListViewAdapter adapter;
+
         tv1 = (TextView) view.findViewById(R.id.user_id);
         tv1.setText(GlobalApplication.User_info_name);
         favorlist = (ListView) view.findViewById(R.id.favorlist);

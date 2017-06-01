@@ -27,26 +27,30 @@ import java.util.ArrayList;
  * Created by Ckh on 2016-10-08.
  */
 @SuppressLint("ValidFragment")
-public class User_TabFirst_List extends Fragment {
-    SQLiteDatabase db;
-    DBSQLiteOpenHelper helper;
-    RecyclerView trucklistView;
-    TruckCardViewAdapter adapter;
-    String imgpath = "data/data/com.example.ckh.foodtruck/files/";
-    private RecyclerView.LayoutManager mLayoutManager;
-    View view;
-    Context mContext;
+public class UserTabFirstList extends Fragment {
 
-    public User_TabFirst_List(Context context) {
+    private View view;
+    private Context mContext;
+
+    public UserTabFirstList(Context context) {
         mContext = context;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         if (view == null) {
             view = inflater.inflate(R.layout.user_tab1_list, null);
         }
+
+        SQLiteDatabase db;
+        DBSQLiteOpenHelper helper;
+        RecyclerView.LayoutManager mLayoutManager;
+
+        RecyclerView trucklistView;
+        TruckCardViewAdapter adapter;
+        String imgpath = "data/data/com.example.ckh.foodtruck/files/";
 
         trucklistView = (RecyclerView) view.findViewById(R.id.user_truck_recycler);
         trucklistView.setHasFixedSize(true);

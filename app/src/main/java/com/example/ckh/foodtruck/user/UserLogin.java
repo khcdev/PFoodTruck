@@ -33,7 +33,7 @@ import java.util.Arrays;
 
 
 //메서드 명 수정 할 것
-public class User_Login extends Activity {
+public class UserLogin extends Activity {
 
     private SessionCallback callback;       //kko
     private CallbackManager callbackManager; //fb
@@ -55,7 +55,7 @@ public class User_Login extends Activity {
             public void onClick(View v) {
                 switch(v.getId()){
                     case R.id.usermain_btn_NonAccLogin :
-                        Intent intent = new Intent(User_Login.this,User_TabFragment.class);
+                        Intent intent = new Intent(UserLogin.this,UserTabFragment.class);
                         GlobalApplication.fbuser=false;
                         GlobalApplication.kkouser=false;
                         GlobalApplication.User_info_name=null;
@@ -81,7 +81,7 @@ public class User_Login extends Activity {
         callbackManager = CallbackManager.Factory.create();
 
         //페이스북에서 권한을 가져오는것것
-       LoginManager.getInstance().logInWithReadPermissions(User_Login.this,
+       LoginManager.getInstance().logInWithReadPermissions(UserLogin.this,
                 Arrays.asList("public_profile", "email"));
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
 
@@ -106,10 +106,10 @@ public class User_Login extends Activity {
                                 e.printStackTrace();
                             }
                             setResult(RESULT_OK);
-                            Toast.makeText(User_Login.this, GlobalApplication.User_info_name+" 님 환영합니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UserLogin.this, GlobalApplication.User_info_name+" 님 환영합니다.", Toast.LENGTH_SHORT).show();
                             GlobalApplication.fbuser=true;
                             GlobalApplication.kkouser=false;
-                            Intent intent = new Intent(User_Login.this,User_TabFragment.class);
+                            Intent intent = new Intent(UserLogin.this,UserTabFragment.class);
                             startActivity(intent);
                             finish();
                         }

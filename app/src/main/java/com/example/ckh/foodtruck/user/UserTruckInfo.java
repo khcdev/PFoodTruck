@@ -29,18 +29,22 @@ import com.kakao.util.KakaoParameterException;
 /**
  * Created by Ckh on 2016-10-29.
  */
-public class User_TruckInfo extends Activity {
-    ImageView truckimg, iv_inrto;
-    TextView tv_intro, tv_favor, tv_score, tv_noti, iv_menulist;
-    Button reviewmore, iv_addfavor;
-    Button kkosharing;
-    String imgpath = "data/data/com.example.ckh.foodtruck/files/";
-    Bitmap bm;
-    boolean flag = false;
+public class UserTruckInfo extends Activity {
+    private boolean flag = false;
+    private TextView tv_favor;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ImageView truckimg;
+        TextView tv_intro,  tv_score, tv_noti, iv_menulist;
+        Button reviewmore, iv_addfavor;
+        Button kkosharing;
+        String imgpath = "data/data/com.example.ckh.foodtruck/files/";
+        Bitmap bm=null;
+
+
         setContentView(R.layout.truckinfo_detail);
         Intent intent = getIntent();
         final TruckItemDTO truckdata = new TruckItemDTO();
@@ -53,6 +57,7 @@ public class User_TruckInfo extends Activity {
         try {
             bm = BitmapFactory.decodeFile(imgpath + truckdata.getImgcode());
         } catch (Exception e) {
+            bm=null;
             e.printStackTrace();
             Log.e("fileloadfailed", "비트맵 이미지 불러오기 실패");
         }
@@ -71,16 +76,16 @@ public class User_TruckInfo extends Activity {
                 if (GlobalApplication.kkouser) {
                     try {
                         String noti = GlobalApplication.truckintro.get(Integer.toString(truckdata.getTruck_id()));
-                        final KakaoLink kakaoLink = KakaoLink.getKakaoLink(User_TruckInfo.this);
+                        final KakaoLink kakaoLink = KakaoLink.getKakaoLink(UserTruckInfo.this);
                         final KakaoTalkLinkMessageBuilder kakaoTalkLinkMessageBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
                         kakaoTalkLinkMessageBuilder.addText("붕붕이 앱에서 '" + truckdata.getTruckname() + "' 푸드트럭을 공유했습니다.\n" +
                                 "매장 소개 : " + noti + "\n\n*주의* 본 데이터는 정확한 데이터를 바탕으로 하고 있지 않습니다.");
-                        kakaoLink.sendMessage(kakaoTalkLinkMessageBuilder, User_TruckInfo.this);
+                        kakaoLink.sendMessage(kakaoTalkLinkMessageBuilder, UserTruckInfo.this);
                     } catch (KakaoParameterException e) {
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(User_TruckInfo.this, "카카오 아이디로 로그인 해주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserTruckInfo.this, "카카오 아이디로 로그인 해주세요.", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -89,7 +94,7 @@ public class User_TruckInfo extends Activity {
         tv_noti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alert_intro = new AlertDialog.Builder(User_TruckInfo.this);
+                AlertDialog.Builder alert_intro = new AlertDialog.Builder(UserTruckInfo.this);
                 alert_intro.setTitle("공지 사항");
                 alert_intro.setMessage(GlobalApplication.trucknoti.get(Integer.toString(truckdata.getTruck_id())));
                 alert_intro.setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -104,7 +109,7 @@ public class User_TruckInfo extends Activity {
         iv_menulist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(User_TruckInfo.this, MenuManagement.class);
+                Intent intent = new Intent(UserTruckInfo.this, MenuManagement.class);
                 intent.putExtra("isSeller", false);
                 intent.putExtra("truckcode", truckdata.getTruck_id());
                 startActivity(intent);
@@ -116,7 +121,7 @@ public class User_TruckInfo extends Activity {
         reviewmore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(User_TruckInfo.this, ReviewMore.class);
+                Intent intent = new Intent(UserTruckInfo.this, ReviewMore.class);
                 intent.putExtra("Req", 1);
                 intent.putExtra("truckcode", truckdata.getTruck_id());
                 startActivity(intent);
@@ -127,24 +132,24 @@ public class User_TruckInfo extends Activity {
             public void onClick(View v) {
                 SQLiteDatabase db;
                 DBSQLiteOpenHelper helper;
-                helper = new DBSQLiteOpenHelper(User_TruckInfo.this, GlobalApplication.dbName, null, MySharedPreferences.getInstance().getAppDBVersion(User_TruckInfo.this));
+                helper = new DBSQLiteOpenHelper(UserTruckInfo.this, GlobalApplication.dbName, null, MySharedPreferences.getInstance().getAppDBVersion(UserTruckInfo.this));
                 db = helper.getWritableDatabase();
                 switch (truckdata.getTruck_id()) {
                     case 101:
                         if (GlobalApplication.favor_101) {
-                            Toast.makeText(User_TruckInfo.this, "이미 추가되었습니다", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UserTruckInfo.this, "이미 추가되었습니다", Toast.LENGTH_SHORT).show();
                             flag = false;
                         } else flag = true;
                         break;
                     case 102:
                         if (GlobalApplication.favor_102) {
-                            Toast.makeText(User_TruckInfo.this, "이미 추가되었습니다", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UserTruckInfo.this, "이미 추가되었습니다", Toast.LENGTH_SHORT).show();
                             flag = false;
                         } else flag = true;
                         break;
                     case 103:
                         if (GlobalApplication.favor_103) {
-                            Toast.makeText(User_TruckInfo.this, "이미 추가되었습니다", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UserTruckInfo.this, "이미 추가되었습니다", Toast.LENGTH_SHORT).show();
                             flag = false;
                         } else flag = true;
                         break;
@@ -153,7 +158,7 @@ public class User_TruckInfo extends Activity {
                     int numb = Integer.parseInt(tv_favor.getText().toString());
                     numb++;
                     tv_favor.setText(Integer.toString(numb));
-                    Toast.makeText(User_TruckInfo.this, "즐겨찾기에 추가되었습니다. 설정탭을 확인하세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserTruckInfo.this, "즐겨찾기에 추가되었습니다. 설정탭을 확인하세요", Toast.LENGTH_SHORT).show();
                     db.execSQL("update foodtruck set favorites = " + numb + " where truck_id=" + truckdata.getTruck_id() + ";");
                     db.close();
                     setResult(2);
