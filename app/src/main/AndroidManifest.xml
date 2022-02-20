@@ -17,7 +17,7 @@
             android:theme="@style/AppTheme"
             android:name="com.hungryduck.foodtruck.utility.GlobalApplication">
 
-        <activity android:name="com.hungryduck.foodtruck.Splash">
+        <activity android:name="com.hungryduck.foodtruck.Splash" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -36,10 +36,10 @@
 
         </activity>
 
-        <activity android:name="com.facebook.FacebookActivity"
-                  android:configChanges=
-                          "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-                  android:label="@string/app_name" />
+<!--        <activity android:name="com.facebook.FacebookActivity"-->
+<!--                  android:configChanges=-->
+<!--                          "keyboard|keyboardHidden|screenLayout|screenSize|orientation"-->
+<!--                  android:label="@string/app_name" />-->
 
         <activity android:name="com.hungryduck.foodtruck.utility.SampleSignupActivity">
 
@@ -62,7 +62,7 @@
         <activity android:name="com.hungryduck.foodtruck.seller.SpotDetail">
 
         </activity>
-        <activity android:name="com.hungryduck.foodtruck.user.UserTruckInfo">
+        <activity android:name="com.hungryduck.foodtruck.user.UserTruckInfo" android:exported="true">
 
         </activity>
         <activity android:name="com.hungryduck.foodtruck.user.UserReviewAdding">

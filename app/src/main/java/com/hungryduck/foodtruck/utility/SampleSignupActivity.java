@@ -30,6 +30,8 @@ import com.kakao.network.ErrorResult;
 
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.MeResponseCallback;
+import com.kakao.usermgmt.callback.MeV2ResponseCallback;
+import com.kakao.usermgmt.response.MeV2Response;
 import com.kakao.usermgmt.response.model.UserProfile;
 
 import com.kakao.util.helper.log.Logger;
@@ -52,8 +54,9 @@ public class SampleSignupActivity extends Activity {
     /**
      * 사용자의 상태를 알아 보기 위해 me API 호출을 한다.
      */
+    @SuppressWarnings("..")
     protected void requestMe() {
-        UserManagement.requestMe(new MeResponseCallback() {
+        UserManagement.getInstance().me(new MeV2ResponseCallback() {
             @Override
             public void onFailure(ErrorResult errorResult) {
                 String message = "failed to get user info. msg=" + errorResult;
@@ -74,17 +77,13 @@ public class SampleSignupActivity extends Activity {
             }
 
             @Override
-            public void onSuccess(UserProfile userProfile) {
-                Logger.d("UserProfile : " + userProfile);
-                GlobalApplication.User_info_name=userProfile.getNickname();
+            public void onSuccess(MeV2Response result) {
+                Logger.d("UserProfile : " + result);
+                GlobalApplication.User_info_name = result.getNickname();
                 redirectMainActivity();
-                Log.i("ckh","접속성공!");
+                Log.i("ckh", "접속성공!");
             }
 
-            @Override
-            public void onNotSignedUp() {
-                Log.i("ckh","onNotsignedUp");
-            }
         });
     }
 
