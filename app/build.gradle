@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 31
     defaultConfig {
-        applicationId "com.example.ckh.foodtruck"
+        applicationId "com.hungryduck.foodtruck"
         minSdkVersion 28
         targetSdkVersion 31
         versionCode 1

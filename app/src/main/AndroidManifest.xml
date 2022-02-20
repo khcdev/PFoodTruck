@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.ckh.foodtruck">
+          package="com.hungryduck.foodtruck">
     <uses-feature
             android:glEsVersion="0x00020000"
             android:required="true" />
@@ -15,24 +15,24 @@
             android:label="@string/app_name"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
-            android:name=".utility.GlobalApplication">
+            android:name="com.hungryduck.foodtruck.utility.GlobalApplication">
 
-        <activity android:name=".Splash">
+        <activity android:name="com.hungryduck.foodtruck.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name="com.hungryduck.foodtruck.MainActivity">
 
         </activity>
-        <activity android:name=".user.UserLogin">
+        <activity android:name="com.hungryduck.foodtruck.user.UserLogin">
 
         </activity>
-        <activity android:name=".seller.SellerLogin">
+        <activity android:name="com.hungryduck.foodtruck.seller.SellerLogin">
 
         </activity>
-        <activity android:name=".seller.ReviewMore">
+        <activity android:name="com.hungryduck.foodtruck.seller.ReviewMore">
 
         </activity>
 
@@ -41,31 +41,31 @@
                           "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
                   android:label="@string/app_name" />
 
-        <activity android:name=".utility.SampleSignupActivity">
+        <activity android:name="com.hungryduck.foodtruck.utility.SampleSignupActivity">
 
         </activity>
-        <activity android:name=".seller.SellerTabFragment">
+        <activity android:name="com.hungryduck.foodtruck.seller.SellerTabFragment">
 
         </activity>
-        <activity android:name=".user.UserTabFragment">
+        <activity android:name="com.hungryduck.foodtruck.user.UserTabFragment">
 
         </activity>
-        <activity android:name=".seller.MenuManagement">
+        <activity android:name="com.hungryduck.foodtruck.seller.MenuManagement">
 
         </activity>
-        <activity android:name=".seller.SellerMenuAdd">
+        <activity android:name="com.hungryduck.foodtruck.seller.SellerMenuAdd">
 
         </activity>
-        <activity android:name=".seller.StoreManagement">
+        <activity android:name="com.hungryduck.foodtruck.seller.StoreManagement">
 
         </activity>
-        <activity android:name=".seller.SpotDetail">
+        <activity android:name="com.hungryduck.foodtruck.seller.SpotDetail">
 
         </activity>
-        <activity android:name=".user.UserTruckInfo">
+        <activity android:name="com.hungryduck.foodtruck.user.UserTruckInfo">
 
         </activity>
-        <activity android:name=".user.UserReviewAdding">
+        <activity android:name="com.hungryduck.foodtruck.user.UserReviewAdding">
 
         </activity>
         <!--Permission-->
