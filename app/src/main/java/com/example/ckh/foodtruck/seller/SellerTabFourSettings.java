@@ -3,12 +3,14 @@ package com.example.ckh.foodtruck.seller;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+
+import androidx.fragment.app.Fragment;
+
 import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.foodtruck.R;
 
@@ -17,7 +19,7 @@ import com.example.ckh.foodtruck.R;
  */
 
 @SuppressLint({"SetJavaScriptEnabled","ValidFragment"})
-public class SellerTabFourSettings extends Fragment{
+public class SellerTabFourSettings extends Fragment {
 
     //Context mContext;
     private View view;

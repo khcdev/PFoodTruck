@@ -3,13 +3,15 @@ package com.example.ckh.foodtruck.user;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.ckh.foodtruck.R;
+import com.google.android.material.tabs.TabLayout;
 
 /**
  * Created by Ckh on 2016-09-25.
@@ -35,7 +37,7 @@ public class UserTabFragment extends FragmentActivity {
     }
     public class UserSectionPagerAdapter extends FragmentPagerAdapter {
         Context mContext;
-        public UserSectionPagerAdapter(Context context,FragmentManager fm){
+        public UserSectionPagerAdapter(Context context, FragmentManager fm){
             super(fm);
             mContext=context;
         }

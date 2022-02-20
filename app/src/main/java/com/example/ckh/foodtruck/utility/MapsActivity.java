@@ -1,7 +1,8 @@
 package com.example.ckh.foodtruck.utility;
 
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+
+import androidx.fragment.app.FragmentActivity;
 
 import com.example.ckh.foodtruck.R;
 import com.google.android.gms.maps.CameraUpdateFactory;

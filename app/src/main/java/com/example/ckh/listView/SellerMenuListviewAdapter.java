@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +13,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ckh.foodtruck.utility.GlobalApplication;
+import androidx.appcompat.app.AlertDialog;
+
 import com.example.ckh.foodtruck.R;
 import com.example.ckh.foodtruck.utility.DBSQLiteOpenHelper;
+import com.example.ckh.foodtruck.utility.GlobalApplication;
 import com.example.ckh.viewdto.MenuViewHolderDTO;
 import com.example.ckh.viewdto.SellerMenuItemDTO;
 
