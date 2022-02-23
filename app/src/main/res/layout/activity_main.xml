@@ -9,7 +9,7 @@
         android:paddingTop="110dp"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:background="@drawable/main"
-        tools:context="com.example.ckh.foodtruck.MainActivity">
+        tools:context="com.hungryduck.foodtruck.MainActivity">
     <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
