@@ -15,6 +15,7 @@
             android:label="@string/app_name"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
+            android:usesCleartextTraffic="true"
             android:name="com.hungryduck.foodtruck.utility.GlobalApplication">
 
         <activity
@@ -65,7 +66,7 @@
         <activity android:name="com.hungryduck.foodtruck.seller.SpotDetail">
 
         </activity>
-        <activity android:name="com.hungryduck.foodtruck.user.UserTruckInfo" android:exported="true">
+        <activity android:name="com.hungryduck.foodtruck.user.UserTruckInfo">
 
         </activity>
         <activity android:name="com.hungryduck.foodtruck.user.UserReviewAdding">
