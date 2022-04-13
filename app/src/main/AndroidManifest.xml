@@ -17,7 +17,10 @@
             android:theme="@style/AppTheme"
             android:name="com.hungryduck.foodtruck.utility.GlobalApplication">
 
-        <activity android:name="com.hungryduck.foodtruck.Splash" android:exported="true">
+        <activity
+                android:name="com.hungryduck.foodtruck.Splash"
+                android:theme="@style/SplashTheme"
+                android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
