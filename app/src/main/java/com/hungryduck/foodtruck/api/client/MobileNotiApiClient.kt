@@ -9,7 +9,6 @@ import retrofit2.http.QueryMap
 interface MobileNotiApiClient {
     @GET("/foodtruck/notification")
     fun fetchMobileNoti(
-        @QueryMap
         @Query("os") os: String,
         @Query("osVer") osVer: Int,
         @Query("appVer") appVer: Int
